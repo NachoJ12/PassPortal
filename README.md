@@ -9,5 +9,6 @@
 - Grande, Jorgelina
 - Justel, Ignacio
 - Maletto, Antonella
+- Paladino, Elias
 - Quesada, Serafin
 - Sanchez, Gonzalo

@@ -1,6 +1,13 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
 
+:root {
+  --color-primario: #070607; /*layouts, backgrounds*/
+  --color-secundario:rgb(250, 250, 250);/*color fonts hovers & selected*/
+  --color-terciario:#9d9c9d;/*color fonts normals*/
+  --color-hover:#2e2d2d;/*hovers backgrounds*/
+  --color-main:#0e0c0d;
+}
 
 *{
   padding: 0;
@@ -29,8 +36,9 @@ body{
   overflow-y: auto; 
 }
 .main_prueba{
-  background-color: pink;
+  background-color: var(--color-main);
   height: 1000px;
+  color: var(--color-secundario);
 }
 .sidebar_wrapper{
   position: relative;
@@ -38,7 +46,7 @@ body{
 .sidebar{
   width: 17rem;
   height: 100%;
-  background-color: #1d1c1c;
+  background-color: var(--color-primario);
   transition: all .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   display: flex;
   flex-direction: column;
@@ -67,11 +75,11 @@ body{
   display: inline-block;
   font-size: 1rem;
   text-decoration: none;
-  color: rgba(148, 148, 148, 0.842);
+  color: var(--color-terciario);
   padding: 10px;
   padding-top: 15px;
   display: flex;
-  background-color: #1d1c1c;
+  background-color: var(--color-primario);
   margin-bottom: 1rem;
   align-content: center;
   justify-content: flex-start;
@@ -80,15 +88,13 @@ body{
 }
 
 .sidebar_link:hover{
-  background-color: #141414c7;
-  color: rgb(255, 255, 255);
-  text-shadow: rgb(255, 255, 255) 3px 0px 10px ;
+  color: var(--color-secundario);
+  text-shadow: var(--color-secundario) 3px 0px 10px ;
 }
 
 .sidebar_link.selected{
-  background-color: #141414c7;
-  color: rgb(255, 255, 255);
-  text-shadow: rgb(255, 255, 255) 3px 0px 10px ;
+  color: var(--color-secundario);
+  text-shadow: var(--color-secundario) 3px 0px 10px ;
 }
 
 .sidebar_icon{
@@ -103,7 +109,7 @@ body{
 .sidebar_logoName{
   font-size: 1.2rem;
   font-weight: 400;
-  color: rgb(204, 201, 201);
+  color: var(--color-terciario);
   padding-top: 30px;
   transition:all .10s ease ;
 }
@@ -113,7 +119,7 @@ body{
   top: 1rem;
   border: none;
   border-radius: 50%;
-  background-color:#1d1c1c;
+  background-color:var(--color-primario);
   width: 2.5rem;
   height: 2.5rem;
   display: flex;
@@ -122,12 +128,12 @@ body{
   cursor: pointer;
   transform: translateX(50%);
   font-size: 1.5rem;
-  color: white;
+  color: var(--color-terciario);
   transition: all 0.3s ease-in-out;
 }
 
 .sidebar_btn:hover{
-  background-color: #4d4d4d;
+  background-color: var(--color-hover);
 }
 
 [data-collapse="true"]{
@@ -170,7 +176,7 @@ body{
   display: flex;
 width: 100%;
 height: 4rem;
-background-color: #1d1c1c;
+background-color: var(--color-primario);
 align-items: center;
 justify-content: flex-end;
 }
@@ -184,9 +190,9 @@ justify-content: flex-end;
   padding: 0;
   font-size: 1rem;
   text-decoration: none;
-  color: rgba(148, 148, 148, 0.842);
+  color: var(--color-terciario);
   display: flex;
-  background-color: #1d1c1c;
+  background-color: var(--color-primario);
   justify-content: flex-start;
   margin-right: 20px;
   align-items: center;
@@ -194,14 +200,14 @@ justify-content: flex-end;
   cursor: pointer;
 }
 .navbar_link:hover{
-  color: rgb(255, 255, 255);
-  text-shadow: rgb(255, 255, 255) 3px 0px 10px ;
+  color: var(--color-secundario);
+  text-shadow: var(--color-secundario) 3px 0px 10px ;
 }
 
 
 /* Cambia el ancho del pulgar del scrollbar */
 ::-webkit-scrollbar-thumb {
-  background-color: #4d4d4d;
+  background-color: var(--color-hover);
   width: 40px;
   border-radius: 10px;
 }
@@ -215,4 +221,66 @@ justify-content: flex-end;
 /* Oculta el scrollbar en navegadores WebKit */
 ::-webkit-scrollbar {
   width: 10px;
+}
+
+
+
+/*Mobile*/
+@media screen and (max-width: 767px) {
+  .main{
+    overflow:unset;
+    padding-top: 48px;
+  }
+  .navbar{
+    height: 3rem;
+    position: fixed;
+  }
+  .sidebar{
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    position: fixed;
+    bottom: 0%;
+    height: 8.5%;
+    align-items: center;
+    transition:none;
+  }
+  .sidebar_wrapper{
+    position: inherit;
+  }
+  .sidebar_list{
+    width: 100vw;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .sidebar_logo{
+    display: none;
+  }
+  .sidebar_logoName{
+    display: none;
+  }
+  .sidebar_name{
+    margin: 0px;
+    font-size: 13px;
+  }
+  .sidebar_link{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0px;
+    padding: 0px 10px
+  }
+  .sidebar_top{
+    display: none;
+  }
+  .sidebar_btn{
+    display: none;
+  }
+  .sidebar_link:hover{
+    background-color: var(--color-primario);
+  }
+
+  .sidebar_link.selected{
+    background-color: var(--color-primario);
+  }
+  
 }

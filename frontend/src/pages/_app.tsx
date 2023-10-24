@@ -1,11 +1,14 @@
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
-import {SidebarProvider} from "@/components/context/sidebar-context"
+import { SidebarProvider } from "@/components/context/sidebar-context"
+import SessionAuthProvider from '@/components/context/SessionAuthProvider'
 
 export default function App({ Component, pageProps }: AppProps) {
-  return(
-    <SidebarProvider>
-    <Component {...pageProps} />
-    </SidebarProvider> 
+  return (
+    <SessionAuthProvider>
+      <SidebarProvider>
+        <Component {...pageProps} />
+      </SidebarProvider>
+    </SessionAuthProvider>
   )
 }

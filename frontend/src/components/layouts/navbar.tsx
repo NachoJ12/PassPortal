@@ -1,5 +1,8 @@
+"use client";
 import React from 'react'
-import Link from 'next/link'
+import CustomLink from '@/components/ui/CustomLink/CustomLink'
+import { signOut, useSession } from "next-auth/react";
+import { Link }  from '@mui/material';
 
 const navbarItems = [
   {
@@ -14,15 +17,35 @@ const navbarItems = [
 ]
 
 export default function navbar() {
+  const { data: session } = useSession();
+
   return (
     <nav className='navbar'>
-      <ul className='navbar_list'>
-        {navbarItems.map(item => <li className='navbar_item' key={item.name}>
-          <Link href={item.href} className="navbar_link">
-            <span className='sidebar_name'>{item.name}</span>
+
+      {session?.user ? (
+        <>
+          <span className="navbar_link" >
+            {session.user.name}
+          </span>
+          <Link
+            onClick={() => signOut()}
+            className="navbar_link" 
+          >
+            Sign-Out
           </Link>
-        </li>)}
-      </ul>
+        </>
+      ) : (
+        <ul className='navbar_list'>
+          {navbarItems.map(item =>
+            <li className='navbar_item' key={item.name}>
+              <CustomLink
+                name={item.name}
+                href={item.name}
+              />
+            </li>
+          )}
+        </ul>
+      )}
     </nav>
   )
 }

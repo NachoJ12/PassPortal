@@ -62,6 +62,7 @@ body{
 .sidebar_list{
   list-style: none;
 }
+
 .sidebar_link{
   display: inline-block;
   font-size: 1rem;
@@ -77,15 +78,18 @@ body{
   align-items: center;
   transition: all 0.3s ease-in-out;
 }
+
 .sidebar_link:hover{
   background-color: #141414c7;
   color: rgb(255, 255, 255);
   text-shadow: rgb(255, 255, 255) 3px 0px 10px ;
 }
+
 .sidebar_icon{
   font-size: 1.4rem;
   display: inline-block;
 }
+
 .sidebar_name{
   margin-left: 0.5rem;
 
@@ -96,8 +100,8 @@ body{
   color: rgb(204, 201, 201);
   padding-top: 30px;
   transition:all .10s ease ;
-
 }
+
 .sidebar_btn{
   position: absolute;
   top: 1rem;
@@ -115,6 +119,7 @@ body{
   color: white;
   transition: all 0.3s ease-in-out;
 }
+
 .sidebar_btn:hover{
   background-color: #4d4d4d;
 }
@@ -122,20 +127,25 @@ body{
 [data-collapse="true"]{
   width: 5.3rem;
 }
+
 [data-collapse="true"] .sidebar_name{
   margin-left: 0px;
   font-size: 12px;
 }
+
 [data-collapse="true"] .sidebar_logo{
   margin-left: -20px;
 }
+
 [data-collapse="true"] .sidebar_top{
   width: auto;
 }
+
 [data-collapse="true"] .sidebar_logoName{
   display: none;
   transition: all 10s ease-in-out ;
 }
+
 [data-collapse="true"] .sidebar_link{
   justify-content: center;
   flex-direction: column;

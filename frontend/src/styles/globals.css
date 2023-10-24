@@ -85,6 +85,12 @@ body{
   text-shadow: rgb(255, 255, 255) 3px 0px 10px ;
 }
 
+.sidebar_link.selected{
+  background-color: #141414c7;
+  color: rgb(255, 255, 255);
+  text-shadow: rgb(255, 255, 255) 3px 0px 10px ;
+}
+
 .sidebar_icon{
   font-size: 1.4rem;
   display: inline-block;
@@ -185,6 +191,7 @@ justify-content: flex-end;
   margin-right: 20px;
   align-items: center;
   transition: all 0.3s;
+  cursor: pointer;
 }
 .navbar_link:hover{
   color: rgb(255, 255, 255);

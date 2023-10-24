@@ -1,12 +1,12 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
-import { useContext } from "react"
-import { SidebarContext } from '@/components/context/sidebar-context'
+import React, { useState } from 'react'
 import { AiOutlineHome } from "react-icons/ai"
 import { BiCategoryAlt, BiHelpCircle } from "react-icons/bi"
-import { LuContact2 } from "react-icons/lu"
 import { RxHamburgerMenu } from "react-icons/rx"
+import { useContext } from "react"
+import { SidebarContext } from '@/components/context/sidebar-context'
+import { LuContact2 } from "react-icons/lu"
 
 const sidebarItems = [
     {
@@ -18,11 +18,13 @@ const sidebarItems = [
         name: "Category",
         href: "/category",
         icon: BiCategoryAlt,
-    }, {
+    },
+    {
         name: "Help",
         href: "/help",
         icon: BiHelpCircle,
-    }, {
+    },
+    {
         name: "Contact",
         href: "/contact",
         icon: LuContact2,
@@ -30,8 +32,12 @@ const sidebarItems = [
 ]
 
 export default function Sidebar() {
+    const { isCollapsed, toggleSidebarcollapse, selectedItem, dispatch }:any = useContext(SidebarContext);
 
-    const { isCollapsed, toggleSidebarcollapse }: any = useContext(SidebarContext)
+    const toggleSelected = (index:any) => {
+      dispatch({ type: 'SELECT_ITEM', payload: index });
+    };
+
     return (
         <div className='sidebar_wrapper'>
             <button className='sidebar_btn' onClick={toggleSidebarcollapse}><RxHamburgerMenu /></button>
@@ -41,13 +47,14 @@ export default function Sidebar() {
                     <p className='sidebar_logoName'>PassPortal</p>
                 </div>
                 <ul className='sidebar_list'>
-                    {sidebarItems.map(item => <li className='sidebar_item' key={item.name}>
-                        <Link href={item.href} className="sidebar_link">
-                            <span className='sidebar_icon'><item.icon /></span>
-                            <span className='sidebar_name'>{item.name}</span>
-                        </Link>
-                    </li>)}
-
+                    {sidebarItems.map((item, index) => (
+                        <li className={"sidebar_item"} key={item.name}>
+                            <Link href={item.href} className={selectedItem === index ? 'sidebar_link selected' : 'sidebar_link'} onClick={() => toggleSelected(index)}>
+                                <span className='sidebar_icon'><item.icon /></span>
+                                <span className='sidebar_name'>{item.name}</span>
+                            </Link>
+                        </li>
+                        ))}
                 </ul>
             </aside>
         </div>

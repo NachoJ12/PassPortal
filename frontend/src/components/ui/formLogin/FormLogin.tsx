@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/router'
+import { signIn, useSession } from 'next-auth/react'
 import { yupResolver } from '@hookform/resolvers/yup';
-import { CustomTextField } from '../customInput/CustomTextField';
 import { Button, Typography } from '@mui/material';
 import { ErrorMessage } from '@hookform/error-message';
 import { schemaLogin } from '@/rules';
-
+import { CustomTextField } from '../customInput/CustomTextField';
 
 interface FormData {
     username: string
@@ -13,15 +14,34 @@ interface FormData {
 }
 
 const FormLogin = () => {
+    const { data: session } = useSession()
 
-    const { 
-        handleSubmit, 
+    const {
+        handleSubmit,
         control, 
-        getFieldState, formState: { errors } } = useForm<FormData>({resolver: yupResolver(schemaLogin), reValidateMode:"onChange"});
+        formState: { errors }
+    } = useForm<FormData>({ resolver: yupResolver(schemaLogin), reValidateMode: "onChange" });
 
-    const onSubmit = (data: any) => {
-        console.log(data)
+    const router = useRouter()
+
+    useEffect(() => {
+        // Redirect to '/' if the user is signed in and on a different page
+        if (session && session.user && router.pathname == '/login') {
+            router.push('/')
+        }
+    }, [session, router])
+
+    const onSubmit = async (data: FormData) => {
+        const { username, password } = data
+        // Handle login submission here
+        const responseNextAuth = await signIn("credentials", {
+            username,
+            password,
+            redirect: false,
+        });
+        console.log(responseNextAuth,data)
     }
+
     return (
         <form className='form' onSubmit={handleSubmit(onSubmit)}>
             <Typography sx={{ paddingBottom: "1rem" }} variant="h4" align="center">
@@ -53,7 +73,7 @@ const FormLogin = () => {
                 control={control}
                 defaultValue=""
             />
-            <Button  sx={{width:"60%"}} variant="outlined" type="submit">LogIn </Button>
+            <Button sx={{ width: "60%" }} variant="outlined" type="submit">LogIn </Button>
         </form>
     )
 }

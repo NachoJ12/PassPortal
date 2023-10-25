@@ -18,11 +18,13 @@ const sidebarItems = [
         name: "Category",
         href: "/category",
         icon: BiCategoryAlt,
-    }, {
+    }, 
+    {
         name: "Help",
         href: "/help",
         icon: BiHelpCircle,
-    }, {
+    }, 
+    {
         name: "Contact",
         href: "/contact",
         icon: LuContact2,

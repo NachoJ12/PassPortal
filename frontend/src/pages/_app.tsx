@@ -1,4 +1,6 @@
 import '@/styles/globals.css'
+import '@/styles/form.css'
+
 import type { AppProps } from 'next/app'
 import { SidebarProvider } from "@/components/context/sidebar-context"
 import SessionAuthProvider from '@/components/context/SessionAuthProvider'

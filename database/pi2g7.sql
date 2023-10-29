@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `PI2G7`.`user` (
   `password` VARCHAR(45) NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `last_pass_reset` TIMESTAMP NULL,
-  `lastName` VARCHAR(45) NOT NULL,
+  `last_name` VARCHAR(45) NOT NULL,
   `enabled` BIT(1) NULL,
   `role_id` INT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
@@ -58,9 +58,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `PI2G7`.`adress`
+-- Table `PI2G7`.`address`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `PI2G7`.`adress` (
+CREATE TABLE IF NOT EXISTS `PI2G7`.`address` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `street` VARCHAR(45) NULL,
   `city` VARCHAR(45) NULL,
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `PI2G7`.`venue` (
   INDEX `fk_venue_location1_idx` (`location_id` ASC) VISIBLE,
   CONSTRAINT `fk_venue_location1`
     FOREIGN KEY (`location_id`)
-    REFERENCES `PI2G7`.`adress` (`id`)
+    REFERENCES `PI2G7`.`address` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -161,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `PI2G7`.`order` (
   `id` INT NOT NULL,
   `total_price` DECIMAL(10,2) NULL,
   `order_datetime` DATETIME NULL,
-  `delivery_adress` VARCHAR(45) NULL,
+  `delivery_address` VARCHAR(45) NULL,
   `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_orderDetails_user1_idx` (`user_id` ASC) VISIBLE,

@@ -1,0 +1,56 @@
+# Server Configuration
+server:
+  port: ${PORT:0}
+
+# Spring Configuration
+spring:
+  application:
+    name: ms-users
+  # Database
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${DB_ENDPOINT}:${DB_PORT}/${DB_NAME}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+  # Jpa
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate.ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          time_zone: UTC
+  # Security
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            authorization-grant-type: ${AUTHORIZATION_GRANT_TYPE}
+            client-id: ${CLIENT_ID}
+            client-secret: ${CLIENT_SECRET}
+        provider:
+          keycloak:
+            issuer-uri: ${ISSUER_URI}
+            token-uri: ${TOKEN_URI}
+
+# Keycloak Configuration
+passportal:
+  keycloak:
+    serverUrl: ${KEYCLOAK_SERVER}
+    realm: ${KEYCLOAK_REALM}
+    clientId: ${KEYCLOAK_CLIENT_ID}
+    clientSecret: ${KEYCLOAK_CLIENT_SECRET}
+
+#Eureka
+eureka:
+  instance:
+    hostname: localhost
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+jwt-decoder-url: ${JWT_DECODER_URL}

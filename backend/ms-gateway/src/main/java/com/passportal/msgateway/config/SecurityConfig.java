@@ -24,6 +24,7 @@ public class SecurityConfig {
                 )
                 .authorizeExchange()
                 .pathMatchers("/users/create").permitAll()
+                .pathMatchers("/users/login").permitAll()
                 .anyExchange()
                 .authenticated()
                 .and()

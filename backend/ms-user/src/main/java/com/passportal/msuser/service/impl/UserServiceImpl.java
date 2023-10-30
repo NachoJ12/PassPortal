@@ -2,6 +2,7 @@ package com.passportal.msuser.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.passportal.msuser.dto.request.UserRequestDTO;
+import com.passportal.msuser.dto.response.AccessTokenResponseDTO;
 import com.passportal.msuser.entity.Role;
 import com.passportal.msuser.entity.User;
 import com.passportal.msuser.exception.DuplicatedValueException;
@@ -27,16 +28,19 @@ public class UserServiceImpl {
     private final RoleRepository roleRepository;
 
     private final Keycloak keycloak;
+
+    private final KeycloakServiceImpl keycloakServiceImpl;
     @Autowired
     ObjectMapper mapper;
 
     @Value("${passportal.keycloak.realm}")
     private String keycloakRealmName;
 
-    public UserServiceImpl(UserRepository userRepository,  RoleRepository roleRepository, Keycloak keycloak) {
+    public UserServiceImpl(UserRepository userRepository,  RoleRepository roleRepository, Keycloak keycloak, KeycloakServiceImpl keycloakServiceImpl) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.keycloak = keycloak;
+        this.keycloakServiceImpl = keycloakServiceImpl;
     }
 
     public UsersResource getInstanceUserResource(){
@@ -101,6 +105,19 @@ public class UserServiceImpl {
         passwordCredentials.setType(CredentialRepresentation.PASSWORD);
         passwordCredentials.setValue(password);
         return passwordCredentials;
+    }
+
+    public AccessTokenResponseDTO login(String email, String password) throws Exception{
+        Optional<User> userExists = userRepository.findByEmail(email);
+
+        // Valid user
+        if(userExists.isEmpty()){
+            throw new Exception("User not found");
+        }
+        // to do -- Valid password ¿?
+
+        // also works with email
+        return keycloakServiceImpl.login(userExists.get().getUsername(), password);
     }
 
 }

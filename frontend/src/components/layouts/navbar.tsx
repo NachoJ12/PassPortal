@@ -1,8 +1,7 @@
 "use client";
 import React from 'react'
-import CustomLink from '@/components/ui/customLink/CustomLink'
 import { signOut, useSession } from "next-auth/react";
-import { Link }  from '@mui/material';
+import { Link } from '@mui/material';
 
 const navbarItems = [
   {
@@ -29,7 +28,7 @@ export default function navbar() {
           </span>
           <Link
             onClick={() => signOut()}
-            className="navbar_link" 
+            className="navbar_link"
           >
             Sign-Out
           </Link>
@@ -38,10 +37,9 @@ export default function navbar() {
         <ul className='navbar_list'>
           {navbarItems.map(item =>
             <li className='navbar_item' key={item.name}>
-              <CustomLink
-                name={item.name}
-                href={item.href}
-              />
+              <Link className="navbar_link" href={item.href} >
+                <span className='sidebar_name'> {item.name}</span>
+              </Link>
             </li>
           )}
         </ul>

@@ -120,4 +120,8 @@ public class UserServiceImpl {
         return keycloakServiceImpl.login(userExists.get().getUsername(), password);
     }
 
+    public void logout(String userIdKeycloak) {
+        keycloakServiceImpl.logout(userIdKeycloak);
+    }
+
 }

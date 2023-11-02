@@ -11,6 +11,7 @@ import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -45,6 +46,14 @@ public class UserController {
 
         return ResponseEntity.ok(credentials);
     }
+
+    @PostMapping("/logout")
+    public void logout(){
+        String userIdKeycloak = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        userService.logout(userIdKeycloak);
+    }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getUserById(@PathVariable String id) {

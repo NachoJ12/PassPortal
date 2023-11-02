@@ -28,7 +28,9 @@ public class SecurityConfig {
                 .anyExchange()
                 .authenticated()
                 .and()
-                .oauth2Login(); //Check if this login needs to be present and which endpoint we hit to generate the token.
+                .oauth2Login()
+                .and()
+                .logout();
         return http.build();
     }
 

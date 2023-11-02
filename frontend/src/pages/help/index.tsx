@@ -5,7 +5,7 @@ export default function help() {
 
   return (
     <BaseLayout>
-    <div>HELP</div>
+      <div>HELP</div>
     </BaseLayout>
   )
 }

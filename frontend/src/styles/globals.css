@@ -31,6 +31,28 @@ body{
   height: 100vh;
   gap: 2rem;
 }
+
+.layout-footer{
+  background-color: var(--color-primario);
+
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  justify-content: space-between;
+  bottom: 0%;
+  height: 8.5%;
+  align-items: center;
+  transition:none;
+}
+
+.footer_list{
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  list-style: none
+}
+
 .main{
   height: 90vh; /* Establece una altura mínima del 100% del viewport */
   overflow-y: auto; 
@@ -172,12 +194,12 @@ body{
 
 
 .navbar{
-  display: flex;
-width: 100%;
-height: 4rem;
-background-color: var(--color-primario);
-align-items: center;
-justify-content: flex-end;
+    display: flex;
+    width: 100%;
+    height: 4rem;
+    background-color: var(--color-primario);
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .navbar_list{

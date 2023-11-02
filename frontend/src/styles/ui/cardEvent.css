@@ -1,0 +1,102 @@
+.card-container{
+    padding: 20px;
+    margin: 0;
+    width: 100%;
+}
+.card-general{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 310px;
+    background-color: #0e0c0d00;
+    overflow-x: hidden;
+}
+.card-elements{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    transition: width 0.3s ease-in-out;
+    max-width: 250px;
+}
+.card-elements:hover{
+    .card-info{
+        box-shadow: 0 -1px 20px 2px rgb(255, 255, 255);
+        width: 260px;
+        transition: width 0.3s ease-in-out;
+        transition: box-shadow 0.3s ease-in-out;
+        transform: translateY(-20px);
+        transition: transform 0.3s ease-in-out;
+    }
+    .boton{
+        opacity: 1; /* Hacer que el botón sea visible gradualmente */
+        transform: translateY(0); 
+    }
+    .card-image{
+        transform: scale(1.05);
+        transition: transform 0.3s ease-in-out;
+    }
+}
+.card-info{
+    background-color:white;
+    border: 1px solid rgb(233, 206, 86);
+    z-index: 100;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 250px;
+    height: 220px;
+    transition: transform 0.3s ease-in-out;
+    transition: box-shadow 0.3s ease-in-out;
+}
+.card-typography{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+}
+.card-typography-description{
+    padding-bottom: 15px;
+    font-size: 11px;
+    font-weight: 300;
+}
+.card-icon{
+    color: rgb(105, 105, 105);
+}
+.description-card{
+    display: flex;
+    font-size: 12px;
+    align-items:center;
+    align-content: center;
+    width: 100%;
+}
+.card-date-ubication{
+    display: flex;
+    align-items: center;
+    border: solid 0.3px rgba(189, 189, 189, 0.555);
+    width: 50%;
+    height: 35px;
+}
+.css-46bh2p-MuiCardContent-root {
+
+    padding: 0%;
+}
+.card-image{
+    width: 250px;
+    height: 250px;
+}
+.card-boton{
+    .boton{
+        transition: all 1s ease-in-out;
+        border-color: rgba(255, 38, 244, 0.788);
+        color:rgba(255, 38, 244);
+        display: block;
+        opacity: 0; /* Inicialmente, el botón es invisible */
+        transform: translateY(100%); /* Inicialmente, el botón está fuera de la vista */
+        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    }
+}
+.main-prueba{
+    padding:20px;
+}

@@ -1,6 +1,6 @@
 "use client";
 import React from 'react'
-import CustomLink from '@/components/ui/customLink/CustomLink'
+import CustomLink from '@/components/ui/CustomLink/CustomLink'
 import { signOut, useSession } from "next-auth/react";
 import { Link }  from '@mui/material';
 

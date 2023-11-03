@@ -9,9 +9,12 @@ export default function BaseLayout({ children }: { children: ReactNode }) {
         <div>
             <div className="general-l">
                 <div className="layout-sidebar"><Sidebar /></div>
-                <div className="layout-navbar"><Navbar />{children}</div>
+                <div className="layout-navbar-footer">
+                    <div className="layout-navbar"><Navbar /></div>
+                        {children}
+                    <div className="layout-footer"> <Footer /></div>
+                </div>
             </div>
-            <Footer />
         </div>
     )
 }

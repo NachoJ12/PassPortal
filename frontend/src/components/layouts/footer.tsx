@@ -36,7 +36,7 @@ const Footer = () => {
         dispatch({ type: 'SELECT_ITEM', payload: index });
     };
     return (
-        <footer className="layout-footer">
+        <footer className='footer' >
                 <ul className='footer_list'>
                     {sidebarItems.map((item, index) => (
                         <li className={"sidebar_item"} key={item.name}>

@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import javax.ws.rs.core.Response;
+
 @Service
 public class KeycloakServiceImpl {
 
@@ -51,4 +53,7 @@ public class KeycloakServiceImpl {
         keycloak.realms().realm(realm).users().get(userIdKeycloak).logout();
     }
 
+    public void deleteUser(String userIdKeycloak){
+        keycloak.realms().realm(realm).users().delete(userIdKeycloak);
+    }
 }

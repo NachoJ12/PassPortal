@@ -46,6 +46,7 @@ public class UserServiceImpl {
     public UsersResource getInstanceUserResource(){
         return keycloak.realm(keycloakRealmName).users();
     }
+
     public void createUser(UserRequestDTO userRequestDto) throws DuplicatedValueException {
         Optional<User> existUser = userRepository.findByEmail(userRequestDto.getEmail());
         if(existUser.isPresent()) {
@@ -93,9 +94,22 @@ public class UserServiceImpl {
         }
     }
 
+    public void deleteById(Integer id) {
+        Optional<User> existUserDB = userRepository.findById(id);
+
+        if(existUserDB.isPresent()){
+            UserRepresentation userKeycloak =
+                    keycloak.realms().realm(keycloakRealmName).users()
+                            .searchByUsername(existUserDB.get().getUsername(),true).get(0);
+
+            keycloakServiceImpl.deleteUser(userKeycloak.getId());
+            userRepository.deleteById(id);
+        }
+    }
+
     /** check if there is a user with the same name **/
     private boolean userExists(String username) {
-        return !keycloak.realms().realm("PassPortal").users().searchByUsername(username,true).isEmpty();
+        return !keycloak.realms().realm(keycloakRealmName).users().searchByUsername(username,true).isEmpty();
     }
 
     /** create a credentialRepresentation that allows setting passwords **/

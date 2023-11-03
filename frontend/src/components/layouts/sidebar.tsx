@@ -1,33 +1,34 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useState } from 'react'
-import { AiOutlineHome } from "react-icons/ai"
-import { BiCategoryAlt, BiHelpCircle } from "react-icons/bi"
-import { RxHamburgerMenu } from "react-icons/rx"
+import React from 'react'
+import HomeIcon from '@mui/icons-material/Home';
+import CategoryIcon from '@mui/icons-material/Category';
+import HelpIcon from '@mui/icons-material/Help';
+import MenuIcon from '@mui/icons-material/Menu';
 import { useContext } from "react"
 import { SidebarContext } from '@/components/context/sidebar-context'
-import { LuContact2 } from "react-icons/lu"
+import ContactPageIcon from '@mui/icons-material/ContactPage';
 
 const sidebarItems = [
     {
         name: "Home",
         href: "/",
-        icon: AiOutlineHome,
+        icon: HomeIcon,
     },
     {
         name: "Category",
         href: "/category",
-        icon: BiCategoryAlt,
+        icon: CategoryIcon,
     },
     {
         name: "Help",
         href: "/help",
-        icon: BiHelpCircle,
+        icon: HelpIcon,
     },
     {
         name: "Contact",
         href: "/contact",
-        icon: LuContact2,
+        icon: ContactPageIcon,
     },
 ]
 
@@ -40,7 +41,7 @@ export default function Sidebar() {
 
     return (
         <div className='sidebar_wrapper'>
-            <button className='sidebar_btn' onClick={toggleSidebarcollapse}><RxHamburgerMenu /></button>
+            <button className='sidebar_btn' onClick={toggleSidebarcollapse}><MenuIcon /></button>
             <aside className='sidebar' data-collapse={isCollapsed}>
                 <div className='sidebar_top'>
                     <Image src="/logo.png" width={150} height={125} className='sidebar_logo' alt='logo' />

@@ -1,4 +1,4 @@
-import { TextField } from '@mui/material';
+import { TextField, TextFieldVariants } from '@mui/material';
 import { Control, Controller } from 'react-hook-form';
 
 interface CustomTextFieldProps {
@@ -9,6 +9,7 @@ interface CustomTextFieldProps {
     control: Control<any>;
     defaultValue?: string;
     textFieldProps?: Record<string, any>;
+    variant:TextFieldVariants | undefined
 }
 
 export const CustomTextField = ({
@@ -18,6 +19,7 @@ export const CustomTextField = ({
     required,
     control,
     defaultValue,
+    variant,
     textFieldProps
 }: CustomTextFieldProps) => {
     return (
@@ -27,13 +29,14 @@ export const CustomTextField = ({
             defaultValue={defaultValue}
             render={({ field }) => (
                 < TextField
+                
                     {...field}
                     type={type}
                     label={label}
-                    variant="outlined"
+                    variant={variant}
                     fullWidth
                     required={required}
-                    sx={{ m: 2, width:"80%" }}
+                    sx={{ width:"80%" }}
                     {...textFieldProps}
                 />
             )

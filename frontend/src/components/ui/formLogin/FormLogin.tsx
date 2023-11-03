@@ -6,7 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Typography } from '@mui/material';
 import { ErrorMessage } from '@hookform/error-message';
 import { schemaLogin } from '@/rules';
-import { CustomTextField } from '../customInput/CustomTextField';
+import { CustomTextField } from '@/components/ui/customInput/CustomTextField';
 
 interface FormData {
     username: string
@@ -59,6 +59,7 @@ const FormLogin = () => {
                 type="text"
                 control={control}
                 defaultValue=""
+                variant='outlined'
             />
 
             <Typography variant="caption" color="red">
@@ -72,6 +73,7 @@ const FormLogin = () => {
                 type="password"
                 control={control}
                 defaultValue=""
+                variant='outlined'
             />
             <Button sx={{ width: "60%" }} variant="outlined" type="submit">LogIn </Button>
         </form>

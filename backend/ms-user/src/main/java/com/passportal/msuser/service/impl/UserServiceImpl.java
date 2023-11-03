@@ -3,9 +3,11 @@ package com.passportal.msuser.service.impl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.passportal.msuser.dto.request.UserRequestDTO;
 import com.passportal.msuser.dto.response.AccessTokenResponseDTO;
+import com.passportal.msuser.dto.response.UserResponseDTO;
 import com.passportal.msuser.entity.Role;
 import com.passportal.msuser.entity.User;
 import com.passportal.msuser.exception.DuplicatedValueException;
+import com.passportal.msuser.mapper.UserMapper;
 import com.passportal.msuser.repository.RoleRepository;
 import com.passportal.msuser.repository.UserRepository;
 import org.keycloak.admin.client.Keycloak;
@@ -33,14 +35,16 @@ public class UserServiceImpl {
     @Autowired
     ObjectMapper mapper;
 
+    private final UserMapper userMapper;
     @Value("${passportal.keycloak.realm}")
     private String keycloakRealmName;
 
-    public UserServiceImpl(UserRepository userRepository,  RoleRepository roleRepository, Keycloak keycloak, KeycloakServiceImpl keycloakServiceImpl) {
+    public UserServiceImpl(UserRepository userRepository,  RoleRepository roleRepository, Keycloak keycloak, KeycloakServiceImpl keycloakServiceImpl, UserMapper userMapper) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.keycloak = keycloak;
         this.keycloakServiceImpl = keycloakServiceImpl;
+        this.userMapper = userMapper;
     }
 
     public UsersResource getInstanceUserResource(){
@@ -92,6 +96,13 @@ public class UserServiceImpl {
             throw new RuntimeException("ERROR: User creation failed. " + ex);
 
         }
+    }
+
+    public UserResponseDTO getById(Integer id){
+        Optional<User> existUser = userRepository.findById(id);
+
+        UserResponseDTO userResponseDTO = userMapper.toDto(existUser.get());
+        return userResponseDTO;
     }
 
     public void deleteById(Integer id) {

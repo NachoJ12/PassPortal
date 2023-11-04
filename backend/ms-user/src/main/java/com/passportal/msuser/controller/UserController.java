@@ -54,7 +54,7 @@ public class UserController {
 
     // TO DO: Authorizations to delete user.
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable Integer id) {
+    public ResponseEntity<?> delete(@PathVariable Long id) {
         try {
             userService.deleteById(id);
             return ResponseEntity.ok("User successfully deleted");
@@ -64,7 +64,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getById(@PathVariable Integer id) {
+    public ResponseEntity<?> getById(@PathVariable Long id) {
         try {
             UserResponseDTO userResponseDTO = userService.getById(id);
             return ResponseEntity.ok(userResponseDTO);

@@ -98,14 +98,14 @@ public class UserServiceImpl {
         }
     }
 
-    public UserResponseDTO getById(Integer id){
+    public UserResponseDTO getById(Long id){
         Optional<User> existUser = userRepository.findById(id);
 
         UserResponseDTO userResponseDTO = userMapper.toDto(existUser.get());
         return userResponseDTO;
     }
 
-    public void deleteById(Integer id) {
+    public void deleteById(Long id) {
         Optional<User> existUserDB = userRepository.findById(id);
 
         if(existUserDB.isPresent()){

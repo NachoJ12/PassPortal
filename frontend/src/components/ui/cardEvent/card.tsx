@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {
   Card,
   CardContent,
@@ -11,8 +11,14 @@ import imagenPrueba from "../../../../public/halloween-party-ecuatoriano-215720-
 import Image from "next/image";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export const CardBox = () => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   const cardItems = [
     {
       id: 1,

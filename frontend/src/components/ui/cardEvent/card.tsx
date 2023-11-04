@@ -122,15 +122,6 @@ export const CardBox = () => {
       date: "october 31 - 2023",
       ubication: "Ecuador - Quito",
     },
-    {
-      id: 13,
-      title: "HALLOWEEN PARTY ECUATORIANO",
-      path: imagenPrueba,
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis temporibus natus nobis blanditiis magnam nam repellat necessitatibus quam nihil error?",
-      date: "october 31 - 2023",
-      ubication: "Ecuador - Quito",
-    },
   ];
   return (
     <Grid container spacing={4} className="card-container">

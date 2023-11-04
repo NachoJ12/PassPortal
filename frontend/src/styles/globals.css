@@ -43,27 +43,17 @@ body{
 
 .layout-footer{
   background-color: var(--color-primario);
-
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  bottom: 0%;
-  height: 8.5%;
+  justify-content: center;
   align-items: center;
   transition:none;
 }
 
-.footer_list{
-  width: auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  list-style: none
-}
 
 .main{
-  /* Establece una altura mínima del 100% del viewport */
-  
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 

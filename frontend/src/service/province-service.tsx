@@ -7,6 +7,6 @@ export const getProvinces = async () => {
 };
 
 export const getProvinceByName = async (provincia: string) => {
-    const res = await fetch(`${API_GOB}/provincias?nombre=${provincia}&aplanar&max=100`)
+    const res = await fetch(`${API_GOB}/provincias?nombre=${provincia}&aplanar&max=100&orden=nombre`)
     return await res.json()
 };

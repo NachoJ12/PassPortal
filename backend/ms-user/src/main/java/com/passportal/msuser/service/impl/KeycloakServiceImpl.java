@@ -1,13 +1,19 @@
 package com.passportal.msuser.service.impl;
 
+import com.passportal.msuser.dto.request.UserRequestDTO;
 import com.passportal.msuser.dto.response.AccessTokenResponseDTO;
+import org.keycloak.admin.client.CreatedResponseUtil;
 import org.keycloak.admin.client.Keycloak;
+import org.keycloak.admin.client.resource.UsersResource;
 import org.keycloak.admin.client.token.TokenManager;
+import org.keycloak.representations.idm.CredentialRepresentation;
+import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.ws.rs.core.Response;
+import java.util.Collections;
 
 @Service
 public class KeycloakServiceImpl {
@@ -53,7 +59,57 @@ public class KeycloakServiceImpl {
         keycloak.realms().realm(realm).users().get(userIdKeycloak).logout();
     }
 
+
+
+    public String createUser(UserRequestDTO userRequestDTO) throws Exception{
+            // Create credentials (password)
+            CredentialRepresentation passwordCredentials = createPasswordCredentials(userRequestDTO.getPassword());
+
+            UserRepresentation newUser = new UserRepresentation();
+            newUser.setUsername(userRequestDTO.getUsername());
+            newUser.setFirstName(userRequestDTO.getName());
+            newUser.setLastName(userRequestDTO.getLastName());
+            newUser.setEmail(userRequestDTO.getEmail());
+            newUser.setCredentials(Collections.singletonList(passwordCredentials));
+            newUser.setEnabled(true);
+
+            UsersResource usersResource = getInstanceUserResource();
+
+            Response response = usersResource.create(newUser);
+
+            if (response.getStatus() != 201) {
+                // conflict
+                if (response.getStatus() == 409) {
+                    String message = String.format("The username '%s' or email '%s' already exist.", userRequestDTO.getUsername(), userRequestDTO.getEmail());
+                    throw new Exception(message);
+                }
+
+                throw new RuntimeException("Failed to create user");
+            }
+
+            String userId = CreatedResponseUtil.getCreatedId(response);
+            return userId;
+    }
+
     public void deleteUser(String userIdKeycloak){
         keycloak.realms().realm(realm).users().delete(userIdKeycloak);
+    }
+
+    public UsersResource getInstanceUserResource(){
+        return keycloak.realm(realm).users();
+    }
+
+    /** check if there is a user with the same name **/
+    private boolean userExists(String username) {
+        return !keycloak.realms().realm(realm).users().searchByUsername(username,true).isEmpty();
+    }
+
+    /** create a credentialRepresentation that allows setting passwords **/
+    private static CredentialRepresentation createPasswordCredentials(String password) {
+        CredentialRepresentation passwordCredentials = new CredentialRepresentation();
+        passwordCredentials.setTemporary(false);
+        passwordCredentials.setType(CredentialRepresentation.PASSWORD);
+        passwordCredentials.setValue(password);
+        return passwordCredentials;
     }
 }

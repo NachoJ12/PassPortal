@@ -47,40 +47,16 @@ public class UserServiceImpl {
         this.userMapper = userMapper;
     }
 
-    public UsersResource getInstanceUserResource(){
-        return keycloak.realm(keycloakRealmName).users();
-    }
-
     public void createUser(UserRequestDTO userRequestDto) throws DuplicatedValueException {
         Optional<User> existUser = userRepository.findByEmail(userRequestDto.getEmail());
         if(existUser.isPresent()) {
             throw new DuplicatedValueException("This email is already in use.");
         }
 
-        // Create credentials (password)
-        CredentialRepresentation passwordCredentials = createPasswordCredentials(userRequestDto.getPassword());
-
         try{
             // Create a new user in Keycloak
-            if (!userExists(userRequestDto.getUsername())) {
-                UserRepresentation newUser = new UserRepresentation();
-                newUser.setUsername(userRequestDto.getUsername());
-                newUser.setFirstName(userRequestDto.getName());
-                newUser.setLastName(userRequestDto.getLastName());
-                newUser.setEmail(userRequestDto.getEmail());
-                newUser.setCredentials(Collections.singletonList(passwordCredentials));
-                newUser.setEnabled(true);
-
-                UsersResource usersResource = getInstanceUserResource();
-                usersResource.create(newUser);
-
-                String userId = usersResource.searchByUsername(userRequestDto.getUsername(), true).get(0).getId();
-
-                System.out.println("\nUser create successfuly");
-                System.out.println("UserID: " + userId + " - username: " + userRequestDto.getUsername());
-            } else {
-                System.out.println("The user '" + userRequestDto.getUsername() + "' already exist.");
-            }
+            String userKeycloakId = keycloakServiceImpl.createUser(userRequestDto);
+            System.out.println("userKeycloakID: " + userKeycloakId);
 
             // Create a new user
             User user = mapper.convertValue(userRequestDto, User.class);
@@ -93,8 +69,7 @@ public class UserServiceImpl {
             // save user in mysql database
             userRepository.save(user);
         } catch (Exception ex){
-            throw new RuntimeException("ERROR: User creation failed. " + ex);
-
+            throw new RuntimeException(ex.getMessage());
         }
     }
 
@@ -118,19 +93,7 @@ public class UserServiceImpl {
         }
     }
 
-    /** check if there is a user with the same name **/
-    private boolean userExists(String username) {
-        return !keycloak.realms().realm(keycloakRealmName).users().searchByUsername(username,true).isEmpty();
-    }
 
-    /** create a credentialRepresentation that allows setting passwords **/
-    private static CredentialRepresentation createPasswordCredentials(String password) {
-        CredentialRepresentation passwordCredentials = new CredentialRepresentation();
-        passwordCredentials.setTemporary(false);
-        passwordCredentials.setType(CredentialRepresentation.PASSWORD);
-        passwordCredentials.setValue(password);
-        return passwordCredentials;
-    }
 
     public AccessTokenResponseDTO login(String email, String password) throws Exception{
         Optional<User> userExists = userRepository.findByEmail(email);

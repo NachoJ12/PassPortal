@@ -3,8 +3,11 @@ package com.passportal.msuser.service.impl;
 import com.passportal.msuser.dto.response.AccessTokenResponseDTO;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.token.TokenManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
+import javax.ws.rs.core.Response;
 
 @Service
 public class KeycloakServiceImpl {
@@ -20,6 +23,9 @@ public class KeycloakServiceImpl {
 
     @Value("${passportal.keycloak.clientSecret}")
     private String clientSecret;
+
+    @Autowired
+    private Keycloak keycloak;
 
     public AccessTokenResponseDTO login(String username, String password) throws Exception {
         try{
@@ -43,4 +49,11 @@ public class KeycloakServiceImpl {
         }
     }
 
+    public void logout(String userIdKeycloak){
+        keycloak.realms().realm(realm).users().get(userIdKeycloak).logout();
+    }
+
+    public void deleteUser(String userIdKeycloak){
+        keycloak.realms().realm(realm).users().delete(userIdKeycloak);
+    }
 }

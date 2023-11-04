@@ -34,7 +34,7 @@ public class OAuth2ResourceServerSecurityConfiguration {
                 )
                 .authorizeHttpRequests(auth ->
                         auth
-                                .requestMatchers("/users/create").permitAll()
+                                .requestMatchers("/users/register").permitAll()
                                 .requestMatchers("/users/login").permitAll()
                                 .anyRequest().authenticated()
                 );

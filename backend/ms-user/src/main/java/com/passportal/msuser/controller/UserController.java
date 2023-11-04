@@ -22,10 +22,16 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<Object> createUser(@RequestBody UserRequestDTO userRequestDto) throws DuplicatedValueException {
-        userService.createUser(userRequestDto);
-        return ResponseEntity.ok("User data save successfully");
+    @PostMapping("/register")
+    public ResponseEntity<Object> register(@RequestBody UserRequestDTO userRequestDto) {
+        try{
+            userService.createUser(userRequestDto);
+            return ResponseEntity.status(HttpStatus.CREATED).body("User data save successfully");
+        } catch (DuplicatedValueException e){
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to register the user: " + e.getMessage());
+        }
     }
 
     @PostMapping("/login")

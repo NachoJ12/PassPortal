@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>configServer</artifactId>
+	<artifactId>ms-configServer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>configServer</name>
 	<description>Config server for PI2G7</description>

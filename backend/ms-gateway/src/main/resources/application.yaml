@@ -23,6 +23,10 @@ spring:
           uri: lb://ms-users
           predicates:
             - Path=/users/**
+        - id: event
+          uri: lb://event
+          predicates:
+            - Path=/events/**
   security:
     oauth2:
       client:

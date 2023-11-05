@@ -30,7 +30,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `PI2G7`.`user` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(45) NOT NULL,
-  `mail` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `last_pass_reset` TIMESTAMP NULL,

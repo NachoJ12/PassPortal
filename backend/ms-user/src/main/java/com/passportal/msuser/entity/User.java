@@ -20,7 +20,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
-    @Column(name = "mail")
+    @Column(name = "email")
     private String email;
     private String password;
     private String name;
@@ -33,5 +33,8 @@ public class User {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @JoinColumn(name = "role_id",referencedColumnName = "id")
     private Role role;
+
+    @Column(name= "keycloak_id")
+    private String keycloakId;
 
 }

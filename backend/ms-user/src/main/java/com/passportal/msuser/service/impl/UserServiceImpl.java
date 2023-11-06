@@ -1,6 +1,7 @@
 package com.passportal.msuser.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.passportal.msuser.dto.request.LoginRequestDTO;
 import com.passportal.msuser.dto.request.UserRequestDTO;
 import com.passportal.msuser.dto.response.AccessTokenResponseDTO;
 import com.passportal.msuser.dto.response.UserResponseDTO;
@@ -11,15 +12,12 @@ import com.passportal.msuser.mapper.UserMapper;
 import com.passportal.msuser.repository.RoleRepository;
 import com.passportal.msuser.repository.UserRepository;
 import org.keycloak.admin.client.Keycloak;
-import org.keycloak.admin.client.resource.UsersResource;
-import org.keycloak.representations.idm.CredentialRepresentation;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.Optional;
 
 @Service
@@ -65,6 +63,7 @@ public class UserServiceImpl {
             user.setLastPassReset(LocalDateTime.now());
             user.setEnabled(true);
             user.setPassword("password"); // to do encrypt
+            user.setKeycloakId(userKeycloakId);
 
             // save user in mysql database
             userRepository.save(user);
@@ -95,8 +94,8 @@ public class UserServiceImpl {
 
 
 
-    public AccessTokenResponseDTO login(String email, String password) throws Exception{
-        Optional<User> userExists = userRepository.findByEmail(email);
+    public AccessTokenResponseDTO login(LoginRequestDTO loginRequestDTO) throws Exception{
+        Optional<User> userExists = userRepository.findByEmail(loginRequestDTO.getEmail());
 
         // Valid user
         if(userExists.isEmpty()){
@@ -104,8 +103,8 @@ public class UserServiceImpl {
         }
         // to do -- Valid password ¿?
 
-        // also works with email
-        return keycloakServiceImpl.login(userExists.get().getUsername(), password);
+        // works with email and username
+        return keycloakServiceImpl.login(loginRequestDTO);
     }
 
     public void logout(String userIdKeycloak) {

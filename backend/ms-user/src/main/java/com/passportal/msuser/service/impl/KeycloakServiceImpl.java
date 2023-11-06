@@ -1,5 +1,6 @@
 package com.passportal.msuser.service.impl;
 
+import com.passportal.msuser.dto.request.LoginRequestDTO;
 import com.passportal.msuser.dto.request.UserRequestDTO;
 import com.passportal.msuser.dto.response.AccessTokenResponseDTO;
 import org.keycloak.admin.client.CreatedResponseUtil;
@@ -33,10 +34,10 @@ public class KeycloakServiceImpl {
     @Autowired
     private Keycloak keycloak;
 
-    public AccessTokenResponseDTO login(String username, String password) throws Exception {
+    public AccessTokenResponseDTO login(LoginRequestDTO loginRequestDTO) throws Exception {
         try{
             Keycloak keycloakClient = Keycloak.getInstance(
-                    serverUrl, realm, username, password, clientId, clientSecret
+                    serverUrl, realm, loginRequestDTO.getEmail(), loginRequestDTO.getPassword(), clientId, clientSecret
             );
 
             TokenManager tokenManager = keycloakClient.tokenManager();

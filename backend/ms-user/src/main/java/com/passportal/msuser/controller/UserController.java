@@ -36,7 +36,7 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login (@RequestBody LoginRequestDTO loginRequestDTO) throws Exception {
-        AccessTokenResponseDTO credentials = userService.login(loginRequestDTO.getEmail(), loginRequestDTO.getPassword());
+        AccessTokenResponseDTO credentials = userService.login(loginRequestDTO);
 
         if (credentials.getAccessToken().isEmpty()){
             return ResponseEntity.notFound().build();

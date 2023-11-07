@@ -6,13 +6,19 @@ import Footer from "@/components/layouts/footer"
 
 export default function BaseLayout({ children }: { children: ReactNode }) {
     return (
-        <div>
-            <div className="general-l">
-                <div className="layout-sidebar"><Sidebar /></div>
-                <div className="layout-navbar-footer">
-                    <div className="layout-navbar"><Navbar /></div>
-                        {children}
-                    <div className="layout-footer"> <Footer /></div>
+        <div className="base-layout">
+            <div className="layout-sidebar">
+                <Sidebar />
+            </div>
+            <div className="main-content">
+                <div className="layout-navbar">
+                    <Navbar />
+                </div>
+                <main >
+                    {children}
+                </main>
+                <div className="layout-footer">
+                    <Footer />
                 </div>
             </div>
         </div>

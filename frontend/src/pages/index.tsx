@@ -16,10 +16,10 @@ interface Props {
 const Home: NextPage<Props> = ({ municipios, provincias }) => {
   return (
     <BaseLayout>
-      <main className="main">
+      <div className="home-page">
         <SearchBar municipios={municipios} provincias={provincias} />
         <CardBox />
-      </main>
+      </div>
     </BaseLayout>
   )
 }

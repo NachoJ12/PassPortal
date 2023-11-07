@@ -3,6 +3,9 @@ import '@/styles/ui/form.css'
 import '@/styles/ui/cardEvent.css'
 import "@/styles/layoutCss/sideBar.css"
 import "@/styles/layoutCss/footer.css"
+import "@/styles/layoutCss/navbar.css"
+
+import BaseLayout from "@/components/layouts/base-layout";
 
 
 import type { AppProps } from 'next/app'
@@ -13,7 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <SessionAuthProvider>
       <SidebarProvider>
-        <Component {...pageProps} />
+          <Component {...pageProps} />
       </SidebarProvider>
     </SessionAuthProvider>
   )

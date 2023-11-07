@@ -1,5 +1,5 @@
 .sidebar_wrapper {
-    position: fixed;
+    position: sticky;
     height: 100vh;
 }
 
@@ -72,30 +72,6 @@
     transition: all .10s ease;
 }
 
-.sidebar_btn {
-    position: absolute;
-    top: 1rem;
-    border: none;
-    border-radius: 50%;
-    background-color: var(--color-primario);
-    width: 2.5rem;
-    height: 2.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transform: translateX(50%);
-    font-size: 1.5rem;
-    color: var(--color-terciario);
-    transition: all 0.3s ease-in-out;
-}
-
-.sidebar_btn:hover {
-    background-color: var(--color-hover);
-}
-
-
-
 
 .sidebar_logo {
     margin-left: -20px;
@@ -117,21 +93,6 @@
 }
 
 @media screen and (max-width: 767px) {
-    .main {
-        overflow: unset;
-        padding-top: 48px;
-    }
-
-    .navbar {
-        height: 3rem;
-        position: fixed;
-        z-index: 1000;
-    }
-
-    .layout-footer {
-        display: none;
-    }
-
     .sidebar {
         display: flex;
         flex-direction: row;

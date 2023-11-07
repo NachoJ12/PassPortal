@@ -15,8 +15,8 @@ const sidebarItems = [
         icon: HomeIcon,
     },
     {
-        name: "Category",
-        href: "/category",
+        name: "Events",
+        href: "/events",
         icon: CategoryIcon,
     },
     {

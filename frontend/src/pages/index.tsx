@@ -6,7 +6,6 @@ import { getMunicipiosByProvincia } from "@/service/municipio-service";
 import { getProvinces } from "@/service/province-service";
 import type { NextPage, GetServerSideProps } from 'next'
 
-import { CardBox } from '@/components/ui/cardEvent/card'
 
 interface Props {
   municipios: IMunicipioResponse
@@ -18,7 +17,6 @@ const Home: NextPage<Props> = ({ municipios, provincias }) => {
     <BaseLayout>
       <div className="home-page">
         <SearchBar municipios={municipios} provincias={provincias} />
-        <CardBox />
       </div>
     </BaseLayout>
   )
@@ -26,7 +24,7 @@ const Home: NextPage<Props> = ({ municipios, provincias }) => {
 
 export default Home
 
-export const getServerSideProps: GetServerSideProps = async ({ req, res, params, query }) => {
+export const getServerSideProps: GetServerSideProps = async ({ res, query }) => {
 
   let municipios: IMunicipioResponse = {
     cantidad: 0,

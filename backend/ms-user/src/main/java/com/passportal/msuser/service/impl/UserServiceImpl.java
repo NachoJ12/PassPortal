@@ -1,25 +1,25 @@
 package com.passportal.msuser.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.passportal.msuser.dto.request.LoginRequestDTO;
 import com.passportal.msuser.dto.request.UserRequestDTO;
 import com.passportal.msuser.dto.response.AccessTokenResponseDTO;
 import com.passportal.msuser.dto.response.UserResponseDTO;
 import com.passportal.msuser.entity.Role;
 import com.passportal.msuser.entity.User;
 import com.passportal.msuser.exception.DuplicatedValueException;
+import com.passportal.msuser.exception.NotFoundException;
 import com.passportal.msuser.mapper.UserMapper;
 import com.passportal.msuser.repository.RoleRepository;
 import com.passportal.msuser.repository.UserRepository;
 import org.keycloak.admin.client.Keycloak;
-import org.keycloak.admin.client.resource.UsersResource;
-import org.keycloak.representations.idm.CredentialRepresentation;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.Optional;
 
 @Service
@@ -32,6 +32,8 @@ public class UserServiceImpl {
     private final Keycloak keycloak;
 
     private final KeycloakServiceImpl keycloakServiceImpl;
+
+    private PasswordEncoder passwordEncoder;
     @Autowired
     ObjectMapper mapper;
 
@@ -39,62 +41,38 @@ public class UserServiceImpl {
     @Value("${passportal.keycloak.realm}")
     private String keycloakRealmName;
 
-    public UserServiceImpl(UserRepository userRepository,  RoleRepository roleRepository, Keycloak keycloak, KeycloakServiceImpl keycloakServiceImpl, UserMapper userMapper) {
+    public UserServiceImpl(UserRepository userRepository,  RoleRepository roleRepository, Keycloak keycloak, KeycloakServiceImpl keycloakServiceImpl, UserMapper userMapper, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.keycloak = keycloak;
         this.keycloakServiceImpl = keycloakServiceImpl;
         this.userMapper = userMapper;
+        this.passwordEncoder = passwordEncoder;
     }
 
-    public UsersResource getInstanceUserResource(){
-        return keycloak.realm(keycloakRealmName).users();
-    }
-
-    public void createUser(UserRequestDTO userRequestDto) throws DuplicatedValueException {
-        Optional<User> existUser = userRepository.findByEmail(userRequestDto.getEmail());
+    public void createUser(UserRequestDTO userRequestDTO) throws DuplicatedValueException {
+        Optional<User> existUser = userRepository.findByEmail(userRequestDTO.getEmail());
         if(existUser.isPresent()) {
             throw new DuplicatedValueException("This email is already in use.");
         }
 
-        // Create credentials (password)
-        CredentialRepresentation passwordCredentials = createPasswordCredentials(userRequestDto.getPassword());
-
         try{
             // Create a new user in Keycloak
-            if (!userExists(userRequestDto.getUsername())) {
-                UserRepresentation newUser = new UserRepresentation();
-                newUser.setUsername(userRequestDto.getUsername());
-                newUser.setFirstName(userRequestDto.getName());
-                newUser.setLastName(userRequestDto.getLastName());
-                newUser.setEmail(userRequestDto.getEmail());
-                newUser.setCredentials(Collections.singletonList(passwordCredentials));
-                newUser.setEnabled(true);
-
-                UsersResource usersResource = getInstanceUserResource();
-                usersResource.create(newUser);
-
-                String userId = usersResource.searchByUsername(userRequestDto.getUsername(), true).get(0).getId();
-
-                System.out.println("\nUser create successfuly");
-                System.out.println("UserID: " + userId + " - username: " + userRequestDto.getUsername());
-            } else {
-                System.out.println("The user '" + userRequestDto.getUsername() + "' already exist.");
-            }
+            String userKeycloakId = keycloakServiceImpl.createUser(userRequestDTO);
 
             // Create a new user
-            User user = mapper.convertValue(userRequestDto, User.class);
+            User user = mapper.convertValue(userRequestDTO, User.class);
             Role role = roleRepository.getByName("USER");
             user.setRole(role);
             user.setLastPassReset(LocalDateTime.now());
             user.setEnabled(true);
-            user.setPassword("password"); // to do encrypt
+            user.setPassword(passwordEncoder.encode(userRequestDTO.getPassword()));
+            user.setKeycloakId(userKeycloakId);
 
             // save user in mysql database
             userRepository.save(user);
         } catch (Exception ex){
-            throw new RuntimeException("ERROR: User creation failed. " + ex);
-
+            throw new RuntimeException(ex.getMessage());
         }
     }
 
@@ -102,6 +80,37 @@ public class UserServiceImpl {
         Optional<User> existUser = userRepository.findById(id);
 
         UserResponseDTO userResponseDTO = userMapper.toDto(existUser.get());
+        return userResponseDTO;
+    }
+
+    public UserResponseDTO updateUser(String userKeycloakID, UserRequestDTO userRequestDTO) throws Exception {
+        Optional<User> existUser = userRepository.findByKeycloakId(userKeycloakID);
+        if(existUser.isEmpty()) {
+            throw new NotFoundException("User with id " + userKeycloakID + " not found");
+        }
+
+        User userUpdate = existUser.get();
+        userUpdate.setUsername(userRequestDTO.getUsername());
+        userUpdate.setEmail(userRequestDTO.getEmail());
+        userUpdate.setName(userRequestDTO.getName());
+        userUpdate.setLastName(userRequestDTO.getLastName());
+
+        if(userRequestDTO.getPassword() != null){
+            userUpdate.setPassword(passwordEncoder.encode(userRequestDTO.getPassword()));
+        }
+
+        keycloakServiceImpl.updateUser(userKeycloakID, userRequestDTO);
+        userRepository.save(userUpdate);
+
+        UserResponseDTO userResponseDTO = new UserResponseDTO();
+        userResponseDTO.setId(userUpdate.getId());
+        userResponseDTO.setUsername(userUpdate.getUsername());
+        userResponseDTO.setEmail(userUpdate.getEmail());
+        userResponseDTO.setName(userUpdate.getName());
+        userResponseDTO.setLastName(userUpdate.getLastName());
+        userResponseDTO.setRole(userUpdate.getRole().getName());
+        userResponseDTO.setKeycloakId(userUpdate.getKeycloakId());
+
         return userResponseDTO;
     }
 
@@ -118,22 +127,10 @@ public class UserServiceImpl {
         }
     }
 
-    /** check if there is a user with the same name **/
-    private boolean userExists(String username) {
-        return !keycloak.realms().realm(keycloakRealmName).users().searchByUsername(username,true).isEmpty();
-    }
 
-    /** create a credentialRepresentation that allows setting passwords **/
-    private static CredentialRepresentation createPasswordCredentials(String password) {
-        CredentialRepresentation passwordCredentials = new CredentialRepresentation();
-        passwordCredentials.setTemporary(false);
-        passwordCredentials.setType(CredentialRepresentation.PASSWORD);
-        passwordCredentials.setValue(password);
-        return passwordCredentials;
-    }
 
-    public AccessTokenResponseDTO login(String email, String password) throws Exception{
-        Optional<User> userExists = userRepository.findByEmail(email);
+    public AccessTokenResponseDTO login(LoginRequestDTO loginRequestDTO) throws Exception{
+        Optional<User> userExists = userRepository.findByEmail(loginRequestDTO.getEmail());
 
         // Valid user
         if(userExists.isEmpty()){
@@ -141,8 +138,8 @@ public class UserServiceImpl {
         }
         // to do -- Valid password ¿?
 
-        // also works with email
-        return keycloakServiceImpl.login(userExists.get().getUsername(), password);
+        // works with email and username
+        return keycloakServiceImpl.login(loginRequestDTO);
     }
 
     public void logout(String userIdKeycloak) {

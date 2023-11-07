@@ -19,6 +19,7 @@ public class UserMapper {
         userResponseDTO.setName(user.getName());
         userResponseDTO.setLastName(user.getLastName());
         userResponseDTO.setRole(user.getRole().getName());
+        userResponseDTO.setKeycloakId(user.getKeycloakId());
 
         return userResponseDTO;
     }

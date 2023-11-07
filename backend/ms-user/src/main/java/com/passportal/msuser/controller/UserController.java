@@ -5,6 +5,7 @@ import com.passportal.msuser.dto.request.UserRequestDTO;
 import com.passportal.msuser.dto.response.AccessTokenResponseDTO;
 import com.passportal.msuser.dto.response.UserResponseDTO;
 import com.passportal.msuser.exception.DuplicatedValueException;
+import com.passportal.msuser.exception.NotFoundException;
 import com.passportal.msuser.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,7 +37,7 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login (@RequestBody LoginRequestDTO loginRequestDTO) throws Exception {
-        AccessTokenResponseDTO credentials = userService.login(loginRequestDTO.getEmail(), loginRequestDTO.getPassword());
+        AccessTokenResponseDTO credentials = userService.login(loginRequestDTO);
 
         if (credentials.getAccessToken().isEmpty()){
             return ResponseEntity.notFound().build();
@@ -50,6 +51,20 @@ public class UserController {
         String userIdKeycloak = SecurityContextHolder.getContext().getAuthentication().getName();
 
         userService.logout(userIdKeycloak);
+    }
+
+    @PutMapping()
+    public ResponseEntity<?> update(@RequestBody UserRequestDTO userRequestDto) {
+        String userId = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        System.out.println(userId);
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(userService.updateUser(userId, userRequestDto));
+        } catch (NotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to update the user: " + e.getMessage());
+        }
     }
 
     // TO DO: Authorizations to delete user.

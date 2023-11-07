@@ -16,6 +16,7 @@ import org.keycloak.admin.client.Keycloak;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -31,6 +32,8 @@ public class UserServiceImpl {
     private final Keycloak keycloak;
 
     private final KeycloakServiceImpl keycloakServiceImpl;
+
+    private PasswordEncoder passwordEncoder;
     @Autowired
     ObjectMapper mapper;
 
@@ -38,32 +41,32 @@ public class UserServiceImpl {
     @Value("${passportal.keycloak.realm}")
     private String keycloakRealmName;
 
-    public UserServiceImpl(UserRepository userRepository,  RoleRepository roleRepository, Keycloak keycloak, KeycloakServiceImpl keycloakServiceImpl, UserMapper userMapper) {
+    public UserServiceImpl(UserRepository userRepository,  RoleRepository roleRepository, Keycloak keycloak, KeycloakServiceImpl keycloakServiceImpl, UserMapper userMapper, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.keycloak = keycloak;
         this.keycloakServiceImpl = keycloakServiceImpl;
         this.userMapper = userMapper;
+        this.passwordEncoder = passwordEncoder;
     }
 
-    public void createUser(UserRequestDTO userRequestDto) throws DuplicatedValueException {
-        Optional<User> existUser = userRepository.findByEmail(userRequestDto.getEmail());
+    public void createUser(UserRequestDTO userRequestDTO) throws DuplicatedValueException {
+        Optional<User> existUser = userRepository.findByEmail(userRequestDTO.getEmail());
         if(existUser.isPresent()) {
             throw new DuplicatedValueException("This email is already in use.");
         }
 
         try{
             // Create a new user in Keycloak
-            String userKeycloakId = keycloakServiceImpl.createUser(userRequestDto);
-            System.out.println("userKeycloakID: " + userKeycloakId);
+            String userKeycloakId = keycloakServiceImpl.createUser(userRequestDTO);
 
             // Create a new user
-            User user = mapper.convertValue(userRequestDto, User.class);
+            User user = mapper.convertValue(userRequestDTO, User.class);
             Role role = roleRepository.getByName("USER");
             user.setRole(role);
             user.setLastPassReset(LocalDateTime.now());
             user.setEnabled(true);
-            user.setPassword("password"); // to do encrypt
+            user.setPassword(passwordEncoder.encode(userRequestDTO.getPassword()));
             user.setKeycloakId(userKeycloakId);
 
             // save user in mysql database
@@ -93,7 +96,7 @@ public class UserServiceImpl {
         userUpdate.setLastName(userRequestDTO.getLastName());
 
         if(userRequestDTO.getPassword() != null){
-            userUpdate.setPassword(userRequestDTO.getPassword());
+            userUpdate.setPassword(passwordEncoder.encode(userRequestDTO.getPassword()));
         }
 
         keycloakServiceImpl.updateUser(userKeycloakID, userRequestDTO);

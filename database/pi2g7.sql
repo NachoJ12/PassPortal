@@ -37,6 +37,7 @@ CREATE TABLE IF NOT EXISTS `PI2G7`.`user` (
   `last_name` VARCHAR(45) NOT NULL,
   `enabled` BIT(1) NULL,
   `role_id` INT NOT NULL DEFAULT 1,
+  `keycloak_id` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_user_role1_idx` (`role_id` ASC) VISIBLE,
   CONSTRAINT `fk_user_role1`

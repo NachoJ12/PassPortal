@@ -5,6 +5,7 @@ import com.passportal.msuser.dto.request.UserRequestDTO;
 import com.passportal.msuser.dto.response.AccessTokenResponseDTO;
 import org.keycloak.admin.client.CreatedResponseUtil;
 import org.keycloak.admin.client.Keycloak;
+import org.keycloak.admin.client.resource.UserResource;
 import org.keycloak.admin.client.resource.UsersResource;
 import org.keycloak.admin.client.token.TokenManager;
 import org.keycloak.representations.idm.CredentialRepresentation;
@@ -90,6 +91,27 @@ public class KeycloakServiceImpl {
 
             String userId = CreatedResponseUtil.getCreatedId(response);
             return userId;
+    }
+
+    public void updateUser(String userKeycloakID, UserRequestDTO userRequestDTO) throws Exception {
+        try {
+            UserResource userResource = getInstanceUserResource().get(userKeycloakID);
+            UserRepresentation userRepresentation = userResource.toRepresentation();
+
+            userRepresentation.setUsername(userRequestDTO.getUsername());
+            userRepresentation.setEmail(userRequestDTO.getEmail());
+            userRepresentation.setFirstName(userRequestDTO.getName());
+            userRepresentation.setLastName(userRequestDTO.getLastName());
+
+            if (userRequestDTO.getPassword() != null) {
+                CredentialRepresentation passwordCredentials = createPasswordCredentials(userRequestDTO.getPassword());
+                userRepresentation.setCredentials(Collections.singletonList(passwordCredentials));
+            }
+
+            getInstanceUserResource().get(userKeycloakID).update(userRepresentation);
+        } catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
     }
 
     public void deleteUser(String userIdKeycloak){

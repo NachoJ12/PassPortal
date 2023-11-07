@@ -8,6 +8,7 @@ import com.passportal.msuser.dto.response.UserResponseDTO;
 import com.passportal.msuser.entity.Role;
 import com.passportal.msuser.entity.User;
 import com.passportal.msuser.exception.DuplicatedValueException;
+import com.passportal.msuser.exception.NotFoundException;
 import com.passportal.msuser.mapper.UserMapper;
 import com.passportal.msuser.repository.RoleRepository;
 import com.passportal.msuser.repository.UserRepository;
@@ -76,6 +77,37 @@ public class UserServiceImpl {
         Optional<User> existUser = userRepository.findById(id);
 
         UserResponseDTO userResponseDTO = userMapper.toDto(existUser.get());
+        return userResponseDTO;
+    }
+
+    public UserResponseDTO updateUser(String userKeycloakID, UserRequestDTO userRequestDTO) throws Exception {
+        Optional<User> existUser = userRepository.findByKeycloakId(userKeycloakID);
+        if(existUser.isEmpty()) {
+            throw new NotFoundException("User with id " + userKeycloakID + " not found");
+        }
+
+        User userUpdate = existUser.get();
+        userUpdate.setUsername(userRequestDTO.getUsername());
+        userUpdate.setEmail(userRequestDTO.getEmail());
+        userUpdate.setName(userRequestDTO.getName());
+        userUpdate.setLastName(userRequestDTO.getLastName());
+
+        if(userRequestDTO.getPassword() != null){
+            userUpdate.setPassword(userRequestDTO.getPassword());
+        }
+
+        keycloakServiceImpl.updateUser(userKeycloakID, userRequestDTO);
+        userRepository.save(userUpdate);
+
+        UserResponseDTO userResponseDTO = new UserResponseDTO();
+        userResponseDTO.setId(userUpdate.getId());
+        userResponseDTO.setUsername(userUpdate.getUsername());
+        userResponseDTO.setEmail(userUpdate.getEmail());
+        userResponseDTO.setName(userUpdate.getName());
+        userResponseDTO.setLastName(userUpdate.getLastName());
+        userResponseDTO.setRole(userUpdate.getRole().getName());
+        userResponseDTO.setKeycloakId(userUpdate.getKeycloakId());
+
         return userResponseDTO;
     }
 

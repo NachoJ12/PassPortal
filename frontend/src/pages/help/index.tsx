@@ -13,7 +13,7 @@ interface Props {
 const Help: NextPage<Props> = ({ faqs }) => {
   return (
     <BaseLayout>
-      <div className='help-page'>
+      {/* <div className='help-page'>
         <div className='container-list'>
           <ul>
             {faqs.map((faq) => (
@@ -34,7 +34,7 @@ const Help: NextPage<Props> = ({ faqs }) => {
             ))}
           </ul>
         </div>
-      </div>
+      </div> */}
 
     </BaseLayout>
   )
@@ -42,7 +42,7 @@ const Help: NextPage<Props> = ({ faqs }) => {
 
 export default Help;
 
-export const getStaticProps: GetStaticProps = async () => {
-  const faqs = await getFaqs()
-  return { props: { faqs } }
-}
+// export const getStaticProps: GetStaticProps = async () => {
+//   const faqs = await getFaqs()
+//   return { props: { faqs } }
+// }

@@ -1,13 +1,18 @@
-import React from 'react'
-import type { NextPage, GetStaticProps } from 'next'
-import { Accordion, AccordionDetails, AccordionSummary, Typography } from '@mui/material';
+import React from 'react';
+import type { NextPage, GetStaticProps } from 'next';
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Typography,
+} from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import BaseLayout from '@/components/layouts/base-layout'
-import { Faqs } from '@/data/faqs';
+import BaseLayout from '@/components/layouts/base-layout';
+import { Faqs, faqs } from '@/data/faqs';
 import { getFaqs } from '@/service/faqs-service';
 
 interface Props {
-  faqs: Faqs[]
+  faqs: Faqs[];
 }
 
 const Help: NextPage<Props> = ({ faqs }) => {

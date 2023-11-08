@@ -1,4 +1,4 @@
-import React, { createContext, useState, useReducer, ReactNode } from "react";
+import React, { createContext, useReducer, } from "react";
 interface Props {
   children: React.ReactNode;
 }
@@ -8,13 +8,6 @@ const initialValue = { isCollapsed: false, toggleSidebarcollapse: () => {} };
 const SidebarContext = createContext(initialValue);
 
 const SidebarProvider = ({ children }:Props) => {
-
-  const [isCollapsed, setCollapse] = useState(false);
-
-
-  const toggleSidebarcollapse = () => {
-    setCollapse((prevState) => !prevState);
-  };
 
   const initialState = {
     ...initialValue,
@@ -33,7 +26,7 @@ const SidebarProvider = ({ children }:Props) => {
   const [state, dispatch] = useReducer(sidebarReducer, initialState);
 
   return (
-    <SidebarContext.Provider value={{ ...state, isCollapsed, toggleSidebarcollapse, dispatch }}>
+    <SidebarContext.Provider value={{ ...state,  dispatch }}>
       {children}
     </SidebarContext.Provider>
   );

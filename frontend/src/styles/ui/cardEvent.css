@@ -1,17 +1,15 @@
 .card-container{
-    padding: 20px;
-    margin: 0;
-    width: 100%;
-    
+    align-self: center;
+    margin-top: 2rem ;
 }
 .card-general{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 310px;
     background-color: #0e0c0d00;
     overflow-x: hidden;
 }
+
 .card-elements{
     display: flex;
     flex-direction: column;
@@ -19,6 +17,7 @@
     transition: width 0.3s ease-in-out;
     max-width: 250px;
 }
+
 .card-elements:hover{
     .card-info{
         box-shadow: 0 -1px 20px 2px rgb(255, 255, 255);
@@ -37,6 +36,7 @@
         transition: transform 0.3s ease-in-out;
     }
 }
+
 .card-info{
     background-color:white;
     z-index: 100;
@@ -49,6 +49,7 @@
     transition: transform 0.3s ease-in-out;
     transition: box-shadow 0.3s ease-in-out;
 }
+
 .card-typography{
     padding-top: 15px;
     padding-bottom: 15px;
@@ -56,14 +57,17 @@
     font-weight: 600;
     text-align: center;
 }
+
 .card-typography-description{
     padding-bottom: 15px;
     font-size: 11px;
     font-weight: 300;
 }
+
 .card-icon{
     color: rgb(105, 105, 105);
 }
+
 .description-card{
     display: flex;
     font-size: 12px;
@@ -71,6 +75,7 @@
     align-content: center;
     width: 100%;
 }
+
 .card-date-ubication{
     display: flex;
     align-items: center;
@@ -78,6 +83,7 @@
     width: 50%;
     height: 35px;
 }
+
 .css-46bh2p-MuiCardContent-root {
 
     padding: 0%;
@@ -97,6 +103,4 @@
         transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
     }
 }
-.main-prueba{
-    padding:20px;
-}
+

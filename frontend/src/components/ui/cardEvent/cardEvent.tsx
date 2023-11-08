@@ -6,8 +6,7 @@ import {
     Button,
     Typography,
 } from "@mui/material";
-import { Grid } from "@mui/material";
-import { Event, cardItems } from '@/data/cardItems';
+import { Event } from '@/data/cardItems';
 import Image from "next/image";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import LocationOnIcon from "@mui/icons-material/LocationOn";

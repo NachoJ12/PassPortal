@@ -64,8 +64,7 @@ const FormRegister = () => {
                 label="Email"
                 type="text"
                 control={control}
-                defaultValue=""
-            />
+                defaultValue="" variant="outlined"            />
 
             <Typography variant="caption" color="red">
                 <ErrorMessage errors={errors} name="username" />
@@ -77,8 +76,7 @@ const FormRegister = () => {
                 label="Username"
                 type="text"
                 control={control}
-                defaultValue=""
-            />
+                defaultValue="" variant="outlined"            />
 
             <Typography variant="caption" color="red">
                 <ErrorMessage errors={errors} name="password" />
@@ -90,8 +88,7 @@ const FormRegister = () => {
                 label="Password"
                 type="password"
                 control={control}
-                defaultValue=""
-            />
+                defaultValue="" variant="outlined"            />
 
             <Typography variant="caption" color="red">
                 <ErrorMessage errors={errors} name="repeatPassword" />
@@ -103,8 +100,7 @@ const FormRegister = () => {
                 label="Repeat Password"
                 type="password"
                 control={control}
-                defaultValue=""
-            />
+                defaultValue="" variant="outlined"            />
             <Button sx={{ width: "60%" }} variant="outlined" type="submit"> Create User </Button>
 
         </form>

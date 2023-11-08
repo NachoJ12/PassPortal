@@ -12,19 +12,19 @@ interface Props{
 const EventPage: NextPage<Props> = ({ event }) => {
     return (
         <BaseLayout>
-            <CardEvent event={event}/>
+            {/* <CardEvent event={event}/> */}
         </BaseLayout>
     )
 }
 
 export default EventPage
 
-export const getServerSideProps: GetServerSideProps = async ({ res, params, }) => {
-    const id: string = typeof params?.id === 'string' ? params.id : ''
-    const event = await getEventsById(id)
-    return {
-        props: {
-            event
-        }
-    }
-}
+// export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+//     const id: string = typeof params?.id === 'string' ? params.id : ''
+//     const event = await getEventsById(id)
+//     return {
+//         props: {
+//             event
+//         }
+//     }
+// }

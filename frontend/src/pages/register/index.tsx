@@ -6,5 +6,6 @@ export default function register() {
   return (
     <BaseLayout>
       <FormRegister/>
-    </BaseLayout>)
+    </BaseLayout>
+    )
 }

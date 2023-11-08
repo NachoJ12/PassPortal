@@ -15,6 +15,7 @@
     "@hookform/resolvers": "^3.3.2",
     "@mui/icons-material": "^5.14.16",
     "@mui/material": "^5.14.16",
+    "antd": "^5.11.0",
     "aos": "^2.3.4",
     "next": "13.5.5",
     "next-auth": "^4.24.3",

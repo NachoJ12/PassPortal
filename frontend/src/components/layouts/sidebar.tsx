@@ -7,6 +7,7 @@ import HelpIcon from '@mui/icons-material/Help';
 import { useContext } from "react"
 import { SidebarContext } from '@/components/context/sidebar-context'
 import ContactPageIcon from '@mui/icons-material/ContactPage';
+import PassPortalLogoTicket from "../../../public/logoPassPortalTicket.svg"
 
 const sidebarItems = [
     {
@@ -42,7 +43,7 @@ export default function Sidebar() {
         <div className='sidebar_wrapper'>
             <aside className='sidebar' >
                 <div className='sidebar_top'>
-                    <Image src="/logo.png" width={150} height={125} className='sidebar_logo' alt='logo' />
+                    <Image src={PassPortalLogoTicket} width={150} height={125} className='sidebar_logo' alt='logo' />
                     <p className='sidebar_logoName'>PassPortal</p>
                 </div>
                 <ul className='sidebar_list'>

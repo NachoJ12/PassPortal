@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import {
     Card,
     CardContent,
@@ -10,12 +10,17 @@ import { Event } from '@/data/cardItems';
 import Image from "next/image";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 interface Props {
     event: Event
 }
 
 const CardEvent: FC<Props> = ({ event }) => {
+    useEffect(() => {
+        AOS.init();
+      }, []);
     return (
         <Card key={event.id} className="card-general" data-aos="fade-up">
             <CardContent className="card-elements">

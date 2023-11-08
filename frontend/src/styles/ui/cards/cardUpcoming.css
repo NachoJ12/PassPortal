@@ -1,0 +1,94 @@
+.cardUpcoming-container{
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+}
+.cardUpcoming-general{
+    width: 90%;
+    height: 110px;
+    background-color: #0d0b0d;
+    color: rgb(224, 223, 223);
+    box-sizing: border-box;
+    border-bottom: 1px solid white;
+    padding: 15px;
+}
+.custom-Upcoming-container{
+    display: flex;
+    justify-content: center;
+}
+.cardUpcoming-image-container{
+    width:100px;
+    height:100px;
+}
+.cardUpcoming-general:hover{
+    .cardUpcoming-image{
+        width:85px;
+        height:85px;
+        transition: 0.1s ease-in-out;
+        box-shadow: -18px 20px 25px -30px rgb(216, 111, 176), 
+        20px -20px 25px -30px rgb(177, 111, 216), 
+        -17px -20px 25px -30px rgb(176, 39, 204), 
+        20px 20px 25px -30px rgb(169, 27, 182);
+        z-index: 100;
+    }
+}
+.cardUpcoming-image{
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+}
+.cardUpcoming-elements{
+    display: flex;
+    cursor: pointer;
+}
+.cardUpcoming-info{
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+    justify-content: space-evenly;
+    align-content: flex-start;
+    align-items: flex-start;
+}
+.cardUpcoming-description{
+    font-size: 12px;
+    width: 100%;
+}
+.cardUpcoming-date-ubication{
+    display: flex;
+    align-items: center;
+}
+.cardUpcoming-typography{
+    font-size: 13px;
+    font-weight: 600;
+}
+.cardUpcoming-typography-description{
+    font-size: 12px;
+}
+.subcard-Upcoming{
+    display:flex;
+    height:35px;
+    background-color: rgba(68, 68, 68, 0);
+    margin-left: 37px ;
+    border-radius:0;
+    width: 70%;
+    justify-content: space-around;
+}
+.subcard-Upcoming-typepography{
+    font-size: 20px;
+    font-weight: 400;
+    color:white;
+    text-align-last: center;
+}
+.boton-Upcoming{
+    width:130px;
+    font-size:13px;
+    border:none;
+    color:rgb(180, 178, 178);
+    margin:0;
+
+}
+.boton-Upcoming:hover{
+    border:none;
+    background-color:rgba(255, 255, 255, 0);
+    color:white;
+}

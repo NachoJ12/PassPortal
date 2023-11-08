@@ -8,6 +8,7 @@ export interface Event {
     description: string
     date: string
     ubication: string
+    size: string
 }
 
 export const cardItems: Event[] = [
@@ -19,6 +20,7 @@ export const cardItems: Event[] = [
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis temporibus natus nobis blanditiis magnam nam repellat necessitatibus quam nihil error?",
         date: "october 31 - 2023",
         ubication: "Ecuador - Quito",
+        size: "large"
     },
     {
         id: "2",
@@ -28,6 +30,7 @@ export const cardItems: Event[] = [
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis temporibus natus nobis blanditiis magnam nam repellat necessitatibus quam nihil error?",
         date: "october 31 - 2023",
         ubication: "Ecuador - Quito",
+        size: "small"
     },
     {
         id: "3",
@@ -37,6 +40,7 @@ export const cardItems: Event[] = [
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis temporibus natus nobis blanditiis magnam nam repellat necessitatibus quam nihil error?",
         date: "october 31 - 2023",
         ubication: "Ecuador - Quito",
+        size: "small"
     },
     {
         id: "4",
@@ -46,6 +50,7 @@ export const cardItems: Event[] = [
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis temporibus natus nobis blanditiis magnam nam repellat necessitatibus quam nihil error?",
         date: "october 31 - 2023",
         ubication: "Ecuador - Quito",
+        size: "small"
     },
     {
         id: "5",
@@ -55,6 +60,7 @@ export const cardItems: Event[] = [
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis temporibus natus nobis blanditiis magnam nam repellat necessitatibus quam nihil error?",
         date: "october 31 - 2023",
         ubication: "Ecuador - Quito",
+        size: "small"
     },
     {
         id: "6",
@@ -64,6 +70,7 @@ export const cardItems: Event[] = [
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis temporibus natus nobis blanditiis magnam nam repellat necessitatibus quam nihil error?",
         date: "october 31 - 2023",
         ubication: "Ecuador - Quito",
+        size: "small"
     },
     {
         id: "7",
@@ -73,6 +80,7 @@ export const cardItems: Event[] = [
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis temporibus natus nobis blanditiis magnam nam repellat necessitatibus quam nihil error?",
         date: "october 31 - 2023",
         ubication: "Ecuador - Quito",
+        size: "small"
     },
     {
         id: "8",
@@ -82,6 +90,7 @@ export const cardItems: Event[] = [
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis temporibus natus nobis blanditiis magnam nam repellat necessitatibus quam nihil error?",
         date: "october 31 - 2023",
         ubication: "Ecuador - Quito",
+        size: "small"
     },
     {
         id: "9",
@@ -91,6 +100,7 @@ export const cardItems: Event[] = [
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis temporibus natus nobis blanditiis magnam nam repellat necessitatibus quam nihil error?",
         date: "october 31 - 2023",
         ubication: "Ecuador - Quito",
+        size: "small"
     },
     {
         id: "10",
@@ -100,6 +110,7 @@ export const cardItems: Event[] = [
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis temporibus natus nobis blanditiis magnam nam repellat necessitatibus quam nihil error?",
         date: "october 31 - 2023",
         ubication: "Ecuador - Quito",
+        size: "small"
     },
     {
         id: "11",
@@ -109,6 +120,8 @@ export const cardItems: Event[] = [
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis temporibus natus nobis blanditiis magnam nam repellat necessitatibus quam nihil error?",
         date: "october 31 - 2023",
         ubication: "Ecuador - Quito",
+        size: "small"
+        
     },
     {
         id: "12",
@@ -118,5 +131,6 @@ export const cardItems: Event[] = [
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis temporibus natus nobis blanditiis magnam nam repellat necessitatibus quam nihil error?",
         date: "october 31 - 2023",
         ubication: "Ecuador - Quito",
+        size: "small"
     },
 ];

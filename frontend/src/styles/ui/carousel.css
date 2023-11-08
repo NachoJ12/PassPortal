@@ -1,0 +1,39 @@
+
+.carousel-slide{
+    width: 600px;
+    height: 450px;
+    background-color: #0e0c0d;
+    margin-left: 15px;
+    position: relative;
+
+}
+.carousel-image{
+    width: 600px;
+    height: 450px;
+    box-shadow: 0px 0px 20px 20px inset #0e0c0d;
+}
+.card-carousel{
+    padding: 25px;
+    width: 550px;
+    height: 200px;
+    margin-left: 3%;
+    position: absolute;
+    top: 700px;
+    border-radius: 0;
+}
+.subcard-carousel{
+    width: 200px;
+    height: 30px;
+    background-color: rgb(68, 68, 68);
+    border-radius: 0;
+    position: absolute;
+    top: 685px;
+    margin-left: 7%;
+    color: white;
+    font-weight: 600;
+    font-size: 10px;
+}
+.subcard-carousel-typepography{
+font-size: 15px;
+    text-align-last: center;
+}

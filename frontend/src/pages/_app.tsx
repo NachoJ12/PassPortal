@@ -1,10 +1,12 @@
 import '@/styles/globals.css'
 import '@/styles/ui/form.css'
-import '@/styles/ui/cardEvent.css'
+import '@/styles/ui/cards/cardEvent.css'
 import "@/styles/layoutCss/sideBar.css"
 import "@/styles/layoutCss/footer.css"
 import "@/styles/layoutCss/navbar.css"
-
+import '@/styles/ui/cards/cardUpcoming.css'
+import '@/styles/ui/cards/cardShows.css'
+import '@/styles/ui/carousel.css'
 import BaseLayout from "@/components/layouts/base-layout";
 
 

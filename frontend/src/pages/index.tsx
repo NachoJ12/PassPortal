@@ -1,65 +1,50 @@
 import BaseLayout from "@/components/layouts/base-layout";
-import SearchBar from '@/components/ui/searchbar/SearchBar';
-import { IMunicipioResponse,} from "@/interface/municipio";
-import { IProvinciaResponse } from "@/interface/provincia";
-import { getMunicipiosByProvincia } from "@/service/municipio-service";
-import { getProvinces } from "@/service/province-service";
-import type { NextPage, GetServerSideProps } from 'next'
+import type { NextPage } from "next";
+import CardUpcomingContainer from "@/components/ui/cardGeneral/cardUpcoming/cardUpcomingContainer/cardUpcomingContainer";
+import { cardItems, Event } from "@/data/cardItems";
+import { CardShowsContainer } from "@/components/ui/cardGeneral/cardShows/cardShowsContainer/cardShowsContainer";
+import CarouselImage from "@/components/ui/carousel/carousel";
+import CarouselCard from "@/components/ui/carousel/carouselCardInfo";
+import Image from "next/image";
+import passPortalLogo from "../../public/logo-grey.svg";
+import { Card, Typography, CardActions, Button } from "@mui/material";
 
-interface Props {
-  municipios: IMunicipioResponse
-  provincias: IProvinciaResponse
-}
-
-const Home: NextPage<Props> = ({ municipios, provincias }) => {
+const Home: NextPage = () => {
   return (
     <BaseLayout>
       <div className="home-page">
-        <SearchBar municipios={municipios} provincias={provincias} />
+        <Image src={passPortalLogo} alt="logo" className="logo-main" />
+        <div className="main-container">
+          <div>
+            <CarouselImage />
+            <CarouselCard />
+          </div>
+          <div>
+            <Card className="subcard-Upcoming" data-aos="fade-up">
+              <Typography
+                variant="h6"
+                component="div"
+                className="subcard-Upcoming-typepography"
+              >
+                Upcoming Events
+              </Typography>
+              <CardActions>
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  className="boton-Upcoming"
+                >
+                  Show More
+                </Button>
+              </CardActions>
+            </Card>
+            <CardUpcomingContainer events={cardItems} />
+          </div>
+        </div>
+        <CardShowsContainer events={cardItems} />
       </div>
     </BaseLayout>
-  )
-}
+  );
+};
 
-export default Home
-
-export const getServerSideProps: GetServerSideProps = async ({ res, query }) => {
-
-  let municipios: IMunicipioResponse = {
-    cantidad: 0,
-    inicio: 0,
-    municipios: [
-      {
-        centroideLat: 0,
-        centroideLon: 0,
-        id: "",
-        nombre: "",
-        provinciaID: "",
-        provinciaNombre: ""
-      }
-    ],
-    parametros: {
-      aplanar: true,
-      max: 0,
-      provincia: ""
-    },
-    total: 0,
-  };
-
-  const { provincia, municipio }: any = query;
-
-  if (provincia) {
-    municipios = await getMunicipiosByProvincia(provincia)
-  }
-
-  const provincias = await getProvinces()
-
-
-  res.setHeader(
-    'Cache-Control',
-    'public, s-maxage=10, stale-while-revalidate=59'
-  )
-  return {
-    props: { provincias, municipios }
-  }
-}
+export default Home;

@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Grid } from "@mui/material";
 import { Event } from '@/data/cardItems';
-import CardEvent from "../cardGeneral/cardEvent/cardEvent";
+import CardEvent from "../cardEvent";
 
 interface Props {
   events: Event[]

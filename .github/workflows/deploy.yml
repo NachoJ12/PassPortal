@@ -1,0 +1,33 @@
+name: Deploy to EC2 with Ansible
+
+on:
+  workflow_dispatch:
+    # inputs:
+    #   nombre:
+    #     description: 'Nombre'
+
+  # push:
+  #   branches:
+  #     - frontend
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up SSH key
+        uses: webfactory/ssh-agent@v0.5.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ansible
+
+      - name: Deploy application to EC2
+        run: |
+          ansible-playbook -i terraform/inventory.ini deploy.yml

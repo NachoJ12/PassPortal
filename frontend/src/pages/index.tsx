@@ -26,7 +26,7 @@ const Home: NextPage = () => {
                 component="div"
                 className="subcard-Upcoming-typepography"
               >
-                Upcoming Events
+                Upcoming Eventsssssss
               </Typography>
               <CardActions>
                 <Button

@@ -21,6 +21,7 @@ const Events: NextPage<Props> = ({ events }) => {
 export default Events;
 
 export const getServerSideProps: GetServerSideProps = async ({ }) => {
+  
   const events = await getEvents()
 
   return {

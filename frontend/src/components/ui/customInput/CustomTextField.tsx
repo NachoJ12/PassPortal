@@ -9,7 +9,7 @@ interface CustomTextFieldProps {
     control: Control<any>;
     defaultValue?: string;
     textFieldProps?: Record<string, any>;
-    variant:TextFieldVariants | undefined
+    variant: TextFieldVariants | undefined
 }
 
 export const CustomTextField = ({
@@ -29,14 +29,18 @@ export const CustomTextField = ({
             defaultValue={defaultValue}
             render={({ field }) => (
                 < TextField
-                
                     {...field}
                     type={type}
                     label={label}
                     variant={variant}
                     fullWidth
                     required={required}
-                    sx={{ width:"80%" }}
+                    sx={
+                        {
+                            width: name === "username" || name === "email" || name === "password" || name === "repeatPassword" ? "100%" : "80%",
+                            
+                        }
+                    }
                     {...textFieldProps}
                 />
             )

@@ -2,6 +2,7 @@
     padding: 20px;
     margin: 0;
     width: 100%;
+    
 }
 .card-general{
     display: flex;
@@ -38,7 +39,6 @@
 }
 .card-info{
     background-color:white;
-    border: 1px solid rgb(233, 206, 86);
     z-index: 100;
     box-sizing: border-box;
     display: flex;

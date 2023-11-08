@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Grid } from "@mui/material";
-import imagenPrueba from "../../../../public/halloween-party-ecuatoriano-215720-min.jpg";
+import imagenPrueba from "../../../../../public/halloween-party-ecuatoriano-215720-min.jpg";
 import Image from "next/image";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import LocationOnIcon from "@mui/icons-material/LocationOn";

@@ -8,6 +8,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { useContext } from "react"
 import { SidebarContext } from '@/components/context/sidebar-context'
 import ContactPageIcon from '@mui/icons-material/ContactPage';
+import PassPortalLogoTicket from "../../../public/logoPassPortalTicket.svg"
 
 const sidebarItems = [
     {
@@ -44,7 +45,7 @@ export default function Sidebar() {
             <button className='sidebar_btn' onClick={toggleSidebarcollapse}><MenuIcon /></button>
             <aside className='sidebar' data-collapse={isCollapsed}>
                 <div className='sidebar_top'>
-                    <Image src="/logo.png" width={150} height={125} className='sidebar_logo' alt='logo' />
+                    <Image src={PassPortalLogoTicket} width={150} height={125} className='sidebar_logo' alt='logo' />
                     <p className='sidebar_logoName'>PassPortal</p>
                 </div>
                 <ul className='sidebar_list'>

@@ -5,8 +5,9 @@ import { IProvinciaResponse } from "@/interface/provincia";
 import { getMunicipiosByProvincia } from "@/service/municipio-service";
 import { getProvinces } from "@/service/province-service";
 import type { NextPage, GetServerSideProps } from 'next'
-
-import { CardBox } from '@/components/ui/cardEvent/card'
+import Image from "next/image";
+import passPortalLogo from "../../public/logo-grey.svg"
+import { CardBox } from '@/components/ui/cardGeneral/cardEvent/card'
 
 interface Props {
   municipios: IMunicipioResponse
@@ -17,6 +18,7 @@ const Home: NextPage<Props> = ({ municipios, provincias }) => {
   return (
     <BaseLayout>
       <main className="main">
+        <Image src={passPortalLogo} alt="logo"  className="logo-main"/>
         <SearchBar municipios={municipios} provincias={provincias} />
         <CardBox />
       </main>

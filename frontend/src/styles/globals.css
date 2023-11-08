@@ -63,7 +63,9 @@ body{
 
 .main{
   /* Establece una altura mínima del 100% del viewport */
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 

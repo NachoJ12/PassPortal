@@ -9,6 +9,8 @@ import { IProvinciaResponse } from "@/interface/provincia";
 import { getMunicipiosByProvincia } from "@/service/municipio-service";
 import { getProvinces } from "@/service/province-service";
 import SearchBar from '@/components/ui/searchbar/SearchBar'
+import Image from "next/image";
+import passPortalLogo from "../../../public/logo-grey.svg";
 
 interface Props {
   events: Event[]
@@ -19,8 +21,11 @@ interface Props {
 const Events: NextPage<Props> = ({ events, municipios, provincias }) => {
   return (
     <BaseLayout>
+    <div className='event-page'>
+      <Image src={passPortalLogo} alt="logo" className="logo-main" />
       <SearchBar municipios={municipios} provincias={provincias} />
       <CardEventContainer events={events} />
+    </div>
     </BaseLayout>
   )
 }

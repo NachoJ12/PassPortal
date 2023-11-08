@@ -32,16 +32,6 @@ const Events: NextPage<Props> = ({ events, municipios, provincias }) => {
 
 export default Events;
 
-/* export const getServerSideProps: GetServerSideProps = async ({ }) => {
-  const events = await getEvents()
-
-  return {
-    props: {
-      events
-    }
-  }
-} */
-
 export const getServerSideProps: GetServerSideProps = async ({ res, query }) => {
 
   let municipios: IMunicipioResponse = {

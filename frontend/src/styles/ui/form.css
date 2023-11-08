@@ -1,6 +1,35 @@
-.form{
+:root {
+    --color-primario: #070607;
+    /*layouts, backgrounds*/
+    --color-secundario: rgb(250, 250, 250);
+    /*color fonts hovers & selected*/
+    --color-terciario: #9d9c9d;
+    /*color fonts normals*/
+    --color-hover: #2e2d2d;
+    /*hovers backgrounds*/
+    --color-main: #0e0c0d;
+}
+
+.container-form {
+    display: flex;
+    outline: aliceblue solid;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.left{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-top: 2rem;
+    width: 500px;
+    background-color: #474747;
+    align-items: flex-start;
+    text-align: left;
+    padding: 1.5rem;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: green;
+    width: 100%;
 }

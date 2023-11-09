@@ -8,6 +8,8 @@ import { ErrorMessage } from '@hookform/error-message';
 import { CustomTextField } from '@/components/ui/customInput/CustomTextField';
 import { schemaRegister } from '@/rules';
 import Image from 'next/image';
+import GoogleButton from '../googlebutton/GoogleButton';
+import Link from 'next/link';
 
 interface FormData {
   email: string;
@@ -21,7 +23,7 @@ const FormRegister = () => {
 
   const {
     handleSubmit,
-    control,
+    register,
     formState: { errors },
   } = useForm<FormData>({
     resolver: yupResolver(schemaRegister),
@@ -50,91 +52,120 @@ const FormRegister = () => {
   };
 
   return (
-    <div className='container-form'>
-      <div className='left' >
-        <form className="form" onSubmit={handleSubmit(onSubmit)}>
-          <Typography sx={{ paddingBottom: '1rem' }} variant="h3" >
-            Create a New User
-          </Typography>
-
-          <Typography variant="caption" color="red">
-            <ErrorMessage errors={errors} name="email" />
-          </Typography>
-
-          <div style={{ width: "100%", padding: "0.75rem 0px" }}>
-            <CustomTextField
-              variant="filled"
-              required={true}
-              name="email"
-              label="Email"
-              type="text"
-              control={control}
-              defaultValue=""
+    <div className='container'>
+      <div className='container-form'>
+        <form onSubmit={handleSubmit(onSubmit)} className='form'>
+          <div className='form-top'>
+            <h2 className='h2'>Welcome !</h2>
+            <h1 className='h1'>
+              Log In
+            </h1>
+            <label htmlFor='email' className='input-label'>
+              Email
+            </label>
+            <input
+              {...register('email')}
+              type='text'
+              placeholder='johndoe@example.com'
+              name='email'
+              className='input-form'
             />
+            <Typography variant="caption" color="red">
+              <ErrorMessage errors={errors} name="email" />
+            </Typography>
+
+            <label htmlFor='username' className='input-label'>
+              Username
+            </label>
+            <input
+              {...register('username')}
+              type='text'
+              placeholder='johndoe123'
+              name='username'
+              className='input-form'
+            />
+            <Typography variant="caption" color="red">
+              <ErrorMessage errors={errors} name="username" />
+            </Typography>
+
+            <label htmlFor='password' className='input-label'>
+              Password
+            </label>
+            <input
+              {...register('password')}
+              type='password'
+              placeholder='Enter your password'
+              name='password'
+              className='input-form'
+            />
+            <Typography variant="caption" color="red">
+              <ErrorMessage errors={errors} name="password" />
+            </Typography>
+
+            <label htmlFor='repeatPassword' className='input-label'>
+            Repeat Password
+            </label>
+            <input
+              {...register('repeatPassword')}
+              type='repeatPassword'
+              placeholder='Repeat your password'
+              name='repeatPassword'
+              className='input-form'
+            />
+            <Typography variant="caption" color="red">
+              <ErrorMessage errors={errors} name="repeatPassword" />
+            </Typography>
+
           </div>
 
-          <Typography variant="caption" color="red">
-            <ErrorMessage errors={errors} name="username" />
-          </Typography>
+          <div className='form-bottom'>
+            {/* <div className='flex items-center justify-between pb-6 w-full gap-2'>
+                            <label className='flex items-center gap-2'>
+                                <input
+                                    type='checkbox'
+                                    {...register('rememberMe')}
+                                    className='accent-primary-color text-primary-color ml-1 hover:text-primary-color focus:ring focus:ring-indigo-200 focus:ring-opacity-50'
+                                />
+                                Remember Me
+                            </label>
+                            <a
+                                href='/forgot-password'
+                                className='text-primary-color hover:underline'
+                            >
+                                Forgot Password?
+                            </a>
+                        </div> */}
 
-          <div style={{ width: "100%", padding: "0.75rem 0px" }}>
-            <CustomTextField
-              variant="filled"
-              required={true}
-              name="username"
-              label="Username"
-              type="text"
-              control={control}
-              defaultValue=""
-            />
+            <button
+              type='submit'
+              className='button-form'
+            >
+              Login
+            </button>
+
+            <h3 >or continue with</h3>
+            <GoogleButton />
+            <div style={{ marginTop: "0.2rem" }}>
+              <p className=''>
+                Have an account ?{'  '}
+                <Link
+                  href='/login'
+                  className='form_link'
+                >
+                  Login
+                </Link>
+              </p>
+            </div>
           </div>
 
-          <Typography variant="caption" color="red">
-            <ErrorMessage errors={errors} name="password" />
-          </Typography>
-
-          <div style={{ width: "100%", padding: "0.75rem 0px" }}>
-            <CustomTextField
-              variant="filled"
-              required={true}
-              name="password"
-              label="Password"
-              type="password"
-              control={control}
-              defaultValue=""
-            />
-          </div>
-
-          <Typography variant="caption" color="red">
-            <ErrorMessage errors={errors} name="repeatPassword" />
-          </Typography>
-
-          <div style={{ width: "100%", padding: "0.75rem 0px" }}>
-            <CustomTextField
-              variant="filled"
-              required={true}
-              name="repeatPassword"
-              label="Repeat Password"
-              type="password"
-              control={control}
-              defaultValue=""
-            />
-          </div>
-
-          <Button sx={{ width: '100%' }} variant="contained" type="submit">
-            {' '}
-            Create User{' '}
-          </Button>
         </form>
       </div>
-        <Image
-          width={415}
-          height={534}
-          src="/logo.png"
-          alt={"logo"} />
+      <div className='container-logo'>
+        <Image src="/logo.png" alt={''} width={400} height={400} />
+      </div>
     </div>
-
   );
 };
 
 export default FormRegister;
+

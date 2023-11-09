@@ -37,7 +37,7 @@ export const CustomTextField = ({
                     required={required}
                     sx={
                         {
-                            width: name === "username" || name === "email" || name === "password" || name === "repeatPassword" ? "100%" : "80%",
+                            width: name === "username" || name === "email" || name === "password" || name === "repeatPassword" ? "100%" : "80%"
                             
                         }
                     }

@@ -1,5 +1,4 @@
 import '@/styles/globals.css'
-import '@/styles/ui/form.css'
 import '@/styles/ui/cards/cardEvent.css'
 import "@/styles/layoutCss/sideBar.css"
 import "@/styles/layoutCss/footer.css"

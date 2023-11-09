@@ -1,4 +1,4 @@
-name: Deploy to EC2 with Ansible
+name: Deploy to EC2
 
 on:
   workflow_dispatch:
@@ -23,11 +23,11 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Install dependencies
+      - name: Install Dependencies and Build
         run: |
-          sudo apt-get update
-          sudo apt-get install -y ansible
-
-      - name: Deploy application to EC2
+          npm install
+          npm run build
+      
+      - name: Deploy to AWS
         run: |
-          ansible-playbook -i terraform/inventory.ini deploy.yml
+          scp -i ${{ secrets.SSH_PRIVATE_KEY }} -r build/ ec2-user@${{ secrets.EC2_INSTANCE }}:/home/ec2-user

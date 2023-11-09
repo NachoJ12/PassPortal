@@ -41,7 +41,10 @@ const Home: NextPage = () => {
             <CardUpcomingContainer events={cardItems} />
           </div>
         </div>
+        <div className="cardShow-main-container">
+        <h2 className="cardShow-main-title">Show And Events</h2>
         <CardShowsContainer events={cardItems} />
+        </div>
       </div>
     </BaseLayout>
   );

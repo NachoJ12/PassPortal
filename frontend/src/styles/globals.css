@@ -33,11 +33,20 @@ body {
   flex-direction: column;
   align-items: center;
 }
+.event-page{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #0d0b0d;
+}
 
 .main-container{
   display: flex;
   width: 100%;
   justify-content: center
+}
+.logo-main{
+  width: 300px;
 }
 
 .base-layout {

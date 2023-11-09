@@ -1,142 +1,140 @@
-
-
 .grid-container {
-    margin-top: 10%;
-    width: 80%;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Dos columnas en la primera fila */
-    gap: 16px; /* Espacio entre elementos */
-    color: white;
-  }
-  
-
-    .cardShow-general{
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        background: none;
-        padding: 20px;
-        cursor: pointer;
-
-    }
-
-
-    .cardShow-container-info{
-        background-color: white;
-    }
-
-
-    .cardShow-container-info:hover{
-        width: 50%;
-    }
-
-
-    .cardShow-Image{
-      width: 300px;
-      height: 280px;
-    }
-    
-
-
-  .large-card {
-    width: 100%;
-    height: 400px;
-    grid-column: span 3;
-    background-color: none;
-    color: black; /* La tarjeta grande ocupa 2 columnas */
-    .cardShow-general{
-        display: flex;
-        flex-direction: row;
-    }
-    .cardShow-Image{
-        width: 400px;
-        height: 360px;
-      }
-      .cardShow-container-image{
-        width: 50%;
-    }
-    .cardShow-container-info{
-        width: 50%;
-    }
-    .cardShow-title{
-      padding-top: 20px;
-      font-size: 15px;
-      font-weight: 600;
-      text-align: center;
-    }
-  }
-
-
-
-  .large-card:hover{
-    .cardShow-container-image{
-        transform: scale(1.05);
-        transition: transform 0.3s ease-in-out;
-    }
-    .cardShow-container-info{
-        transform: translateX(-20px);
-        transition: all 0.3s ease-in-out;
-        background-color: wahite;
-        box-shadow: -18px 20px 25px -25px rgb(243, 178, 218), 
-        20px -20px 25px -25px rgb(161, 111, 190), 
-        -17px -20px 25px -25px rgb(213, 148, 226), 
-        20px 20px 25px -25px rgb(230, 219, 231);
-    }
-  }
-
-
-  .small-card {
-    grid-column: span 1; /* Las tarjetas pequeñas ocupan 1 columna cada una */
-        height: 400px;
-    .cardShow-Image{
-        width: 100%;
-        height: 240px;
-      }
-      .cardShow-container-image{
-        width: 100%;
-    }
-    .cardShow-container-info{
-        width: 100%;
-        height: 100%;
-    }
-    .cardShow-description{
-      display: none;
-    }
-  }
-
-
-  .small-card:hover{
-    .cardShow-container-image{
-        transform: scale(1.05);
-        transition: transform 0.3s ease-in-out;
-    }
-    .cardShow-container-info{
-        transform: translateY(-20px);
-        transition: all 0.3s ease-in-out;
-        background-color: white;
-        box-shadow: -18px 20px 25px -25px rgb(243, 178, 218), 
-        20px -20px 25px -25px rgb(161, 111, 190), 
-        -17px -20px 25px -25px rgb(213, 148, 226), 
-        20px 20px 25px -25px rgb(230, 219, 231);
-    }
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Dos columnas en la primera fila */
+  color: white;
+  gap: 20px;
 }
-.cardShow-title{
+
+.cardShow-general {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: none;
+  padding: 15px;
+  cursor: pointer;
+}
+.cardShow-main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+.cardShow-main-title {
+  font-size: 30px;
+  color: white;
+}
+
+.cardShow-container-info {
+  background-color: white;
+}
+
+.cardShow-container-info:hover {
+  width: 50%;
+}
+
+.cardShow-Image {
+  width: 300px;
+  height: 280px;
+}
+
+.large-card {
+  width: 100%;
+  height: 100%;
+  grid-column: span 3;
+  background-color: none;
+  color: black; /* La tarjeta grande ocupa 2 columnas */
+  .cardShow-general {
+    display: flex;
+    flex-direction: row;
+  }
+  .cardShow-Image {
+    width: 100%;
+    height: 360px;
+  }
+  .cardShow-container-image {
+    width: 60%;
+  }
+  .cardShow-container-info {
+    width: 40%;
+    padding: 20px;
+  }
+  .cardShow-title {
+    padding-top: 20px;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+  }
+}
+
+.large-card:hover {
+  .cardShow-container-image {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+  }
+  .cardShow-container-info {
+    transform: translateX(-20px);
+    transition: all 0.3s ease-in-out;
+    background-color: wahite;
+    box-shadow: -18px 20px 25px -25px rgb(243, 178, 218),
+      20px -20px 25px -25px rgb(161, 111, 190),
+      -17px -20px 25px -25px rgb(213, 148, 226),
+      20px 20px 25px -25px rgb(230, 219, 231);
+  }
+}
+
+.small-card {
+  grid-column: span 1; /* Las tarjetas pequeñas ocupan 1 columna cada una */
+  height: 400px;
+  width: 240px;
+  .cardShow-Image {
+    width: 100%;
+    height: 240px;
+  }
+  .cardShow-container-image {
+    width: 100%;
+  }
+  .cardShow-container-info {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+  }
+  .cardShow-description {
+    display: none;
+  }
+}
+
+.small-card:hover {
+  .cardShow-container-image {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+  }
+  .cardShow-container-info {
+    transform: translateY(-20px);
+    transition: all 0.3s ease-in-out;
+    background-color: white;
+    box-shadow: -18px 20px 25px -25px rgb(243, 178, 218),
+      20px -20px 25px -25px rgb(161, 111, 190),
+      -17px -20px 25px -25px rgb(213, 148, 226),
+      20px 20px 25px -25px rgb(230, 219, 231);
+  }
+}
+.cardShow-title {
   font-size: 13px;
   font-weight: 600;
   text-align: center;
   color: rgb(104, 104, 104);
 }
-.cardShow-info{
+.cardShow-info {
   font-size: 13px;
   font-weight: 300;
   text-align: center;
   color: rgb(0, 0, 0);
 }
-.cardShow-info-container{
+.cardShow-info-container {
   display: flex;
   align-items: center;
 }
-.cardShow-description{
+.cardShow-description {
   font-size: 16px;
-
 }

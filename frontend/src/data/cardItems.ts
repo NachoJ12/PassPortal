@@ -1,6 +1,8 @@
 import { StaticImageData } from "next/image";
 import imagenPrueba from "../../public/halloween-party-ecuatoriano-215720-min.jpg";
-
+import imagenPrueba1 from "../../public/League-of-Legends-Worlds-2019-cover.jpg"
+import imagenPrueba2 from "../../public/crean-beach-1111-287606-min.jpg"
+import imagenPrueba3 from "../../public/lova-1111-220410-min.jpg"
 export interface Event {
     id: string
     title: string
@@ -14,32 +16,31 @@ export interface Event {
 export const cardItems: Event[] = [
     {
         id: "1",
-        title: "HALLOWEEN PARTY ECUATORIANO",
-        path: imagenPrueba,
-        description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis temporibus natus nobis blanditiis magnam nam repellat necessitatibus quam nihil error?",
-        date: "october 31 - 2023",
-        ubication: "Ecuador - Quito",
+        title: "League of Legends - Worlds",
+        path: imagenPrueba1,
+        description:"League of Legends -     Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis totam sit officiis at aperiam quae ducimus, ipsam nam quasi voluptatum!",
+        date: "november - 2023",
+        ubication: "Korea",
         size: "large"
     },
     {
         id: "2",
-        title: "HALLOWEEN PARTY ECUATORIANO",
-        path: imagenPrueba,
+        title: "Crean Beach 11-11 (+21)",
+        path: imagenPrueba2,
         description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis temporibus natus nobis blanditiis magnam nam repellat necessitatibus quam nihil error?",
-        date: "october 31 - 2023",
-        ubication: "Ecuador - Quito",
+            "coco producciones",
+        date: "November 11 - 2023",
+        ubication: "Isla La Invernada - Rosario (isla)",
         size: "small"
     },
     {
         id: "3",
-        title: "HALLOWEEN PARTY ECUATORIANO",
-        path: imagenPrueba,
+        title: "Lova 11/11 (+20)",
+        path: imagenPrueba3,
         description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis temporibus natus nobis blanditiis magnam nam repellat necessitatibus quam nihil error?",
-        date: "october 31 - 2023",
-        ubication: "Ecuador - Quito",
+            "coco producciones",
+        date: "November 11 - 2023",
+        ubication: "Complejo Forest - Rosario",
         size: "small"
     },
     {

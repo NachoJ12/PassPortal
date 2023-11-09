@@ -19,7 +19,7 @@
     gap: 6rem;
     justify-content: center;
     align-items: center;
-
+    height: 100vh;
 }
 
 .container-form {
@@ -27,7 +27,6 @@
     flex-direction: column;
     gap: 1.25rem;
     border-radius: 0.5rem;
-    
 }
 
 .container-logo {
@@ -43,7 +42,7 @@
     align-self: center;
     border-radius: 1.5rem;
     background-color: #474747;
-    width: 100%;
+    width: 30vw;
     color: var(--color-terciario);
 }
 
@@ -116,15 +115,18 @@
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 300ms;
     background-color: #D67AB1;
-    color: #CDCCCD;
+    color: #FFFFFF;
+    border: none;
+    cursor: pointer;
 }
 
 .button-form:hover {
+    border: #D67AB1;
     border-width: 2px;
     transition-delay: 100ms;
+    background-color: #ff4cb7;
 }
 
-.password {}
 
 .input-label {
     padding-top: 1rem;
@@ -134,13 +136,15 @@
     font-weight: 600;
 }
 
-.google-button {}
+.google-button {
+    background-color: #474747;
+    border: none;
+    cursor: pointer;
+}
 
-.left-bottom {}
 
-.google-button:hover {}
 
-@media (max-width: 768px) {
+@media (max-width: 1080px) {
     .container-form {
         width: 100%;
         align-self: center;
@@ -151,7 +155,7 @@
     }
 
     .form {
-        width: 80%;
+        width: 60%;
         align-self: center;
     }
 

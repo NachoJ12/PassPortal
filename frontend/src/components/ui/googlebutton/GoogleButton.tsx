@@ -6,6 +6,7 @@ const GoogleButton: React.FC = () => {
     <button
       className='google-button'
       onClick={() => signIn('google')}
+    
     >
       <GoogleLogo />
     </button>

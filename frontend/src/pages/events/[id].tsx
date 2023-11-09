@@ -2,7 +2,7 @@ import React from 'react'
 import { GetServerSideProps, NextPage } from 'next'
 import BaseLayout from '@/components/layouts/base-layout'
 import { getEventsById } from '@/service/events-service'
-#import CardEvent from '@/components/ui/cardEvent/cardEvent'
+//import CardEvent from '@/components/ui/cardEvent/cardEvent'
 import { Event } from '@/data/cardItems'
 
 interface Props{

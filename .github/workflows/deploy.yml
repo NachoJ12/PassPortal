@@ -1,4 +1,4 @@
-name: Deploy to EC2 with Ansible
+name: Deploy to EC2
 
 on:
   workflow_dispatch:
@@ -16,18 +16,40 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Set up SSH key
-        uses: webfactory/ssh-agent@v0.5.0
+     # - name: Set up SSH key
+     #   uses: webfactory/ssh-agent@v0.8.0
+     #   with:
+     #     ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+     # - name: Install Dependencies and Build
+     #   run: |
+     #     cd frontend
+     #     npm install
+     #     npm run build
+
+      - name: Deploy to Server 1
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          REMOTE_HOST: ${{ secrets.EC2_INSTANCE }}
+          REMOTE_USER: ec2-user
+          TARGET: /home/ec2-user
+          
+      - name: Executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-      - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y ansible
-
-      - name: Deploy application to EC2
-        run: |
-          ansible-playbook -i terraform/inventory.ini deploy.yml
+          host: ${{ secrets.EC2_INSTANCE }}
+          username: ec2-user
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd frontend
+            npm install pm2 -g
+            npm install
+            npm run build
+            pm2 start npm --name nextjs-app -- run start -- -p 3000
+     
+      #- name: Deploy to AWS
+      #  run: |
+      #    scp -i ${{ secrets.SSH_PRIVATE_KEY }} -r build/ ec2-user@${{ secrets.EC2_INSTANCE }}:/home/ec2-user

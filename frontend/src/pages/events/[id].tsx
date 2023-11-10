@@ -2,17 +2,20 @@ import React from 'react'
 import { GetServerSideProps, NextPage } from 'next'
 import BaseLayout from '@/components/layouts/base-layout'
 import { getEventsById } from '@/service/events-service'
-import CardEvent from '@/components/ui/cardEvent/cardEvent'
+import CardEvent from '@/components/ui/cardGeneral/cardEvent/cardEvent'
 import { Event } from '@/data/cardItems'
+import { usePathname } from 'next/navigation';
 
 interface Props{
     event: Event
 }
 
 const EventPage: NextPage<Props> = ({ event }) => {
+    const path = usePathname()
     return (
         <BaseLayout>
-            {/* <CardEvent event={event}/> */}
+             {/* <CardEvent event={event}/>  */}
+            <div > Show details {path}</div>
         </BaseLayout>
     )
 }

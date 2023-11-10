@@ -8,6 +8,7 @@ import { useContext } from "react"
 import { SidebarContext } from '@/components/context/sidebar-context'
 import ContactPageIcon from '@mui/icons-material/ContactPage';
 import PassPortalLogoTicket from "../../../public/logoPassPortalTicket.svg"
+import { usePathname  } from 'next/navigation'
 
 const sidebarItems = [
     {
@@ -39,6 +40,8 @@ export default function Sidebar() {
         dispatch({ type: 'SELECT_ITEM', payload: index });
     };
 
+    const path = usePathname()
+
     return (
         <div className='sidebar_wrapper'>
             <aside className='sidebar' >
@@ -49,7 +52,7 @@ export default function Sidebar() {
                 <ul className='sidebar_list'>
                     {sidebarItems.map((item, index) => (
                         <li className={"sidebar_item"} key={item.name}>
-                            <Link href={item.href} className={selectedItem === index ? 'sidebar_link selected' : 'sidebar_link'} onClick={() => toggleSelected(index)}>
+                            <Link href={item.href} className={path === item.href  ? 'sidebar_link selected' : 'sidebar_link'} onClick={() => toggleSelected(index)}>
                                 <span className='sidebar_icon'><item.icon /></span>
                                 <span className='sidebar_name'>{item.name}</span>
                             </Link>

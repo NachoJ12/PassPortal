@@ -9,6 +9,8 @@ interface Props {
 }
 
 const CardUpcomingContainer: FC<Props> = ({ events }) => {
+
+
   return (
     <div className="cardUpcoming-container">
       {events.slice(0, 6).map((item : Event) => (

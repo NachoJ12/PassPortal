@@ -43,7 +43,7 @@ const FormRegister = () => {
     const { email, username, password } = data;
     // Handle login submission here
     const responseNextAuth = await signIn('credentials', {
-      email,
+      // email,
       username,
       password,
       redirect: false,
@@ -58,7 +58,7 @@ const FormRegister = () => {
           <div className='form-top'>
             <h2 className='h2'>Welcome !</h2>
             <h1 className='h1'>
-              Log In
+              Sign Up
             </h1>
             <label htmlFor='email' className='input-label'>
               Email
@@ -107,7 +107,7 @@ const FormRegister = () => {
             </label>
             <input
               {...register('repeatPassword')}
-              type='repeatPassword'
+              type='password'
               placeholder='Repeat your password'
               name='repeatPassword'
               className='input-form'
@@ -140,14 +140,14 @@ const FormRegister = () => {
               type='submit'
               className='button-form'
             >
-              Login
+              Register
             </button>
 
             <h3 >or continue with</h3>
             <GoogleButton />
             <div style={{ marginTop: "0.2rem" }}>
               <p className=''>
-                Have an account ?{'  '}
+                Have an account?{'  '}
                 <Link
                   href='/login'
                   className='form_link'

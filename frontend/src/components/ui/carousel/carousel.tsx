@@ -7,7 +7,6 @@ import imgCarousel2 from "../../../../public/League-of-Legends-Worlds-2019-1024x
 
 function CarouselImage() {
     const onChange = (currentSlide:any) => {
-        console.log(currentSlide);
       };
   return (
     <Carousel afterChange={onChange} autoplay dotPosition='top' className='carousel-slide'>

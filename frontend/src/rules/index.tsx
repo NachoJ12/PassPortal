@@ -18,12 +18,11 @@ export const schemaRegister = yup.object().shape({
             , "Please enter a valid email"),
     password: yup
         .string()
-        .required('Please enter your password')
-        // .matches(
-        //     /^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&]{8,}$/,
-        //     "Must Contain at least 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
-        // )
-        ,
+        .required('Please enter a password')
+        .matches(
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
+            'Minimum eight characters, at least one uppercase letter, one lowercase letter and one number'
+          ),
     repeatPassword: yup
         .string()
         .required('Please re-enter your password')

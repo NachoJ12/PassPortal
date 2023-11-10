@@ -10,11 +10,11 @@ export default function BaseLayout({ children }: { children: ReactNode }) {
             <div className="layout-sidebar">
                 <Sidebar />
             </div>
-            <div className="main-content">
+            <div className="main-content " style={{ backgroundColor: "#201C1E", }}>
                 <div className="layout-navbar">
                     <Navbar />
                 </div>
-                <main style={{ backgroundColor: "#201C1E", }} >
+                <main  >
                     {children}
                 </main>
                 <div className="layout-footer">

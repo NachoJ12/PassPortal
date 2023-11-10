@@ -18,16 +18,24 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up SSH key
-        uses: webfactory/ssh-agent@v0.8.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+     # - name: Set up SSH key
+     #   uses: webfactory/ssh-agent@v0.8.0
+     #   with:
+     #     ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
      # - name: Install Dependencies and Build
      #   run: |
      #     cd frontend
      #     npm install
      #     npm run build
+
+      - name: Deploy to Server 1
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          REMOTE_HOST: ${{ secrets.EC2_INSTANCE }}
+          REMOTE_USER: ec2-user
+          TARGET: /home/ec2-user
           
       - name: Executing remote ssh commands using ssh key
         uses: appleboy/ssh-action@master
@@ -36,7 +44,8 @@ jobs:
           username: ec2-user
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            ls /
+            ls
+            pwd
   
       #- name: Deploy to AWS
       #  run: |

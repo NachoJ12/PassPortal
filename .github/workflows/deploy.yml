@@ -44,9 +44,11 @@ jobs:
           username: ec2-user
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            ls
-            pwd
-  
+            cd frontend
+            npm install
+            npm run build
+            npm run start
+     
       #- name: Deploy to AWS
       #  run: |
       #    scp -i ${{ secrets.SSH_PRIVATE_KEY }} -r build/ ec2-user@${{ secrets.EC2_INSTANCE }}:/home/ec2-user

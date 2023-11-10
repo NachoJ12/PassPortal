@@ -14,7 +14,7 @@ export default function BaseLayout({ children }: { children: ReactNode }) {
                 <div className="layout-navbar">
                     <Navbar />
                 </div>
-                <main >
+                <main style={{ backgroundColor: "#201C1E", }} >
                     {children}
                 </main>
                 <div className="layout-footer">

@@ -23,12 +23,21 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Install Dependencies and Build
-        run: |
-          cd frontend
-          npm install
-          npm run build
-      
-      - name: Deploy to AWS
-        run: |
-          scp -i ${{ secrets.SSH_PRIVATE_KEY }} -r build/ ec2-user@${{ secrets.EC2_INSTANCE }}:/home/ec2-user
+     # - name: Install Dependencies and Build
+     #   run: |
+     #     cd frontend
+     #     npm install
+     #     npm run build
+          
+      - name: Executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_INSTANCE }}
+          username: ec2-user
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            ls /
+  
+      #- name: Deploy to AWS
+      #  run: |
+      #    scp -i ${{ secrets.SSH_PRIVATE_KEY }} -r build/ ec2-user@${{ secrets.EC2_INSTANCE }}:/home/ec2-user

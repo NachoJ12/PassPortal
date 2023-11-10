@@ -45,9 +45,10 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd frontend
+            npm install pm2 -g
             npm install
             npm run build
-            npm run start
+            pm2 start npm --name nextjs-app -- run start -- -p 3000
      
       #- name: Deploy to AWS
       #  run: |

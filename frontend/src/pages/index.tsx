@@ -25,7 +25,7 @@ const Home: NextPage = () => {
             <CarouselImage />
             <CarouselCard />
           </div>
-          <div>
+          <div className="upcoming-section">
             <Card className="subcard-Upcoming" data-aos="fade-up">
               <Typography
                 variant="h6"

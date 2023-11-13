@@ -60,6 +60,7 @@ body {
   position: sticky;
   top: 0;
   height: 100vh;
+  z-index: 1;
 }
 
 .main-content {
@@ -117,6 +118,9 @@ body {
   .main {
     overflow: unset;
     padding-top: 48px;
+  }
+  .main-container{
+    flex-direction: column;
   }
 
   .layout-footer {

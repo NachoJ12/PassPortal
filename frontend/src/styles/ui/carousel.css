@@ -37,3 +37,16 @@
 font-size: 15px;
     text-align-last: center;
 }
+
+@media screen and (max-width: 767px) {
+    .carousel-slide{
+        max-width:90vw;
+        max-height:80vh;
+    }
+    .card-carousel{
+        max-width: 90vw;
+        max-height: 40vh;
+        height: 250px;
+    }
+
+}

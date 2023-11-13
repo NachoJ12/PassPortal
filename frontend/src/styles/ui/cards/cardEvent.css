@@ -1,6 +1,8 @@
 .card-container{
     align-self: center;
     margin-top: 2rem ;
+    width: 80%;
+    max-width: 1200px
 }
 .card-general{
     display: flex;

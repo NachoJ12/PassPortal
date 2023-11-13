@@ -102,7 +102,7 @@
         height: 8.5%;
         align-items: center;
         transition: none;
-        z-index: 1000;
+        z-index: 2;
     }
 
     .sidebar_wrapper {

@@ -3,13 +3,16 @@ import { TextField, Button } from '@mui/material';
 import React, { useState } from 'react'
 import { useRouter } from 'next/router';
 import { usePathname } from 'next/navigation'
-
+import { useContext } from "react"
+import { SidebarContext } from '@/components/context/sidebar-context'
 
 const Filters = () => {
     const router = useRouter()
-    const path = usePathname()
+    const { selectedItem, dispatch }: any = useContext(SidebarContext);
 
-    const [search, setSearch] = useState();
+    const toggleSelected = (index: any) => {
+        dispatch({ type: 'SELECT_ITEM', payload: index });
+    };
 
     const handleClick = (name: string) => {
         router.push({
@@ -17,15 +20,16 @@ const Filters = () => {
                 ...router.query, category: name
             }
         })
+        toggleSelected(name)
     };
 
     return (
-        <div>
+        <div className='category_container'>
             {categories.map(category => (
                 <Button
                     onClick={() => handleClick(category.name)}
                     key={category.id}
-                    className={router.pathname.includes("category=" + category.name) ? 'selected' : ''}
+                    className={selectedItem === category.name ? 'categoty_item selected' : 'categoty_item'}
                 >
                     {category.name}
                 </Button>

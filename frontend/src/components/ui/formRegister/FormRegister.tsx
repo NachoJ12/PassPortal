@@ -161,7 +161,9 @@ const FormRegister = () => {
         </form>
       </div>
       <div className='container-logo'>
-        <Image src="/logoPassPortalTicket.svg" alt={''} width={600} height={600} />
+        <Link href="/">
+          <Image src="/logoPassPortalTicket.svg" alt={''} width={600} height={600} />
+        </Link>
       </div>
     </div>
   );

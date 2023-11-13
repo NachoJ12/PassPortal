@@ -11,6 +11,7 @@ import { getProvinces } from "@/service/province-service";
 import SearchBar from '@/components/ui/searchbar/SearchBar'
 import Image from "next/image";
 import passPortalLogo from "../../../public/logo-grey.svg";
+import Filters from './../../components/ui/filters/Filters';
 
 interface Props {
   events: Event[]
@@ -24,6 +25,7 @@ const Events: NextPage<Props> = ({ events, municipios, provincias }) => {
     <div className='event-page'>
       <Image src={passPortalLogo} alt="logo" className="logo-main" />
       <SearchBar municipios={municipios} provincias={provincias} />
+      <Filters/>
       <CardEventContainer events={events} />
     </div>
     </BaseLayout>

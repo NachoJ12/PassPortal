@@ -59,21 +59,22 @@ const SearchBar: FC<Props> = ({ municipios, provincias }) => {
 
     return (
         <form onSubmit={handleSubmit} style={{ minWidth: 120, width: "100%", marginTop: "5rem", display: "flex", justifyContent: "center", }}>
-            <Box style={{ zIndex: 1, display: "flex", width: "70%", justifyContent: "center", padding: "0.5rem", color:"red", }}>
-                <Box  sx={{ minWidth: 120, width: "100%" } }>
-                    <InputLabel sx={{color:"white"}} id="demo-simple-select-label">Evente Name</InputLabel>
-                    <TextField sx={{ width: "80%", border:"1px solid #d67ab1" }} InputProps={{ style: { color: "white" } }} onChange={handleChangeEvent} variant="outlined" />
+            <Box style={{ zIndex: 1, display: "flex", width: "70%", justifyContent: "center", padding: "0.5rem", color: "red", }}>
+                <Box sx={{ minWidth: 120, width: "100%" }}>
+                    <InputLabel sx={{ color: "white" }} id="demo-simple-select-label">Evente Name</InputLabel>
+                    <TextField sx={{ width: "80%", border: "1px solid #d67ab1" }} InputProps={{ style: { color: "white" } }} onChange={handleChangeEvent} variant="outlined" />
                 </Box>
 
                 <Box sx={{ minWidth: 120, width: "100%" }}>
                     <InputLabel id="demo-simple-select-label" style={{ color: "white" }}>Province</InputLabel>
                     <Select
-                        sx={{ width: "80%", border:"1px solid #d67ab1"  }}
+                        sx={{ width: "80%", border: "1px solid #d67ab1", color: "white" }}
                         id="demo-simple-select"
                         name="provincia"
                         value={search.provincia}
                         label="Please Select a Province"
                         onChange={handleChange}
+
                     >
                         {provincias?.provincias?.map(provincia => (<MenuItem value={provincia.nombre} key={provincia.id}>{provincia.nombre}</MenuItem>))}
 
@@ -83,10 +84,10 @@ const SearchBar: FC<Props> = ({ municipios, provincias }) => {
                 <Box sx={{ minWidth: 120, width: "100%" }}>
                     <InputLabel id="select-label" style={{ color: "white" }}>Location</InputLabel>
                     <Select
-                        sx={{ width: "80%", border:"1px solid #d67ab1"  }}
+                        sx={{ width: "80%", border: "1px solid #d67ab1", color: "white" }}
                         id="simple-select"
-                        name="municipios"
-                        value={search.provincia ? search.municipio : "Please Select a Province"}
+                        name="municipio"
+                        value={search.municipio}
                         label="Please Select a Location"
                         onChange={handleChange}
                     >
@@ -95,7 +96,7 @@ const SearchBar: FC<Props> = ({ municipios, provincias }) => {
                 </Box>
             </Box>
 
-            <Button sx={{height: "fit - content", alignSelf: "center", marginTop: "1rem", border:"1px solid #d67ab1", color:"#d67ab1"}} size="small"  type="submit" variant="outlined">Search</Button>
+            <Button sx={{ height: "fit - content", alignSelf: "center", marginTop: "1rem", border: "1px solid #d67ab1", color: "#d67ab1" }} size="small" type="submit" variant="outlined">Search</Button>
         </form >
     )
 }

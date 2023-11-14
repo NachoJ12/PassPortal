@@ -41,6 +41,9 @@ const CardEventReservation: NextPage<Props> = ({ event }) => {
   ) => {
     setSelectedValue(event.target.value);
   };
+  const handleReserveClick = () => {
+    console.log("Reservar", selectedValue);
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -82,7 +85,7 @@ const CardEventReservation: NextPage<Props> = ({ event }) => {
         </div>
         <div className="cardReservation-boxReserve">
           <div>
-            <Image src={logo} alt="logo" width={250} height={250}></Image>
+            <Image src={logo} alt="logo" width={250} height={250} ></Image>
           </div>
           <div className="cardReservation-form">
           <Typography variant="body1">
@@ -109,14 +112,14 @@ const CardEventReservation: NextPage<Props> = ({ event }) => {
                 }}
               >
                 <MenuItem value="">Selecciona...</MenuItem>
-                <MenuItem value="opcion1">1</MenuItem>
-                <MenuItem value="opcion2">2</MenuItem>
-                <MenuItem value="opcion3">3</MenuItem>
+                <MenuItem value="1">1</MenuItem>
+                <MenuItem value="2">2</MenuItem>
+                <MenuItem value="3">3</MenuItem>
               </Select>
             </FormControl>
           </div>
           <div>
-            <Button variant="outlined" color="primary">
+            <Button variant="outlined" color="primary" onClick={handleReserveClick}>
               Reserva
             </Button>
           </div>

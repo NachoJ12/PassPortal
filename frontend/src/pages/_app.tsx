@@ -5,6 +5,7 @@ import "@/styles/layoutCss/footer.css"
 import "@/styles/layoutCss/navbar.css"
 import '@/styles/ui/cards/cardUpcoming.css'
 import '@/styles/ui/cards/cardShows.css'
+import '@/styles/ui/cards/cardEventReservation.css'
 import '@/styles/ui/carousel.css'
 import "@/styles/layoutCss/login-register.css"
 

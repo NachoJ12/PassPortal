@@ -15,7 +15,7 @@ export interface Event {
 
 export const cardItems: Event[] = [
     {
-        id: "1",
+        id: "0",
         title: "League of Legends - Worlds",
         path: imagenPrueba1,
         description:"League of Legends -     Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis totam sit officiis at aperiam quae ducimus, ipsam nam quasi voluptatum!",
@@ -24,7 +24,7 @@ export const cardItems: Event[] = [
         size: "large"
     },
     {
-        id: "2",
+        id: "1",
         title: "Crean Beach 11-11 (+21)",
         path: imagenPrueba2,
         description:
@@ -34,13 +34,23 @@ export const cardItems: Event[] = [
         size: "small"
     },
     {
-        id: "3",
+        id: "2",
         title: "Lova 11/11 (+20)",
         path: imagenPrueba3,
         description:
             "coco producciones",
         date: "November 11 - 2023",
         ubication: "Complejo Forest - Rosario",
+        size: "small"
+    },
+    {
+        id: "3",
+        title: "HALLOWEEN PARTY ECUATORIANO",
+        path: imagenPrueba,
+        description:
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis temporibus natus nobis blanditiis magnam nam repellat necessitatibus quam nihil error?",
+        date: "october 31 - 2023",
+        ubication: "Ecuador - Quito",
         size: "small"
     },
     {
@@ -112,20 +122,10 @@ export const cardItems: Event[] = [
         date: "october 31 - 2023",
         ubication: "Ecuador - Quito",
         size: "small"
-    },
-    {
-        id: "11",
-        title: "HALLOWEEN PARTY ECUATORIANO",
-        path: imagenPrueba,
-        description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis temporibus natus nobis blanditiis magnam nam repellat necessitatibus quam nihil error?",
-        date: "october 31 - 2023",
-        ubication: "Ecuador - Quito",
-        size: "small"
         
     },
     {
-        id: "12",
+        id: "11",
         title: "HALLOWEEN PARTY ECUATORIANO",
         path: imagenPrueba,
         description:

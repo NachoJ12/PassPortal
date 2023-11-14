@@ -52,7 +52,7 @@ export default function Sidebar() {
                 <ul className='sidebar_list'>
                     {sidebarItems.map((item, index) => (
                         <li className={"sidebar_item"} key={item.name}>
-                            <Link href={item.href} className={path === item.href  ? 'sidebar_link selected' : 'sidebar_link'} onClick={() => toggleSelected(index)}>
+                            <Link  href={item.href} className={path === item.href  ? 'sidebar_link selected' : 'sidebar_link'} onClick={() => toggleSelected(index)}>
                                 <span className='sidebar_icon'><item.icon /></span>
                                 <span className='sidebar_name'>{item.name}</span>
                             </Link>

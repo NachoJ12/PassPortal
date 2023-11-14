@@ -109,17 +109,11 @@ body {
   background-color: var(--color-primario);
   display: flex;
   justify-content: center;
-  align-items: center;
   transition: none;
+  margin-top:100px;
 }
 
-.footer_list {
-  width: auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  list-style: none
-}
+
 
 /* Cambia el ancho del pulgar del scrollbar */
 ::-webkit-scrollbar-thumb {

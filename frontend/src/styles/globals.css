@@ -41,7 +41,13 @@ body {
 
 }
 
-.help-page{
+.help-page span{
+  color: var(--color-terciario);
+}
+
+.help-page span:hover{
+  color: var(--color-secundario);
+  text-shadow: var(--color-secundario) 3px 0px 10px;
 }
 
 .faqs_list{

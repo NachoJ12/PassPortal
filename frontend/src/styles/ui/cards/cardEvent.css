@@ -2,7 +2,8 @@
     align-self: center;
     margin-top: 2rem ;
     width: 80%;
-    max-width: 1200px
+    max-width: 1200px;
+    margin-bottom: 10rem;
 }
 .card-general{
     display: flex;

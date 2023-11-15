@@ -6,6 +6,7 @@ import "@/styles/layoutCss/navbar.css"
 import '@/styles/ui/cards/cardUpcoming.css'
 import '@/styles/ui/cards/cardShows.css'
 import '@/styles/ui/carousel.css'
+import '@/styles/ui/searchbar.css'
 import "@/styles/layoutCss/login-register.css"
 
 

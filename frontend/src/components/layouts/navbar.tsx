@@ -1,7 +1,7 @@
 "use client";
 import React, { ReactNode } from 'react'
 import { signOut, useSession } from "next-auth/react";
-import { Link } from '@mui/material';
+import Link from 'next/link'
 
 const navbarItems = [
   {
@@ -27,6 +27,7 @@ export default function navbar() {
             {session.user.name}
           </span>
           <Link
+            href="/"
             onClick={() => signOut()}
             className="navbar_link"
           >

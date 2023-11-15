@@ -15,31 +15,29 @@ interface Props {
   faqs: Faqs[];
 }
 
-const Help: NextPage<Props> = ({ faqs }) => {
+const Help: NextPage<Props> = () => {
   return (
     <BaseLayout>
-      {/* <div className='help-page'>
-        <div className='container-list'>
-          <ul>
-            {faqs.map((faq) => (
-              <Accordion sx={{ backgroundColor: "#070607", color: "#9d9c9d", width: "80%", alignSelf: "center" }} key={faq.id} >
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
-                  aria-controls="panel1a-content"
-                  id="panel1a-header"
-                >
-                  <Typography>{faq.question}</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <Typography>
-                    {faq.answer}
-                  </Typography>
-                </AccordionDetails>
-              </Accordion>
-            ))}
-          </ul>
-        </div>
-      </div> */}
+      <div className='help-page'>
+        <ul className='faqs_list'>
+          {faqs?.map((faq) => (
+            <Accordion sx={{ backgroundColor: "#070607", color: "#9d9c9d", width: "80%", alignSelf: "center" }} key={faq.id} >
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography>{faq.question}</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>
+                  {faq.answer}
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+          ))}
+        </ul>
+      </div>
 
     </BaseLayout>
   )
@@ -47,7 +45,3 @@ const Help: NextPage<Props> = ({ faqs }) => {
 
 export default Help;
 
-// export const getStaticProps: GetStaticProps = async () => {
-//   const faqs = await getFaqs()
-//   return { props: { faqs } }
-// }

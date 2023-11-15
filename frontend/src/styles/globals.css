@@ -41,6 +41,14 @@ body {
 
 }
 
+.help-page{
+}
+
+.faqs_list{
+  display:flex;
+  flex-direction: column;
+  margin-top:3rem
+}
 .main-container {
   display: flex;
   width: 100%;
@@ -63,9 +71,11 @@ body {
   z-index: 1;
 }
 
+
+
 .category_container{
   display: flex;
-  width: 100%;
+  width: 60%;
   align-self: center;
   justify-content: space-evenly;
   flex-wrap: wrap;
@@ -81,7 +91,7 @@ body {
   transition: all 0.3s ease-in-out;
   padding-top: 25px;
   padding-bottom: 25px;
-  flex-basis: 200px;
+  flex-basis: 150px;
 
 }
 
@@ -93,7 +103,7 @@ body {
 .main-content {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+
   width: 100%;
 }
 
@@ -112,8 +122,6 @@ body {
   transition: none;
   margin-top:100px;
 }
-
-
 
 /* Cambia el ancho del pulgar del scrollbar */
 ::-webkit-scrollbar-thumb {

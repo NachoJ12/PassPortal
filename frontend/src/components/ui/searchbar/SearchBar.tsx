@@ -58,17 +58,17 @@ const SearchBar: FC<Props> = ({ municipios, provincias }) => {
 
 
     return (
-        <form onSubmit={handleSubmit} style={{ minWidth: 120, width: "100%", marginTop: "5rem", display: "flex", justifyContent: "center", }}>
-            <Box style={{ zIndex: 1, display: "flex", width: "70%", justifyContent: "center", padding: "0.5rem", color: "red", }}>
+        <form onSubmit={handleSubmit} className="searchbar_form" >
+            <div className='searchbar_inputs'>
                 <Box sx={{ minWidth: 120, width: "100%" }}>
                     <InputLabel sx={{ color: "white" }} id="demo-simple-select-label">Evente Name</InputLabel>
-                    <TextField sx={{ width: "80%", border: "1px solid #d67ab1" }} InputProps={{ style: { color: "white" } }} onChange={handleChangeEvent} variant="outlined" />
+                    <TextField sx={{ width: "100%", border: "1px solid #d67ab1" }} InputProps={{ style: { color: "white" } }} onChange={handleChangeEvent} variant="outlined" />
                 </Box>
 
                 <Box sx={{ minWidth: 120, width: "100%" }}>
                     <InputLabel id="demo-simple-select-label" style={{ color: "white" }}>Province</InputLabel>
                     <Select
-                        sx={{ width: "80%", border: "1px solid #d67ab1", color: "white" }}
+                        sx={{ width: "100%", border: "1px solid #d67ab1", color: "white" }}
                         id="demo-simple-select"
                         name="provincia"
                         value={search.provincia}
@@ -84,7 +84,7 @@ const SearchBar: FC<Props> = ({ municipios, provincias }) => {
                 <Box sx={{ minWidth: 120, width: "100%" }}>
                     <InputLabel id="select-label" style={{ color: "white" }}>Location</InputLabel>
                     <Select
-                        sx={{ width: "80%", border: "1px solid #d67ab1", color: "white" }}
+                        sx={{ width: "100%", border: "1px solid #d67ab1", color: "white" }}
                         id="simple-select"
                         name="municipio"
                         value={search.municipio}
@@ -94,7 +94,7 @@ const SearchBar: FC<Props> = ({ municipios, provincias }) => {
                         {municipios.municipios.length > 0 ? municipios.municipios.map(municipio => (<MenuItem value={municipio.nombre} key={municipio.id}>{municipio.nombre}</MenuItem>)) : <MenuItem>There are no Location Available</MenuItem>}
                     </Select>
                 </Box>
-            </Box>
+            </div>
 
             <Button sx={{ height: "fit - content", alignSelf: "center", marginTop: "1rem", border: "1px solid #d67ab1", color: "#d67ab1" }} size="small" type="submit" variant="outlined">Search</Button>
         </form >

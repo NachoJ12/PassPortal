@@ -9,7 +9,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
+
 @AllArgsConstructor
 @Table(name = "category")
 public class Category {
@@ -23,4 +23,14 @@ public class Category {
     private String description;
 
     private String image;
+
+    public Category(String name, String description, String image) {
+        this.name = name;
+        this.description = description;
+        this.image = image;
+    }
+
+    public Category() {
+
+    }
 }

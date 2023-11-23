@@ -27,4 +27,12 @@ public class Venue {
 
     @OneToOne
     private Address address;
+
+    public Venue(String name, Long capacity, String image, Address address) {
+        this.name = name;
+        this.capacity = capacity;
+        this.image = image;
+        this.address = address;
+    }
+
 }

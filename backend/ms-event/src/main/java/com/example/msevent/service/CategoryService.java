@@ -2,7 +2,7 @@ package com.example.msevent.service;
 
 import com.example.msevent.exception.ResourceNotFoundException;
 import com.example.msevent.model.Category;
-import com.example.msevent.repository.IEventTypeRepository;
+import com.example.msevent.repository.ICategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -12,8 +12,8 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class EventTypeService {
-    private final IEventTypeRepository repository;
+public class CategoryService {
+    private final ICategoryRepository repository;
 
     public List<Category> findAll(){
         return repository.findAll();

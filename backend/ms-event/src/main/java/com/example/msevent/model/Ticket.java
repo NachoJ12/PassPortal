@@ -23,4 +23,9 @@ public class Ticket {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "event_id", referencedColumnName = "id")
     private Event event;
+
+    public Ticket(String name, Event event) {
+        this.name = name;
+        this.event = event;
+    }
 }

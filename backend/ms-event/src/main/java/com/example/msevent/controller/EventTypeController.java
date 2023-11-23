@@ -2,7 +2,7 @@ package com.example.msevent.controller;
 
 import com.example.msevent.exception.ResourceNotFoundException;
 import com.example.msevent.model.Category;
-import com.example.msevent.service.EventTypeService;
+import com.example.msevent.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -16,7 +16,7 @@ import java.util.Optional;
 @RequestMapping("/category")
 public class EventTypeController {
 
-    private final EventTypeService service;
+    private final CategoryService service;
 
     @GetMapping("/all")
     public ResponseEntity<List<Category>> findAll(){

@@ -3,15 +3,16 @@ import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import { signIn, useSession } from 'next-auth/react';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { ErrorMessage } from '@hookform/error-message';
-import { CustomTextField } from '@/components/ui/customInput/CustomTextField';
 import { schemaRegister } from '@/rules';
 import Image from 'next/image';
 import GoogleButton from '../googlebutton/GoogleButton';
 import Link from 'next/link';
 
 interface FormData {
+  name: string;
+  lastName: string;
   email: string;
   username: string;
   password: string;
@@ -40,15 +41,25 @@ const FormRegister = () => {
   }, [session, router]);
 
   const onSubmit = async (data: FormData) => {
-    const { email, username, password } = data;
+    const { name, lastName, email, username, password } = data;
     // Handle login submission here
-    const responseNextAuth = await signIn('credentials', {
-      // email,
-      username,
-      password,
-      redirect: false,
-    });
-    console.log(responseNextAuth, data);
+
+    const post = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      },
+      body: JSON.stringify({
+        username,
+        email,
+        name,
+        lastName,
+        password,
+      }),
+    })
+    
+
   };
 
   return (
@@ -60,6 +71,34 @@ const FormRegister = () => {
             <h1 className='h1'>
               Sign Up
             </h1>
+            <label htmlFor='name' className='input-label'>
+              Name
+            </label>
+            <input
+              {...register('name')}
+              type='text'
+              placeholder='john'
+              name='name'
+              className='input-form'
+            />
+            <Typography variant="caption" color="black">
+              <ErrorMessage errors={errors} name="name" />
+            </Typography>
+
+            <label htmlFor='lastName' className='input-label'>
+              Last Name
+            </label>
+            <input
+              {...register('lastName')}
+              type='text'
+              placeholder='doe'
+              name='lastName'
+              className='input-form'
+            />
+            <Typography variant="caption" color="black">
+              <ErrorMessage errors={errors} name="lastName" />
+            </Typography>
+
             <label htmlFor='email' className='input-label'>
               Email
             </label>
@@ -70,7 +109,7 @@ const FormRegister = () => {
               name='email'
               className='input-form'
             />
-            <Typography variant="caption" color="red">
+            <Typography variant="caption" color="black">
               <ErrorMessage errors={errors} name="email" />
             </Typography>
 
@@ -84,7 +123,7 @@ const FormRegister = () => {
               name='username'
               className='input-form'
             />
-            <Typography variant="caption" color="red">
+            <Typography variant="caption" color="black">
               <ErrorMessage errors={errors} name="username" />
             </Typography>
 
@@ -98,12 +137,12 @@ const FormRegister = () => {
               name='password'
               className='input-form'
             />
-            <Typography variant="caption" color="red">
+            <Typography variant="caption" color="black">
               <ErrorMessage errors={errors} name="password" />
             </Typography>
 
             <label htmlFor='repeatPassword' className='input-label'>
-            Repeat Password
+              Repeat Password
             </label>
             <input
               {...register('repeatPassword')}
@@ -112,7 +151,7 @@ const FormRegister = () => {
               name='repeatPassword'
               className='input-form'
             />
-            <Typography variant="caption" color="red">
+            <Typography variant="caption" color="black">
               <ErrorMessage errors={errors} name="repeatPassword" />
             </Typography>
 
@@ -162,7 +201,7 @@ const FormRegister = () => {
       </div>
       <div className='container-logo'>
         <Link href="/">
-          <Image src="/logoPassPortalTicket.svg" alt={''} width={600} height={600} />
+          <Image src="/logoPassPortalTicket.svg" alt={'logo-passportal'} width={600} height={600} />
         </Link>
       </div>
     </div>

@@ -1,11 +1,17 @@
 import * as yup from "yup";
 
 export const schemaLogin = yup.object().shape({
-    username: yup.string().required("This input is required"),
+    email: yup.string().required("This input is required"),
     password: yup.string().required("This input is required"),
 })
 
 export const schemaRegister = yup.object().shape({
+    name: yup
+        .string()
+        .required("Please enter aname"),
+    lastName: yup
+        .string()
+        .required("Please enter a last name"),
     username: yup
         .string()
         .required("Please enter an username")
@@ -22,7 +28,7 @@ export const schemaRegister = yup.object().shape({
         .matches(
             /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
             'Minimum eight characters, at least one uppercase letter, one lowercase letter and one number'
-          ),
+        ),
     repeatPassword: yup
         .string()
         .required('Please re-enter your password')

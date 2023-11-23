@@ -2,7 +2,7 @@
 const API_GOB = process.env.API_GOB;
 
 export const getProvinces = async () => {
-    const res = await fetch(`${API_GOB}/provincias?aplanar`)
+    const res = await fetch(`${API_GOB}/provincias?aplanar&orden=nombre`)
     return await res.json()
 };
 

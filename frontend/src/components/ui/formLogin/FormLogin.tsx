@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router'
 import { signIn, useSession } from 'next-auth/react'
@@ -12,13 +12,13 @@ import GoogleButton from '../googlebutton/GoogleButton';
 import Link from 'next/link';
 
 interface FormData {
-    username: string
+    email: string
     password: string
 }
 
 const FormLogin = () => {
     const { data: session } = useSession()
-
+    const [errorsApi, setErrorsApi] = useState<string | null | undefined>()
     const {
         handleSubmit,
         register,
@@ -35,14 +35,17 @@ const FormLogin = () => {
     }, [session, router])
 
     const onSubmit = async (data: FormData) => {
-        const { username, password } = data
+        const { email, password } = data
         // Handle login submission here
         const responseNextAuth = await signIn("credentials", {
-            username,
+            email,
             password,
             redirect: false,
         });
-        console.log(responseNextAuth, data)
+
+        if (!responseNextAuth?.ok) {
+            setErrorsApi(responseNextAuth?.error)
+        }
     }
 
     return (
@@ -54,18 +57,18 @@ const FormLogin = () => {
                         <h1 className='h1'>
                             Log In
                         </h1>
-                        <label htmlFor='username' className='input-label'>
-                            Email or Username
+                        <label htmlFor='email' className='input-label'>
+                            Email
                         </label>
                         <input
-                            {...register('username')}
+                            {...register('email')}
                             type='text'
-                            placeholder='johndoe@example.com'
-                            name='username'
+                            placeholder='johndoe'
+                            name='email'
                             className='input-form'
                         />
-                        <Typography variant="caption" color="red">
-                            <ErrorMessage errors={errors} name="username" />
+                        <Typography variant="caption" color="black">
+                            <ErrorMessage errors={errors} name="email" />
                         </Typography>
                         <label htmlFor='password' className='input-label'>
                             Password
@@ -77,7 +80,7 @@ const FormLogin = () => {
                             name='password'
                             className='input-form'
                         />
-                        <Typography variant="caption" color="red">
+                        <Typography variant="caption" color="black">
                             <ErrorMessage errors={errors} name="password" />
                         </Typography>
                     </div>
@@ -106,9 +109,15 @@ const FormLogin = () => {
                             Login
                         </button>
 
+                        {errorsApi &&
+                            <Typography variant="caption" color="black">
+                                {errorsApi}
+                            </Typography>
+                        }
+
                         <h3 >or continue with</h3>
                         <GoogleButton />
-                        <div style={{marginTop:"0.2rem"}}>
+                        <div style={{ marginTop: "0.2rem" }}>
                             <p className=''>
                                 Don´t have an account yet?{'  '}
                                 <Link
@@ -125,7 +134,7 @@ const FormLogin = () => {
             </div>
             <div className='container-logo'>
                 <Link href="/">
-                    <Image src="/logoPassPortalTicket.svg"  alt={''} width={600} height={600} />
+                    <Image src="/logoPassPortalTicket.svg" alt={''} width={600} height={600} />
                 </Link>
             </div>
         </div>

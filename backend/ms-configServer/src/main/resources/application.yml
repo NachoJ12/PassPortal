@@ -11,5 +11,6 @@ spring:
           uri: ${GIT_URL}
           username: ${GIT_USERNAME}
           password: ${GIT_PASS}
+          default-label: main
           force-pull: true
           search-paths: configData

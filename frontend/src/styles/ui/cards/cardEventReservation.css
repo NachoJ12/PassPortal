@@ -1,87 +1,97 @@
-.cardReservation-general{
-    display: flex;
-    width:100%;
-    justify-content: center
-}
-.cardReservation-boxEvent{
-    margin-left: 20px;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 600px;
-    width: 45%;
-    background: linear-gradient(90deg, rgba(5, 5, 5, 0.432) 0%, rgb(85, 44, 85) 55%, rgba(203,116,168,1) 100%);
-    border-radius: 15% 0% 0% 15%;
-    height:800px;
-    box-shadow: 0px 0px 20px 5px rgb(0, 0, 0);
-}
-.cardReservation-boxReserve{
-    margin-left: 20px;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 600px;
-    width: 55%;
-    background-color: rgb(19, 18, 18);
-    height:800px;
-    border-radius: 0% 15% 15% 0%;
-    box-shadow: 0px 0px 20px 5px rgb(0, 0, 0);
-}
-.cardReservation-title{
-    padding: 30px;
-    color: white;
-}
-.cardReservation-title h2{
-    padding: 20px 0px;
-}
-.cardReservation-containerImg{
-    padding-top: 25px;
-    width: 90%;
-
-}
-.cardReservation-image{
-    width: 100%;
-    border-radius: 15% 0% 0% 15%;
-    height: 400px;
+.cardReservation-general {
+    display: flex !important;
+    width: 100% !important;
+    justify-content: center !important;
 }
 
-.cardReservation-box{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 90%;
-    background-color: rgb(17, 17, 17);
-    border-radius: 15% 0% 0% 15%;
-    height: 550px;
+.cardReservation-boxEvent {
+    margin-left: 20px !important;
+    margin-top: 50px !important;
+    margin-bottom: 50px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    max-width: 600px !important;
+    width: 45% !important;
+    background: linear-gradient(90deg, rgba(5, 5, 5, 0.432) 0%, rgb(85, 44, 85) 55%, rgba(203, 116, 168, 1) 100%) !important;
+    border-radius: 15% 0% 0% 15% !important;
+    height: 800px !important;
+    box-shadow: 0px 0px 20px 5px rgb(0, 0, 0) !important;
 }
 
-.cardReservation-description{
-    color: white;
-    padding: 10px 35px;
+.cardReservation-boxReserve {
+    margin-left: 20px !important;
+    margin-top: 50px !important;
+    margin-bottom: 50px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    max-width: 600px !important;
+    width: 55% !important;
+    background-color: rgb(19, 18, 18) !important;
+    height: 800px !important;
+    border-radius: 0% 15% 15% 0% !important;
+    box-shadow: 0px 0px 20px 5px rgb(0, 0, 0) !important;
 }
-.cardReservation-dateUbi{
-    padding-top: 15px;
-    display: flex;
+
+.cardReservation-title {
+    padding: 30px !important;
+    color: white !important;
+}
+
+.cardReservation-title h2 {
+    padding: 20px 0px !important;
+}
+
+.cardReservation-containerImg {
+    padding-top: 25px !important;
+    width: 90% !important;
+
+}
+
+.cardReservation-image {
+    width: 100% !important;
+    border-radius: 15% 0% 0% 15% !important;
+    height: 400px !important;
+}
+
+.cardReservation-box {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 90% !important;
+    background-color: rgb(17, 17, 17) !important;
+    border-radius: 15% 0% 0% 15% !important;
+    height: 550px !important;
+}
+
+.cardReservation-description {
+    color: white !important;
+    padding: 10px 35px !important;
+}
+
+.cardReservation-dateUbi {
+    padding-top: 15px !important;
+    display: flex !important;
     justify-content: space-around
 }
-.cardReservation-dateUbi p{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-.cardReservation-form{
-    display: flex;
-    align-items: center;
-    color: white;
-    width: 50%;
-    justify-content: space-around;
-    padding: 20px 0px;
+
+.cardReservation-dateUbi p {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
 }
 
-.css-8g8rqy-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root.Mui-focused .MuiOutlinedInput-notchedOutline{
-    border-color: #cb74a8 !important; /* Cambia "your-desired-color" al color que desees */
-  }
+.cardReservation-form {
+    display: flex !important;
+    align-items: center !important;
+    color: white !important;
+    width: 50% !important;
+    justify-content: space-around !important;
+    padding: 20px 0px !important;
+}
+
+.css-8g8rqy-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: #cb74a8 !important;
+    /* Cambia "your-desired-color" al color que desees */
+}

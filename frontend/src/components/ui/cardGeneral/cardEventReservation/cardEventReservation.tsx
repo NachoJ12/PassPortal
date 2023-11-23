@@ -94,7 +94,7 @@ const CardEventReservation: NextPage<Props> = ({ event }) => {
             <FormControl>
               <InputLabel
                 id="select-label"
-                sx={{ color: theme.palette.primary.main, }}>
+                sx={{ color: theme.palette.primary.main + "!important", }}>
                 Selecciona
               </InputLabel>
               <Select
@@ -105,10 +105,10 @@ const CardEventReservation: NextPage<Props> = ({ event }) => {
                 onChange={handleChange}
                 sx={{
                   "& fieldset": {
-                    borderColor: "#cb74a8", // Cambia "your-desired-color" al color que desees
+                    borderColor: "#cb74a8 !important", // Cambia "your-desired-color" al color que desees
                   },
-                  width: "80px",
-                  color:"white"
+                  width: "80px !important",
+                  color:"white !important"
                 }}
               >
                 <MenuItem value="">Selecciona...</MenuItem>

@@ -1,52 +1,53 @@
 
 .carousel-slide{
-    width: 600px;
-    height: 450px;
-    background-color: #0e0c0d;
-    margin-left: 15px;
-    position: relative;
+	width: 600px !important;
+	height: 450px !important;
+	background-color: #0e0c0d !important;
+	margin-left: 15px !important;
+	position: relative !important;
 
 }
 .carousel-image{
-    width: 600px;
-    height: 450px;
-    box-shadow: 0px 0px 20px 20px inset #0e0c0d;
+	width: 600px !important;
+	height: 450px !important;
+	box-shadow: 0px 0px 20px 20px inset #0e0c0d !important;
 }
 .card-carousel{
-    padding: 25px;
-    width: 550px;
-    height: 200px;
-    margin-left: 3%;
-    position: absolute;
-    top: 700px;
-    border-radius: 0;
+	padding: 25px !important;
+	width: 550px !important;
+	height: 200px !important;
+	margin-left: 3% !important;
+	position: absolute !important;
+	top: 700px !important;
+	border-radius: 0 !important;
 }
-.subcard-carousel{
-    width: 200px;
-    height: 30px;
-    background-color: rgb(68, 68, 68);
-    border-radius: 0;
-    position: absolute;
-    top: 685px;
-    margin-left: 7%;
-    color: white;
-    font-weight: 600;
-    font-size: 10px;
+    
+.subcard-carousel{ 	
+	width: 200px !important;
+	height: 30px !important;
+	background-color: rgb(68, 68, 68) !important;
+	border-radius: 0 !important;
+	position: absolute !important;
+	top: 685px !important;
+	margin-left: 7% !important;
+	color: white !important;
+	font-weight: 600 !important;
+	font-size: 10px !important;
 }
 .subcard-carousel-typepography{
-font-size: 15px;
-    text-align-last: center;
+font-size: 15px !important;
+	text-align-last: center !important;
 }
 
 @media screen and (max-width: 767px) {
-    .carousel-slide{
-        max-width:90vw;
-        max-height:80vh;
-    }
-    .card-carousel{
-        max-width: 90vw;
-        max-height: 40vh;
-        height: 250px;
-    }
+	.carousel-slide{
+		max-width:90vw !important;
+		max-height:80vh !important;
+	}
+	.card-carousel{
+		max-width: 90vw !important;
+		max-height: 40vh !important;
+		height: 250px !important;
+	}
 
 }

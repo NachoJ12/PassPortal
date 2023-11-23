@@ -1,109 +1,109 @@
 .card-container{
-    align-self: center;
-    margin-top: 2rem ;
-    width: 80%;
-    max-width: 1200px;
-    margin-bottom: 10rem;
+    align-self: center !important;
+    margin-top: 2rem  !important;
+    width: 80% !important;
+    max-width: 1200px !important;
+    margin-bottom: 10rem !important;
 }
 .card-general{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #0e0c0d00;
-    overflow-x: hidden;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    background-color: #0e0c0d00 !important;
+    overflow-x: hidden !important;
 }
 
 .card-elements{
-    display: flex;
-    flex-direction: column;
-    align-items:center;
-    transition: width 0.3s ease-in-out;
-    max-width: 250px;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items:center !important;
+    transition: width 0.3s ease-in-out !important;
+    max-width: 250px !important;
 }
 
 .card-elements:hover{
     .card-info{
-        box-shadow: 0 -1px 20px 2px rgb(255, 255, 255);
-        width: 260px;
-        transition: width 0.3s ease-in-out;
-        transition: box-shadow 0.3s ease-in-out;
-        transform: translateY(-20px);
-        transition: transform 0.3s ease-in-out;
+        box-shadow: 0 -1px 20px 2px rgb(255, 255, 255) !important;
+        width: 260px !important;
+        transition: width 0.3s ease-in-out !important;
+        transition: box-shadow 0.3s ease-in-out !important;
+        transform: translateY(-20px) !important;
+        transition: transform 0.3s ease-in-out !important;
     }
     .boton{
-        opacity: 1; /* Hacer que el botón sea visible gradualmente */
-        transform: translateY(0); 
+        opacity: 1 !important; /* Hacer que el botón sea visible gradualmente */
+        transform: translateY(0) !important; 
     }
     .card-image{
-        transform: scale(1.05);
-        transition: transform 0.3s ease-in-out;
+        transform: scale(1.05) !important;
+        transition: transform 0.3s ease-in-out !important;
     }
 }
 
 .card-info{
-    background-color:white;
-    z-index: 100;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 250px;
-    height: 220px;
-    transition: transform 0.3s ease-in-out;
-    transition: box-shadow 0.3s ease-in-out;
+    background-color:white !important;
+    z-index: 100 !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 250px !important;
+    height: 220px !important;
+    transition: transform 0.3s ease-in-out !important;
+    transition: box-shadow 0.3s ease-in-out !important;
 }
 
 .card-typography{
-    padding-top: 15px;
-    padding-bottom: 15px;
-    font-size: 14px;
-    font-weight: 600;
-    text-align: center;
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    text-align: center !important;
 }
 
 .card-typography-description{
-    padding-bottom: 15px;
-    font-size: 11px;
-    font-weight: 300;
+    padding-bottom: 15px !important;
+    font-size: 11px !important;
+    font-weight: 300 !important;
 }
 
 .card-icon{
-    color: rgb(105, 105, 105);
+    color: rgb(105, 105, 105) !important;
 }
 
 .description-card{
-    display: flex;
-    font-size: 12px;
-    align-items:center;
-    align-content: center;
-    width: 100%;
+    display: flex !important;
+    font-size: 12px !important;
+    align-items:center !important;
+    align-content: center !important;
+    width: 100% !important;
 }
 
 .card-date-ubication{
-    display: flex;
-    align-items: center;
-    border: solid 0.3px rgba(189, 189, 189, 0.555);
-    width: 50%;
-    height: 35px;
+    display: flex !important;
+    align-items: center !important;
+    border: solid 0.3px rgba(189, 189, 189, 0.555) !important;
+    width: 50% !important;
+    height: 35px !important;
 }
 
 .css-46bh2p-MuiCardContent-root {
 
-    padding: 0%;
+    padding: 0% !important;
 }
 .card-image{
-    width: 250px;
-    height: 250px;
+    width: 250px !important;
+    height: 250px !important;
 }
 .card-boton{
     .boton{
-        transition: all 1s ease-in-out;
-        border-color: rgba(255, 38, 244, 0.788);
-        color:rgba(255, 38, 244);
-        display: block;
-        opacity: 0; /* Inicialmente, el botón es invisible */
-        transform: translateY(100%); /* Inicialmente, el botón está fuera de la vista */
-        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        transition: all 1s ease-in-out !important;
+        border-color: rgba(255, 38, 244, 0.788) !important;
+        color:rgba(255, 38, 244) !important;
+        display: block !important;
+        opacity: 0 !important; /* Inicialmente, el botón es invisible */
+        transform: translateY(100%) !important; /* Inicialmente, el botón está fuera de la vista */
+        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out !important;
     }
 }
 

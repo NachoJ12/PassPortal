@@ -59,10 +59,7 @@
     text-shadow: var(--color-secundario) 3px 0px 10px;
 }
 
-.selected {
-    color: var(--color-secundario);
-    text-shadow: var(--color-secundario) 3px 0px 10px;
-}
+
 
 .sidebar_icon {
     font-size: 1.4rem;

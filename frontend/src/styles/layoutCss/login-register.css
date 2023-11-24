@@ -12,6 +12,7 @@
 
 .login-layout {
     background-color: #201C1E;
+    min-height: 100vh;
 }
 
 .container {
@@ -19,7 +20,6 @@
     gap: 6rem;
     justify-content: center;
     align-items: center;
-    height: 100vh;
 }
 
 .container-form {
@@ -44,6 +44,7 @@
     background-color: #474747;
     width: 30vw;
     color: var(--color-terciario);
+    margin: 2rem;
 }
 
 .form-top {

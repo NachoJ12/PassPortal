@@ -61,42 +61,43 @@ const SearchBar: FC<Props> = ({ municipios, provincias }) => {
         <form onSubmit={handleSubmit} className="searchbar_form" >
             <div className='searchbar_inputs'>
                 <Box sx={{ minWidth: 120, width: "100%" }}>
-                    <InputLabel sx={{ color: "white" }} id="demo-simple-select-label">Evente Name</InputLabel>
-                    <TextField sx={{ width: "100%", border: "1px solid #d67ab1" }} InputProps={{ style: { color: "white" } }} onChange={handleChangeEvent} variant="outlined" />
+                    <InputLabel sx={{ color: "white !important" }} id="demo-simple-select-label" className="input-searchbar">Evente Name</InputLabel>
+                    <TextField sx={{ width: "100% !important", border: "1px solid #d67ab1 !important" }} className="input-searchbar" InputProps={{ style: { color: "white !important" } }} onChange={handleChangeEvent} variant="outlined" />
                 </Box>
 
-                <Box sx={{ minWidth: 120, width: "100%" }}>
-                    <InputLabel id="demo-simple-select-label" style={{ color: "white" }}>Province</InputLabel>
+                <Box sx={{ minWidth: 120 + "!important", width: "100% !important" }}>
+                    <InputLabel id="demo-simple-select-label" className="input-searchbar" style={{ color: "white !important" }}>Province</InputLabel>
                     <Select
-                        sx={{ width: "100%", border: "1px solid #d67ab1", color: "white" }}
+                        sx={{ width: "100% !important ", border: "1px solid #d67ab1 !important ", color: "white !important" }}
                         id="demo-simple-select"
                         name="provincia"
                         value={search.provincia}
                         label="Please Select a Province"
-                        onChange={handleChange}
+                        className="input-searchbar"
+                        onChange={handleChange}>
 
-                    >
                         {provincias?.provincias?.map(provincia => (<MenuItem value={provincia.nombre} key={provincia.id}>{provincia.nombre}</MenuItem>))}
 
                     </Select>
                 </Box>
 
-                <Box sx={{ minWidth: 120, width: "100%" }}>
-                    <InputLabel id="select-label" style={{ color: "white" }}>Location</InputLabel>
+                <Box sx={{ minWidth: 120 + "!important", width: "100% !important" }}>
+                    <InputLabel id="select-label" className="input-searchbar" style={{ color: "white !important" }}>Location</InputLabel>
                     <Select
-                        sx={{ width: "100%", border: "1px solid #d67ab1", color: "white" }}
+                        sx={{ width: "100% !important", border: "1px solid #d67ab1 !important", color: "white !important" }}
                         id="simple-select"
                         name="municipio"
                         value={search.municipio}
                         label="Please Select a Location"
                         onChange={handleChange}
+                        className="input-searchbar"
                     >
                         {municipios.municipios.length > 0 ? municipios.municipios.map(municipio => (<MenuItem value={municipio.nombre} key={municipio.id}>{municipio.nombre}</MenuItem>)) : <MenuItem>There are no Location Available</MenuItem>}
                     </Select>
                 </Box>
             </div>
 
-            <Button sx={{ height: "fit - content", alignSelf: "center", marginTop: "1rem", border: "1px solid #d67ab1", color: "#d67ab1" }} size="small" type="submit" variant="outlined">Search</Button>
+            <Button sx={{ height: "fit - content !important", alignSelf: "center !important ", marginTop: "1rem !important", border: "1px solid #d67ab1 !important", color: "#d67ab1 !important" }} size="small" type="submit" variant="outlined">Search</Button>
         </form >
     )
 }

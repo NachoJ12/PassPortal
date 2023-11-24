@@ -90,20 +90,25 @@ body {
 }
 
 .categoty_item {
-  font-size: 1rem;
-  text-decoration: none;
-  color: var(--color-terciario);
-  background-color: var(--color-primario);
-  transition: all 0.3s ease-in-out;
-  padding-top: 25px;
-  padding-bottom: 25px;
-  flex-basis: 150px;
+  font-size: 1rem !important;
+  text-decoration: none !important;
+  color: var(--color-terciario) !important;
+  background-color: var(--color-primario) !important;
+  transition: all 0.3s ease-in-out !important;
+  padding-top: 25px !important;
+  padding-bottom: 25px !important;
+  flex-basis: 150px !important;
 
 }
 
 .categoty_item:hover {
-  color: var(--color-secundario);
-  text-shadow: var(--color-secundario) 3px 0px 10px;
+  color: var(--color-secundario) !important;
+  text-shadow: var(--color-secundario) 3px 0px 10px !important;
+}
+
+.categoty_item.selected {
+    color: var(--color-secundario)  !important;
+    text-shadow: var(--color-secundario) 3px 0px 10px !important;
 }
 
 .main-content {

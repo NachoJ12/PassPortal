@@ -7,22 +7,25 @@ export default NextAuth({
         CredentialsProvider({
             name: "Credentials",
             credentials: {
-                username: { label: "username", type: "username", },
+                email: { label: "Email", type: "email", },
                 password: { label: "Password", type: "password" },
             },
             async authorize(credentials) {
                 //aca va la llamada al backend
-                const user = { id: "1", name: "J Smith", username: "jsmith" }
+                const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/login`, {
+                    method: "POST", 
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Access-Control-Allow-Origin": "*"
+                    },
+                    body: JSON.stringify(credentials),
+                })
 
-                if (user) {
-                    // Any object returned will be saved in `user` property of the JWT
+                const user = await res.json()
+                if (res.ok && user) {
                     return user
-                } else {
-                    // If you return null then an error will be displayed advising the user to check their details.
-                    return null
-
-                    // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
                 }
+                return user
             },
         }),
     ],
@@ -34,7 +37,7 @@ export default NextAuth({
             session.user = token as any;
             return session;
         },
-    }, 
+    },
     pages: {
         signIn: "/login",
     },

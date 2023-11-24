@@ -16,6 +16,9 @@
     display: flex !important;
     justify-content: center !important;
 }
+.upcoming-section{
+    padding-left: 20px;
+}
 .cardUpcoming-image-container{
     width:100px !important;
     height:100px !important;

@@ -114,7 +114,6 @@ body {
 .main-content {
   display: flex;
   flex-direction: column;
-
   width: 100%;
 }
 
@@ -133,7 +132,6 @@ body {
   transition: none;
   margin-top:100px;
 }
-
 /* Cambia el ancho del pulgar del scrollbar */
 ::-webkit-scrollbar-thumb {
   background-color: var(--color-hover);

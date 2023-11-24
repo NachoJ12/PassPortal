@@ -9,19 +9,31 @@ import '@/styles/ui/cards/cardEventReservation.css'
 import '@/styles/ui/carousel.css'
 import '@/styles/ui/searchbar.css'
 import "@/styles/layoutCss/login-register.css"
-
-
-import type { AppProps } from 'next/app'
-import { SidebarProvider } from "@/components/context/sidebar-context"
-import SessionAuthProvider from '@/components/context/SessionAuthProvider'
-
+import '@/styles/ui/cards/cardProfile.css'
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { CardProfile } from '@/components/ui/cardGeneral/cardProfile/cardProfile';
+import '@/styles/globals.css'; // Importa tus estilos globales aquí
+import type { AppProps } from 'next/app';
+import { SidebarProvider } from '@/components/context/sidebar-context';
+import SessionAuthProvider from '@/components/context/SessionAuthProvider';
 
 export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+  const [isProfileVisible, setIsProfileVisible] = useState(false);
+
+  useEffect(() => {
+    // Oculta el perfil al cambiar de página
+    setIsProfileVisible(false);
+  }, [router.pathname]);
   return (
+    <>
+    {isProfileVisible && <CardProfile onClose={() => setIsProfileVisible(false)} />}
     <SessionAuthProvider>
       <SidebarProvider>
-          <Component {...pageProps} />
+        <Component {...pageProps} onUsernameClick={() => setIsProfileVisible(true)} />
       </SidebarProvider>
     </SessionAuthProvider>
-  )
+  </>
+  );
 }

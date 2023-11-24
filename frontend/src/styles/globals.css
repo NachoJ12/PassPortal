@@ -109,7 +109,6 @@ body {
 .main-content {
   display: flex;
   flex-direction: column;
-
   width: 100%;
 }
 
@@ -129,6 +128,134 @@ body {
   margin-top:100px;
 }
 
+.cardProfile{
+  display: block;
+  position: fixed;
+  top: 1%;
+  width: 90vw;
+  height: 100%;
+  z-index: 199;
+  bottom: 25px;
+}
+.hiddenProfile{
+  display: none;
+}
+
+.cardProfile-background{
+  left: 30%;
+  top: 15%;
+  bottom: 20%;
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  background:linear-gradient(90deg, rgba(48,48,48,1) 0%, rgba(42,42,42,1) 45%, #d67ab1 100%);
+  z-index: 20;
+  border-radius: 50%;
+  box-shadow: 0px 20px 100px 50px;
+  animation: rotate 5s linear infinite;
+}
+.cardProfile-general{
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  display: flex;
+  top: 16%;
+  left: 30.4%;
+  bottom: 20%;
+  position: fixed;
+  width: 490px;
+  height: 490px;
+  background-color: #0e0c0d;
+  z-index: 100;
+  border-radius: 50%;
+}
+.cardProfile-title{
+  color: white;
+  padding-top: 40px;
+}
+
+.image-profile{
+  left: 29%;
+  top: 14%;
+  bottom: 19%;
+  position: fixed;
+  z-index: 21;
+  animation: rotate 15s linear infinite;
+}
+.cardProfile-info{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  color: white;
+}
+.cardProfile-userName{
+  color: white;
+  font-size: 20px;
+  font-weight: 400;
+}
+.cardProfile-events{
+  padding-top: 20px;
+}
+
+.cardProfile-close-button{
+  cursor: pointer;
+  margin-top: 210px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 30px;
+  background-color: #d67ab1;
+  border-radius: 5%;
+}
+.cardProfile-description{
+  display: flex;
+}
+.cardProfile-chart{
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid white;
+  width: 150px;
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (min-width: 1400px){
+  .cardProfile-general{
+    width: 590px;
+    height: 590px;
+    max-width: 590px;
+    max-height: 590px;
+    left:40.2% ;
+    top:15.8% ;
+  }
+  .image-profile{
+    left: 39.5%;
+    top: 14.5%;
+    width: 625px;
+    height: 615px;
+    max-width: 625px;
+    max-height: 615px;
+  }
+  .cardProfile-background{
+    left: 40%;
+    top: 15.3%;
+    width: 600px;
+    height: 600px;
+    max-width: 600px;
+    max-height: 600px;
+    
+  }
+}
 /* Cambia el ancho del pulgar del scrollbar */
 ::-webkit-scrollbar-thumb {
   background-color: var(--color-hover);

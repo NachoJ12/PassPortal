@@ -85,3 +85,31 @@
 .css-8g8rqy-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root.Mui-focused .MuiOutlinedInput-notchedOutline{
     border-color: #cb74a8 !important; /* Cambia "your-desired-color" al color que desees */
   }
+
+  @media screen and (max-width: 767px) {
+    .cardReservation-general{
+        flex-direction:column;
+    }
+    .cardReservation-boxEvent{
+        margin:30px;
+        width:500px;
+        max-width: 100%;
+    }
+    .cardReservation-boxReserve{
+        margin:30px;
+        width:500px;
+        max-width: 100%;
+    }
+  }
+  @media screen and (max-width: 550px){
+    .cardReservation-boxEvent{
+        margin:30px;
+        width:330px;
+        max-width: 100%;
+    }
+    .cardReservation-boxReserve{
+        margin:30px;
+        width:330px;
+        max-width: 100%;
+    }
+  }

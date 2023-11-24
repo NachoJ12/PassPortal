@@ -1,5 +1,5 @@
 .grid-container {
-  width: 90%;
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* Dos columnas en la primera fila */
   color: white;

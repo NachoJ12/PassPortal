@@ -62,7 +62,7 @@ const SearchBar: FC<Props> = ({ municipios, provincias }) => {
             <div className='searchbar_inputs'>
                 <Box sx={{ minWidth: 120, width: "100%" }}>
                     <InputLabel sx={{ color: "white !important" }} id="demo-simple-select-label" className="input-searchbar">Evente Name</InputLabel>
-                    <TextField sx={{ width: "100% !important", border: "1px solid #d67ab1 !important" }} className="input-searchbar" InputProps={{ style: { color: "white !important" } }} onChange={handleChangeEvent} variant="outlined" />
+                    <TextField sx={{ width: "100% !important", border: "1px solid #d67ab1 !important" }} className="input-searchbar" InputProps={{ style: { color: "white" } }} onChange={handleChangeEvent} variant="outlined" />
                 </Box>
 
                 <Box sx={{ minWidth: 120 + "!important", width: "100% !important" }}>

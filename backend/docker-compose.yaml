@@ -1,0 +1,71 @@
+version: '3'
+services:
+  keycloak:
+    build:
+      context: ./keycloak
+      dockerfile: Dockerfile
+    container_name: keycloak
+    environment:
+      KEYCLOAK_ADMIN: ${KEYCLOAK_ADMIN}
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
+    ports:
+      - 8080:8080
+      - 8443:8443
+    volumes:
+      - keycloak_data:/opt/keycloak/data
+    restart: always
+
+  config-server:
+   build:
+     context: ./ms-configServer
+     dockerfile: Dockerfile
+   container_name: config-server
+   environment:
+     - GIT_URL=${GIT_URL}
+     - GIT_USERNAME=${GIT_USERNAME}
+     - GIT_PASS=${GIT_PASS}
+   ports:
+     - 8888:8888
+
+  eureka-service:
+    build: ./ms-discovery
+    container_name: eureka-service
+    ports:
+      - 8761:8761
+    depends_on:
+      - keycloak
+      - config-server
+    restart: on-failure
+
+  gateway-service:
+    build: ./ms-gateway
+    container_name: gateway-service
+    ports:
+      - 9090:9090
+    depends_on:
+      - eureka-service
+      - config-server
+    restart: on-failure
+
+  users-service:
+    build: ./ms-user
+    container_name: users-service
+    ports:
+      - 8091:8091
+    depends_on:
+      - eureka-service
+      - config-server
+    restart: on-failure
+
+  event-service:
+    build: ./ms-event
+    container_name: event-service
+    ports:
+      - 8092:8092
+    depends_on:
+      - eureka-service
+      - config-server
+    restart: on-failure
+
+volumes:
+  keycloak_data:

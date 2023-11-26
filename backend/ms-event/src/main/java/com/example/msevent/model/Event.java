@@ -6,10 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
 
 @Entity
 @Getter
@@ -24,9 +22,9 @@ public class Event {
 
     private String name;
 
-    private Date date;
+    private LocalDate date;
 
-    private Time time;
+    private LocalTime time;
 
     private String description;
 
@@ -46,15 +44,15 @@ public class Event {
     @JoinColumn(name = "artist_id", referencedColumnName = "ID")
     private Artist artist;
 
-    public Event(String name, Date date, Time time, String description, long stock, String image, Venue venue, Category category, Artist artist) {
-        this.name = name;
-        this.date = date;
-        this.time = time;
-        this.description = description;
-        this.stock = stock;
-        this.image = image;
-        this.venue = venue;
-        this.category = category;
-        this.artist = artist;
-    }
+//    public Event(String name, Date date, Time time, String description, long stock, String image, Venue venue, Category category, Artist artist) {
+//        this.name = name;
+//        this.date = date;
+//        this.time = time;
+//        this.description = description;
+//        this.stock = stock;
+//        this.image = image;
+//        this.venue = venue;
+//        this.category = category;
+//        this.artist = artist;
+//    }
 }

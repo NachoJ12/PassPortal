@@ -2,14 +2,13 @@ package com.example.msevent.service;
 
 import com.example.msevent.model.*;
 
-import java.sql.Time;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
 import lombok.SneakyThrows;
-import org.joda.time.LocalDate;
-import org.joda.time.LocalTime;
+
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +30,8 @@ public class EventServiceTest {
         Venue venue = new Venue("Orfeo",15000L,"imageOrfeo",address);
         Category category = new Category("Bailes", "Cuarteto cordobés", "imageCuarteto");
         Artist artist = new Artist("La Konga");
-        Event event = new Event("20 años",new Date(2023,12,03),new Time(22,00,00),"El grupo más famoso del momento",20000,"imageEvent",venue,category,artist);
-
+        Event event = new Event("20 años", LocalDate.of(2023,12,03), LocalTime.of(22,00,00),"El grupo más famoso del momento",20000,"imageEvent",venue,category,artist);
+Event event2 = new Event();
         Event response = eventService.save(event);
         assertNotNull(response);
     }
@@ -58,7 +57,7 @@ public class EventServiceTest {
         Venue venue = new Venue("Orfeo",15000L,"imageOrfeo",address);
         Category category = new Category("Bailes", "Cuarteto cordobés", "imageCuarteto");
         Artist artist = new Artist("La Konga");
-        Event eventToAdd = new Event("20 años",new Date(2023,12,03),new Time(22,00,00),"El grupo más famoso del momento",20000,"imageEvent",venue,category,artist);
+        Event eventToAdd = new Event("20 años", LocalDate.of(2023,12,03), LocalTime.of(22,00,00),"El grupo más famoso del momento",20000,"imageEvent",venue,category,artist);
 
 
         Event eventAdded= eventService.save(eventToAdd);
@@ -76,7 +75,7 @@ public class EventServiceTest {
         Venue venue = new Venue("Orfeo",15000L,"imageOrfeo",address);
         Category category = new Category("Bailes", "Cuarteto cordobés", "imageCuarteto");
         Artist artist = new Artist("La Konga");
-        Event eventToAdd = new Event("20 años",new Date(2023,12,03),new Time(22,00,00),"El grupo más famoso del momento",20000,"imageEvent",venue,category,artist);
+        Event eventToAdd = new Event("20 años",LocalDate.of(2023,12,03), LocalTime.of(22,00,00),"El grupo más famoso del momento",20000,"imageEvent",venue,category,artist);
 
 
         Event eventAdded= eventService.save(eventToAdd);

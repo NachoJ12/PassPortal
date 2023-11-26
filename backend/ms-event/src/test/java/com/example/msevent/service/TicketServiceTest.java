@@ -1,13 +1,14 @@
 package com.example.msevent.service;
 
 import com.example.msevent.model.*;
-import lombok.SneakyThrows;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -28,7 +29,7 @@ public class TicketServiceTest {
         Venue venue = new Venue("Orfeo",15000L,"imageOrfeo",address);
         Category category = new Category("Bailes", "Cuarteto cordobés", "imageCuarteto");
         Artist artist = new Artist("La Konga");
-        Event event = new Event("20 años",new Date(2023,12,03),new Time(22,00,00),"El grupo más famoso del momento",20000,"imageEvent",venue,category,artist);
+        Event event = new Event("20 años", LocalDate.of(2023,12,03), LocalTime.of(22,00,00),"El grupo más famoso del momento",20000,"imageEvent",venue,category,artist);
 
         Ticket ticket=new Ticket("00001",event);
         Ticket response = ticketService.postTicket(ticket);
@@ -56,7 +57,7 @@ public class TicketServiceTest {
         Venue venue = new Venue("Orfeo",15000L,"imageOrfeo",address);
         Category category = new Category("Bailes", "Cuarteto cordobés", "imageCuarteto");
         Artist artist = new Artist("La Konga");
-        Event event = new Event("20 años",new Date(2023,12,03),new Time(22,00,00),"El grupo más famoso del momento",20000,"imageEvent",venue,category,artist);
+        Event event = new Event("20 años", LocalDate.of(2023,12,03), LocalTime.of(22,00,00),"El grupo más famoso del momento",20000,"imageEvent",venue,category,artist);
 
         Ticket ticketToAdd=new Ticket("00001",event);
         Ticket ticketAdded= ticketService.postTicket(ticketToAdd);

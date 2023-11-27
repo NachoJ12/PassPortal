@@ -1,10 +1,15 @@
 package com.example.msevent.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -20,7 +25,8 @@ public class Artist {
 
     private String name;
 
-    public Artist(String name) {
-        this.name = name;
-    }
+    @JsonIgnore
+    @OneToMany(mappedBy = "artist")
+    private Set<Event> event = new HashSet<>();
+
 }

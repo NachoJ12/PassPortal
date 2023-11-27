@@ -8,9 +8,6 @@ spring:
     config:
       server:
         git:
-          uri: ${GIT_URL}
-          username: ${GIT_USERNAME}
-          password: ${GIT_PASS}
-          default-label: main
+          uri: https://github.com/Gonzasan/Pi2G7ConfigServer
           force-pull: true
           search-paths: configData

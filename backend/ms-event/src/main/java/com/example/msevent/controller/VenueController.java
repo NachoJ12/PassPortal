@@ -6,12 +6,13 @@ import com.example.msevent.model.Venue;
 import com.example.msevent.service.VenueService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
-@RestController
+@Controller
 @RequestMapping("/venue")
 @RequiredArgsConstructor
 public class VenueController {

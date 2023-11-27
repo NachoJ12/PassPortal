@@ -16,5 +16,4 @@ public class UserResponseDTO {
     private String name;
     private String lastName;
     private String role;
-    private String keycloakId;
 }

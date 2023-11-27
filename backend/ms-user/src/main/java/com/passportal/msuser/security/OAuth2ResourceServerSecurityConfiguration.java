@@ -36,6 +36,7 @@ public class OAuth2ResourceServerSecurityConfiguration {
                         auth
                                 .requestMatchers("/users/register").permitAll()
                                 .requestMatchers("/users/login").permitAll()
+                                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-resources/**", "/users/swagger-ui/**", "/users/v3/api-docs/**").permitAll()
                                 .anyRequest().authenticated()
                 );
 

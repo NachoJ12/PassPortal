@@ -1,15 +1,20 @@
 package com.example.msevent.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 @Entity
 @Getter
 @Setter
-
+@NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "category")
 public class Category {
@@ -24,13 +29,7 @@ public class Category {
 
     private String image;
 
-    public Category(String name, String description, String image) {
-        this.name = name;
-        this.description = description;
-        this.image = image;
-    }
-
-    public Category() {
-
-    }
+    @JsonIgnore
+    @OneToMany(mappedBy = "category",cascade = {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    private Set<Event> event= new HashSet<>();
 }

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d7201e55-238f-438f-a724-002b8855fae5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/backend/ms-configServer/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/ms-configServer/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ms-discovery/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/ms-discovery/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ms-event/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/ms-event/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ms-event/src/main/java/com/example/msevent/EventApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/ms-event/src/main/java/com/example/msevent/EventApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ms-event/src/main/java/com/example/msevent/controller/AddressController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/ms-event/src/main/java/com/example/msevent/controller/AddressController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ms-event/src/main/java/com/example/msevent/controller/ArtistController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/ms-event/src/main/java/com/example/msevent/controller/ArtistController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ms-event/src/main/java/com/example/msevent/controller/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/ms-event/src/main/java/com/example/msevent/controller/EventController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ms-event/src/main/java/com/example/msevent/controller/EventTypeController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ms-event/src/main/java/com/example/msevent/controller/TicketController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ms-event/src/main/java/com/example/msevent/controller/VenueController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/ms-event/src/main/java/com/example/msevent/controller/VenueController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ms-event/src/main/java/com/example/msevent/model/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/ms-event/src/main/java/com/example/msevent/model/Address.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ms-event/src/main/java/com/example/msevent/model/Artist.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/ms-event/src/main/java/com/example/msevent/model/Artist.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ms-event/src/main/java/com/example/msevent/model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/ms-event/src/main/java/com/example/msevent/model/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ms-event/src/main/java/com/example/msevent/model/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/ms-event/src/main/java/com/example/msevent/model/Event.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ms-event/src/main/java/com/example/msevent/model/Venue.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/ms-event/src/main/java/com/example/msevent/model/Venue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ms-event/src/main/java/com/example/msevent/repository/IEventRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/ms-event/src/main/java/com/example/msevent/repository/IEventRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ms-event/src/main/java/com/example/msevent/repository/ITicketRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ms-event/src/main/java/com/example/msevent/service/EventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/ms-event/src/main/java/com/example/msevent/service/EventService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ms-event/src/main/java/com/example/msevent/service/TicketService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ms-event/src/test/java/com/example/msevent/service/TicketServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/ms-event/src/test/java/com/example/msevent/service/TicketServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ms-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/ms-gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ms-gateway/src/main/java/com/passportal/msgateway/MsGatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/ms-gateway/src/main/java/com/passportal/msgateway/MsGatewayApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ms-gateway/src/main/java/com/passportal/msgateway/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/ms-gateway/src/main/java/com/passportal/msgateway/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ms-user/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/ms-user/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ms-user/src/main/java/com/passportal/msuser/MsUserApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/ms-user/src/main/java/com/passportal/msuser/MsUserApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ms-user/src/main/java/com/passportal/msuser/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/ms-user/src/main/java/com/passportal/msuser/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ms-user/src/main/java/com/passportal/msuser/dto/response/UserResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/ms-user/src/main/java/com/passportal/msuser/dto/response/UserResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ms-user/src/main/java/com/passportal/msuser/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/ms-user/src/main/java/com/passportal/msuser/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ms-user/src/main/java/com/passportal/msuser/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/ms-user/src/main/java/com/passportal/msuser/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ms-user/src/main/java/com/passportal/msuser/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/ms-user/src/main/java/com/passportal/msuser/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ms-user/src/main/java/com/passportal/msuser/security/OAuth2ResourceServerSecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/ms-user/src/main/java/com/passportal/msuser/security/OAuth2ResourceServerSecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ms-user/src/main/java/com/passportal/msuser/service/impl/KeycloakServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/ms-user/src/main/java/com/passportal/msuser/service/impl/KeycloakServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/ms-user/src/main/java/com/passportal/msuser/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/ms-user/src/main/java/com/passportal/msuser/service/impl/UserServiceImpl.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2Ykce6UhKLx9UykoLmsZgUCJ4ST" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager" selected="Application.EventApplication">
+    <configuration name="EventApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.msevent.EventApplication" />
+      <module name="ms-event" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.msevent.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MsDiscoveryApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.passportal.msdiscovery.MsDiscoveryApplication" />
+      <module name="ms-discovery" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.passportal.msdiscovery.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MsOrderApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.msorder.MsOrderApplication" />
+      <module name="ms-order" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.msorder.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.EventApplication" />
+        <item itemvalue="Application.MsOrderApplication" />
+        <item itemvalue="Application.MsDiscoveryApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d7201e55-238f-438f-a724-002b8855fae5" name="Changes" comment="" />
+      <created>1701073115067</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1701073115067</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

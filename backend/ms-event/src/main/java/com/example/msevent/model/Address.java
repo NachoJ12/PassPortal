@@ -23,9 +23,5 @@ public class Address {
 
     private String country;
 
-    public Address(String street, String city, String country) {
-        this.street = street;
-        this.city = city;
-        this.country = country;
-    }
+
 }

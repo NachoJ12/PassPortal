@@ -16,6 +16,7 @@ import java.time.LocalTime;
 @AllArgsConstructor
 @Table(name = "event")
 public class Event {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long ID;
@@ -32,27 +33,19 @@ public class Event {
 
     private String image;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "venue_id", referencedColumnName = "id")
+    @Column(name = "user_id")
+    private Long userid;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "venue_id", referencedColumnName = "ID")
     private Venue venue;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "category_id", referencedColumnName = "ID")
     private Category category;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "artist_id", referencedColumnName = "ID")
     private Artist artist;
 
-    public Event(String name, LocalDate date, LocalTime time, String description, long stock, String image, Venue venue, Category category, Artist artist) {
-        this.name = name;
-        this.date = date;
-        this.time = time;
-        this.description = description;
-        this.stock = stock;
-        this.image = image;
-        this.venue = venue;
-        this.category = category;
-        this.artist = artist;
-    }
 }

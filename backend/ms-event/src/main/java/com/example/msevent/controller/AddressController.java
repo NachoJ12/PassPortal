@@ -5,12 +5,13 @@ import com.example.msevent.model.Address;
 import com.example.msevent.service.AddressService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
-@RestController
+@Controller
 @RequiredArgsConstructor
 @RequestMapping("/address")
 public class AddressController {

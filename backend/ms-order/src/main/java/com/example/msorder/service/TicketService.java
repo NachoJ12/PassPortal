@@ -1,7 +1,7 @@
-package com.example.msevent.service;
+package com.example.msorder.service;
 
-import com.example.msevent.model.Ticket;
-import com.example.msevent.repository.ITicketRepository;
+import com.example.msorder.model.Ticket;
+import com.example.msorder.repository.IticketRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +12,11 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class TicketService {
 
-    private final ITicketRepository repository;
+    private final IticketRepository repository;
+
 
     public List<Ticket> findTicketByEventId(Long id){
-        return repository.findTicketByEventID(id);
+        return repository.findTicketByEventid(id);
     }
     public Optional<Ticket> findTicketById(Long id){
         return repository.findById(id);

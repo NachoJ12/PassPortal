@@ -5,15 +5,16 @@ import com.example.msevent.model.Category;
 import com.example.msevent.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
-@RestController
+@Controller
 @RequiredArgsConstructor
 @RequestMapping("/category")
-public class EventTypeController {
+public class CategoryController {
 
     private final CategoryService service;
 
@@ -39,8 +40,8 @@ public class EventTypeController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id){
-        Optional<Category> eventType = service.findByID(id);
-        if (eventType.isPresent()){
+        Optional<Category> category = service.findByID(id);
+        if (category.isPresent()){
             service.delete(id);
             return ResponseEntity.ok("Deleted successfully");}
         return ResponseEntity.notFound().build();

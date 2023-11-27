@@ -1,4 +1,4 @@
-package com.example.msevent.model;
+package com.example.msorder.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,19 +9,20 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "address")
-public class Address {
+@NoArgsConstructor
+@Table(name = "ticket")
+public class Ticket {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long ID;
+    private Long ID;
 
-    private String street;
+    private String name;
 
-    private String city;
+    private Double price;
 
-    private String country;
-
+    @Column(name = "event_id")
+    private Long eventid;
 
 }

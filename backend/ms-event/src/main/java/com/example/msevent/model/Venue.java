@@ -1,10 +1,13 @@
 package com.example.msevent.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 
 @Entity
@@ -25,14 +28,11 @@ public class Venue {
 
     private String image;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
-    public Venue(String name, Long capacity, String image, Address address) {
-        this.name = name;
-        this.capacity = capacity;
-        this.image = image;
-        this.address = address;
-    }
+    @JsonIgnore
+    @OneToMany(mappedBy = "venue",cascade = CascadeType.REMOVE)
+    List<Event> eventList;
 
 }

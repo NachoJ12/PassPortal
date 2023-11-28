@@ -1,8 +1,8 @@
 import BaseLayout from '@/components/layouts/base-layout'
 import React from 'react'
 import { GetServerSideProps, NextPage } from 'next'
-import { getEvents } from '@/service/events-service'
-import { Event } from '@/data/cardItems'
+import { getAllEvents } from '@/service/events-service'
+import { Event } from '@/types/events'
 import { CardEventContainer } from '@/components/ui/cardGeneral/cardEvent/cardEventContainer/cardEventContainer'
 import { IMunicipioResponse,} from "@/interface/municipio";
 import { IProvinciaResponse } from "@/interface/provincia";
@@ -71,7 +71,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res, query }) => 
     'public, s-maxage=10, stale-while-revalidate=59'
   )
 
-  const events = await getEvents()
+  const events = await getAllEvents()
 
   return {
     props: {

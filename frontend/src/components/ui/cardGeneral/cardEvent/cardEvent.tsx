@@ -6,7 +6,7 @@ import {
     Button,
     Typography,
 } from "@mui/material";
-import { Event } from '@/data/cardItems';
+import { Event } from '@/types/events'
 import Image from "next/image";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
@@ -33,31 +33,32 @@ const CardEvent: FC<Props> = ({ event }) => {
         <div onClick={redirect}>
             <Card  key={event.id} className="card-general" data-aos="fade-up">
                 <CardContent className="card-elements">
-                    <Image src={event.path} alt={event.title} className="card-image" />
+                    {/* TODO usar img del evento correspondiente */}
+                    <Image src="" alt={event?.name} width={200} height={200} className="card-image" />
                     <div className="card-info">
                         <div className="description-card">
                             <div className="card-date-ubication">
                                 <span className="card-icon">
                                     <CalendarMonthIcon />
                                 </span>
-                                <span className="card-name">{event.date}</span>
+                                <span className="card-name">{event?.date}</span>
                             </div>
                             <div className="card-date-ubication">
                                 <span className="card-icon">
                                     <LocationOnIcon />
                                 </span>
-                                <span className="card-name">{event.ubication}</span>
+                                <span className="card-name">{event?.venue.address.city}</span>
                             </div>
                         </div>
                         <Typography variant="h3" className="card-typography">
-                            {event.title}
+                            {event?.name}
                         </Typography>
                         <Typography
                             variant="h6"
                             align="center"
                             className="card-typography-description"
                         >
-                            {event.description}
+                            {event?.description}
                         </Typography>
                         <CardActions className="card-boton">
                             <Button variant="outlined" color="primary" className="boton">

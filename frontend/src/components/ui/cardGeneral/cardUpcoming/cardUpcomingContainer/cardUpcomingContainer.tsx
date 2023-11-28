@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Event } from "@/data/cardItems";
+import { Event } from '@/types/events'
 import CardUpcoming from '@/components/ui/cardGeneral/cardUpcoming/cardUpcoming'
 
 
@@ -13,7 +13,7 @@ const CardUpcomingContainer: FC<Props> = ({ events }) => {
 
   return (
     <div className="cardUpcoming-container">
-      {events.slice(0, 6).map((item : Event) => (
+      {events?.slice(0, 6).map((item : Event) => (
         <div key={item.id} className="custom-Upcoming-container">
           <CardUpcoming event={item}/>
         </div>

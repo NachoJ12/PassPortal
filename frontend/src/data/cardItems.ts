@@ -3,7 +3,8 @@ import imagenPrueba from "../../public/halloween-party-ecuatoriano-215720-min.jp
 import imagenPrueba1 from "../../public/League-of-Legends-Worlds-2019-cover.jpg"
 import imagenPrueba2 from "../../public/crean-beach-1111-287606-min.jpg"
 import imagenPrueba3 from "../../public/lova-1111-220410-min.jpg"
-export interface Event {
+
+interface Event {
     id: string
     title: string
     path: StaticImageData
@@ -18,7 +19,7 @@ export const cardItems: Event[] = [
         id: "0",
         title: "League of Legends - Worlds",
         path: imagenPrueba1,
-        description:"League of Legends -     Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis totam sit officiis at aperiam quae ducimus, ipsam nam quasi voluptatum!",
+        description:"League of Legends - Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis totam sit officiis at aperiam quae ducimus, ipsam nam quasi voluptatum!",
         date: "november - 2023",
         ubication: "Korea",
         size: "large"

@@ -20,7 +20,7 @@ const Help: NextPage<Props> = () => {
 	return (
 		<BaseLayout>
 			<div className='help-page'>
-				<h1 style={{ textAlign: "center", marginTop: "3rem !important", color: "#9d9c9d !important", }}>
+				<h1 style={{ textAlign: "center", marginTop: "5rem !important", color: "white !important", }}>
 					Frequently Ask Questions
 				</h1>
 				<ul className='faqs_list'>

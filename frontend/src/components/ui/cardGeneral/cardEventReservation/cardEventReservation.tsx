@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { NextPage } from "next";
-import { Event } from "@/data/cardItems";
+import { Event } from '@/types/events'
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import logo from "../../../../../public/logo-grey.svg";
@@ -39,7 +39,7 @@ const CardEventReservation: NextPage<Props> = ({ event }) => {
     event: SelectChangeEvent<string>,
     child: React.ReactNode
   ) => {
-    setSelectedValue(event.target.value);
+    setSelectedValue(event?.target.value);
   };
   const handleReserveClick = () => {
     console.log("Reservar", selectedValue);
@@ -52,7 +52,7 @@ const CardEventReservation: NextPage<Props> = ({ event }) => {
           <div className="cardReservation-title">
             <h2>
               Reserva tu ticket para: <br />
-              {event.title}
+              {event?.name}
             </h2>
             <p>
               Asegura tu lugar en este evento inolvidable. ¡Reserva ahora y no
@@ -63,21 +63,21 @@ const CardEventReservation: NextPage<Props> = ({ event }) => {
             <div className="cardReservation-containerImg">
               <Image
                 className="cardReservation-image"
-                src={event.path}
-                alt={event.title}
+                src={event?.image}
+                alt={event?.name}
               />
             </div>
 
             <div className="cardReservation-description">
-              <p>{event.description.slice(0, 100)}</p>
+              <p>{event?.description.slice(0, 100)}</p>
               <div className="cardReservation-dateUbi">
                 <p>
                   <CalendarMonthIcon />
-                  {event.date}
+                  {event?.date}
                 </p>
                 <p>
                   <LocationOnIcon />
-                  {event.ubication}
+                  {event?.venue.address.city}
                 </p>
               </div>
             </div>

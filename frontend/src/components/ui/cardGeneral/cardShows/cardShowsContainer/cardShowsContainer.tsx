@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Event } from "@/data/cardItems";
+import { Event } from '@/types/events'
 import CardsShowEvents from '@/components/ui/cardGeneral/cardShows/cardShows'
 
 interface Props {
@@ -9,10 +9,10 @@ interface Props {
 export const CardShowsContainer: FC<Props> = ({ events }) => {
   return (
     <div className="grid-container">
-      {events.slice(0, 6).map((item : Event) => (
+      {events?.slice(0, 6).map((item : Event) => (
         <div key={item.id}
           className={`grid-item ${
-            item.size === "large" ? "large-card" : "small-card"
+            item.image === "large" ? "large-card" : "small-card"
           }`}
         >
           <CardsShowEvents event={item}/>

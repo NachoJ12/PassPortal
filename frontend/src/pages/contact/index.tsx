@@ -1,25 +1,23 @@
 import BaseLayout from '@/components/layouts/base-layout'
 import React from 'react'
-import { useForm } from 'react-hook-form';
-import { Typography } from '@mui/material';
-import { ErrorMessage } from '@hookform/error-message';
+import { useForm } from 'react-hook-form'
+import { Typography } from '@mui/material'
+import { ErrorMessage } from '@hookform/error-message'
+
 
 export default function contact() {
   const {
     handleSubmit,
     register,
-    formState: { errors }
-  } = useForm();
+    formState: { errors },
+  } = useForm()
 
-  const onSubmit = async () => {
-    
-  }
-
+  const onSubmit = async () => {}
 
   return (
     <BaseLayout>
       <section>
-        <article style={{display:"flex" , justifyContent:"center"}}>
+        <article style={{ display: 'flex', justifyContent: 'center' }}>
           <form onSubmit={handleSubmit(onSubmit)} className='form'>
             <div className='form-top'>
               <h2 className='h2'>Get In Touh With Us!</h2>
@@ -33,8 +31,8 @@ export default function contact() {
                 name='name'
                 className='input-form'
               />
-              <Typography variant="caption" color="black">
-                <ErrorMessage errors={errors} name="name" />
+              <Typography variant='caption' color='black'>
+                <ErrorMessage errors={errors} name='name' />
               </Typography>
 
               <label htmlFor='lastName' className='input-label'>
@@ -47,8 +45,8 @@ export default function contact() {
                 name='lastName'
                 className='input-form'
               />
-              <Typography variant="caption" color="black">
-                <ErrorMessage errors={errors} name="lastName" />
+              <Typography variant='caption' color='black'>
+                <ErrorMessage errors={errors} name='lastName' />
               </Typography>
 
               <label htmlFor='email' className='input-label'>
@@ -61,32 +59,35 @@ export default function contact() {
                 name='email'
                 className='input-form'
               />
-              <Typography variant="caption" color="black">
-                <ErrorMessage errors={errors} name="email" />
+              <Typography variant='caption' color='black'>
+                <ErrorMessage errors={errors} name='email' />
               </Typography>
 
               <label htmlFor='message' className='input-label'>
                 Message
               </label>
 
-              <textarea placeholder="Your message" name="message" id="message" style={{ width: "auto",maxWidth:"100%", height: 50, paddingTop: 10, paddingLeft: 10 }}>
-
-              </textarea>
-
+              <textarea
+                placeholder='Your message'
+                name='message'
+                id='message'
+                style={{
+                  width: 'auto',
+                  maxWidth: '100%',
+                  height: 50,
+                  paddingTop: 10,
+                  paddingLeft: 10,
+                }}
+              ></textarea>
             </div>
 
             <div className='form-bottom'>
-              <button
-                type='submit'
-                className='button-form'
-              >
+              <button type='submit' className='button-form'>
                 Send
               </button>
             </div>
-
           </form>
         </article>
-
       </section>
     </BaseLayout>
   )

@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Event } from '@/data/cardItems';
+import { Event } from '@/types/events'
 import {
   Card,
   CardContent,
@@ -27,28 +27,28 @@ const CardUpcoming: FC<Props> = ({ event }) => {
         <CardContent className="cardUpcoming-elements">
           <div className="cardUpcoming-image-container">
             <Image
-              src={event.path}
-              alt={event.title}
+              src={event?.image}
+              alt={event?.name}
               className="cardUpcoming-image"
             />
           </div>
           <div className="cardUpcoming-info">
             <Typography variant="h3" className="cardUpcoming-typography">
-              {event.title.length > 20 ? `${event.title.slice(0, 20)}...` :
-                event.title}
+              {event?.name.length > 20 ? `${event?.name.slice(0, 20)}...` :
+                event?.name}
             </Typography>
             <div className="cardUpcoming-description">
               <div className="cardUpcoming-date-ubication">
                 <span className="cardUpcoming-icon">
                   <CalendarMonthIcon />
                 </span>
-                <span className="cardUpcoming-name">{event.date}</span>
+                <span className="cardUpcoming-name">{event?.date}</span>
               </div>
               <div className="cardUpcoming-date-ubication">
                 <span className="cardUpcoming-icon">
                   <LocationOnIcon />
                 </span>
-                <span className="cardUpcoming-name">{event.ubication}</span>
+                <span className="cardUpcoming-name">{event?.venue.address.city}</span>
               </div>
             </div>
           </div>

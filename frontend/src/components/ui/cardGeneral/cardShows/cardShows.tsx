@@ -25,8 +25,9 @@ const CardsShowEvents: FC<Props> = ({ event }) => {
         <CardContent className="cardShow-container-image">
           <div>
             <Image
-              src={event?.image}
+              src=""
               alt={event?.name}
+              width={200} height={200}
               className="cardShow-Image"
             ></Image>
           </div>
@@ -39,7 +40,7 @@ const CardsShowEvents: FC<Props> = ({ event }) => {
             <div className="cardShow-info-container"><span><CalendarMonthIcon /></span><span>{event?.date}</span></div>
           </Typography>
           <Typography variant="h6" component="div" className="cardShow-info">
-            <div className="cardShow-info-container"><span><LocationOnIcon /></span><span>{event?.venue.address.city}</span></div>
+            <div className="cardShow-info-container"><span><LocationOnIcon /></span><span>{event?.venue?.address?.city}</span></div>
           </Typography>
           <Typography variant="h6" component="div" className="cardShow-description">
             {event?.description}

@@ -18,6 +18,9 @@
     height: 800px !important;
     box-shadow: 0px 0px 20px 5px rgb(0, 0, 0) !important;
 }
+.cardReservation-logo {
+    align-self: center;
+}
 
 .cardReservation-boxReserve {
     margin-left: 20px !important;
@@ -25,7 +28,6 @@
     margin-bottom: 50px !important;
     display: flex !important;
     flex-direction: column !important;
-    align-items: center !important;
     max-width: 600px !important;
     width: 55% !important;
     background-color: rgb(19, 18, 18) !important;
@@ -67,31 +69,39 @@
 
 .cardReservation-description {
     color: white !important;
-    padding: 10px 35px !important;
+    padding: 15px 35px !important;
 }
 
 .cardReservation-dateUbi {
-    padding-top: 15px !important;
+    color: white !important;
+    padding: 15px 35px !important;
     display: flex !important;
-    justify-content: space-around
+    gap: 20px
 }
 
 .cardReservation-dateUbi p {
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
+    gap: 5px;
 }
 
 .cardReservation-form {
     display: flex !important;
     align-items: center !important;
     color: white !important;
-    width: 50% !important;
-    justify-content: space-around !important;
-    padding: 20px 0px !important;
+    width: 100% !important;
+    justify-content:flex-start;
+    padding: 15px 35px !important;
 }
 
 .css-8g8rqy-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root.Mui-focused .MuiOutlinedInput-notchedOutline {
     border-color: #cb74a8 !important;
+    
     /* Cambia "your-desired-color" al color que desees */
+}
+
+.cardReservation-button{
+    padding: 15px 35px !important;
+    
 }

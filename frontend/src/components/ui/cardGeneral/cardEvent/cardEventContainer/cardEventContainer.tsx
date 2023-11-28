@@ -26,7 +26,6 @@ export const CardEventContainer: FC<Props> = ({ events }) => {
     fetchData();
   }, []);
 
-  console.log(eee)
 
 
   return (

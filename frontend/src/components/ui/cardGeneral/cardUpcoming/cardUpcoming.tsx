@@ -23,38 +23,38 @@ const CardUpcoming: FC<Props> = ({ event }) => {
 
 
   return (
-      <Card className="cardUpcoming-general" data-aos="fade-up">
-        <CardContent className="cardUpcoming-elements">
-          <div className="cardUpcoming-image-container">
-            <Image
-              src={event?.image}
-              alt={event?.name}
-              className="cardUpcoming-image"
-            />
-          </div>
-          <div className="cardUpcoming-info">
-            <Typography variant="h3" className="cardUpcoming-typography">
-              {event?.name.length > 20 ? `${event?.name.slice(0, 20)}...` :
-                event?.name}
-            </Typography>
-            <div className="cardUpcoming-description">
-              <div className="cardUpcoming-date-ubication">
-                <span className="cardUpcoming-icon">
-                  <CalendarMonthIcon />
-                </span>
-                <span className="cardUpcoming-name">{event?.date}</span>
-              </div>
-              <div className="cardUpcoming-date-ubication">
-                <span className="cardUpcoming-icon">
-                  <LocationOnIcon />
-                </span>
-                <span className="cardUpcoming-name">{event?.venue.address.city}</span>
-              </div>
+    <Card className='cardUpcoming-general' data-aos='fade-up'>
+      <CardContent className='cardUpcoming-elements'>
+        <div className='cardUpcoming-image-container'>
+          <Image
+            src=""
+            alt={event?.name}
+            width={50}
+            height={50}
+            className='cardUpcoming-image'
+          />
+        </div>
+        <div className='cardUpcoming-info'>
+          <Typography variant='h3' className='cardUpcoming-typography'>
+            {event?.name?.length > 20 ? `${event?.name.slice(0, 20)}...` : event?.name}
+          </Typography>
+          <div className='cardUpcoming-description'>
+            <div className='cardUpcoming-date-ubication'>
+              <span className='cardUpcoming-icon'>
+                <CalendarMonthIcon />
+              </span>
+              <span className='cardUpcoming-name'>{event?.date}</span>
+            </div>
+            <div className='cardUpcoming-date-ubication'>
+              <span className='cardUpcoming-icon'>
+                <LocationOnIcon />
+              </span>
+              <span className='cardUpcoming-name'>{event?.venue?.address?.city}</span>
             </div>
           </div>
-        </CardContent>
-      </Card>
-    
-  );
+        </div>
+      </CardContent>
+    </Card>
+  )
 };
 export default CardUpcoming;

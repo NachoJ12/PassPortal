@@ -34,3 +34,10 @@ export const schemaRegister = yup.object().shape({
         .required('Please re-enter your password')
         .oneOf([yup.ref('password')], 'Passwords must match')
 })
+
+export const schemaCard = yup.object({
+    number: yup.number().required("This field is required").max(16),
+    cvc: yup.number().required("This field is required").max(4),
+    expDate: yup.string().required("This field is required"),
+    nameOnCard: yup.string().required("This field is required"),
+})

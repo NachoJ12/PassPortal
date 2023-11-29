@@ -9,7 +9,7 @@ interface Props {
 export const CardShowsContainer: FC<Props> = ({ events }) => {
   return (
     <div className="grid-container">
-      {events?.slice(0, 6).map((item : Event) => (
+      {events?.slice(0, 8).map((item : Event) => (
         <div key={item.id}
           className={`grid-item ${
             item.image === "large" ? "large-card" : "small-card"

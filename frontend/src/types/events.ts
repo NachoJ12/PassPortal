@@ -32,3 +32,19 @@ export interface Artist {
     name: string;
     id: number;
 }
+
+export interface ISingleEvent {
+    name: string;
+    date: string;
+    time: string;
+    description: string;
+    stock: number;
+    venue: Venue;
+    artist: Artist;
+    category: Category;
+}
+
+export interface Ticket {
+    name: string;
+    price: number;
+}

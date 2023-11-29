@@ -8,6 +8,8 @@ import '@/styles/ui/cards/cardShows.css'
 import '@/styles/ui/cards/cardEventReservation.css'
 import '@/styles/ui/carousel.css'
 import '@/styles/ui/searchbar.css'
+import '@/styles/ui/checkout.css'
+
 import "@/styles/layoutCss/login-register.css"
 import '@/styles/ui/cards/cardProfile.css'
 import { useEffect, useState } from 'react';

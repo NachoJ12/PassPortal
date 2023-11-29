@@ -1,7 +1,7 @@
 import React from 'react';
 import BaseLayout from '@/components/layouts/base-layout';
 import CardUpcomingContainer from '@/components/ui/cardGeneral/cardUpcoming/cardUpcomingContainer/cardUpcomingContainer';
-import { cardItems } from '@/data/cardItems';
+import { events } from '@/data/cardItems';
 import { CardShowsContainer } from '@/components/ui/cardGeneral/cardShows/cardShowsContainer/cardShowsContainer';
 import CarouselImage from '@/components/ui/carousel/carousel';
 import CarouselCard from '@/components/ui/carousel/carouselCardInfo';
@@ -34,12 +34,12 @@ const Home: NextPage = () => {
                 </Button>
               </CardActions>
             </Card>
-            <CardUpcomingContainer events={cardItems} />
+            <CardUpcomingContainer events={events} />
           </div>
         </div>
         <div className="cardShow-main-container">
           <h2 className="cardShow-main-title">Show And Events</h2>
-          <CardShowsContainer events={cardItems} />
+          <CardShowsContainer events={events} />
         </div>
       </div>
     </BaseLayout>

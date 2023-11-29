@@ -1,9 +1,9 @@
 .grid-container {
-  width: 90% !important;
+  width: 75vw !important;
   display: grid !important;
   grid-template-columns: repeat(4, 1fr) !important; /* Dos columnas en la primera fila */
   color: white !important;
-  gap: 1px !important;
+  gap: 1rem !important;
 }
 
 .cardShow-general {
@@ -89,7 +89,7 @@
 .small-card {
   grid-column: span 1 !important; /* Las tarjetas pequeñas ocupan 1 columna cada una */
   height: 400px !important;
-  width: 240px !important;
+  width: 100% !important;
   .cardShow-Image {
     width: 100% !important;
     height: 240px !important;

@@ -30,6 +30,7 @@ public class SecurityConfig {
                 .pathMatchers("/users/register").permitAll()
                 .pathMatchers("/users/login").permitAll()
                 .pathMatchers("/events/**").permitAll()
+                .pathMatchers("/order/**").permitAll()
                 .pathMatchers("**/swagger-ui/**", "/swagger-ui.html", "**/v3/api-docs/**", "/v3/api-docs/**", "/swagger-resources/**").permitAll()
                 .anyExchange().authenticated()
                 .and()

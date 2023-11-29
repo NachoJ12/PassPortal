@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `PI2G7`.`venue` (
   CONSTRAINT `fk_venue_address1`
     FOREIGN KEY (`address_id`)
     REFERENCES `PI2G7`.`address` (`id`))
-ENGINE = InnoDB
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `PI2G7`.`category` (
   `description` VARCHAR(45) NULL DEFAULT NULL,
   `image` VARCHAR(300) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
-ENGINE = InnoDB
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -127,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `PI2G7`.`event` (
   CONSTRAINT `fk_event_venue1`
     FOREIGN KEY (`venue_id`)
     REFERENCES `PI2G7`.`venue` (`id`))
-ENGINE = InnoDB
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -140,7 +140,7 @@ CREATE TABLE IF NOT EXISTS `PI2G7`.`ticket` (
   `event_id` BIGINT NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_ticket_event1_idx` (`event_id` ASC) VISIBLE)
-ENGINE = InnoDB
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -175,7 +175,7 @@ CREATE TABLE IF NOT EXISTS `PI2G7`.`orders_ticket` (
   CONSTRAINT `FKm4mqdnvg59oe4r0iot38x340k`
     FOREIGN KEY (`ticket_id`)
     REFERENCES `PI2G7`.`ticket` (`id`))
-ENGINE = InnoDB
+ENGINE = InnoDB;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

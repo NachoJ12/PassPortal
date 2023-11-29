@@ -53,7 +53,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `PI2G7`.`artist` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NULL,
+  `name` VARCHAR(45) NULL DEFAULT NULL,,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -63,9 +63,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `PI2G7`.`address` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `street` VARCHAR(45) NULL,
-  `city` VARCHAR(45) NULL,
-  `country` VARCHAR(45) NULL,
+  `street` VARCHAR(45) NULL DEFAULT NULL,
+  `city` VARCHAR(45) NULL DEFAULT NULL,
+  `country` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -75,18 +75,16 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `PI2G7`.`venue` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(255) NULL,
-  `capacity` BIGINT NULL,
-  `image` VARCHAR(300) NULL,
+  `name` VARCHAR(255) NULL DEFAULT NULL,
+  `capacity` BIGINT NULL DEFAULT NULL,
+  `image` VARCHAR(300) NULL DEFAULT NULL,
   `address_id` BIGINT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_venue_address1_idx` (`address_id` ASC) VISIBLE,
   CONSTRAINT `fk_venue_address1`
     FOREIGN KEY (`address_id`)
-    REFERENCES `PI2G7`.`address` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    REFERENCES `PI2G7`.`address` (`id`))
+ENGINE = InnoDB
 
 
 -- -----------------------------------------------------
@@ -94,11 +92,11 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `PI2G7`.`category` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NULL,
-  `description` VARCHAR(45) NULL,
-  `image` VARCHAR(300) NULL,
+  `name` VARCHAR(45) NULL DEFAULT NULL,
+  `description` VARCHAR(45) NULL DEFAULT NULL,
+  `image` VARCHAR(300) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
-ENGINE = InnoDB;
+ENGINE = InnoDB
 
 
 -- -----------------------------------------------------
@@ -108,33 +106,28 @@ CREATE TABLE IF NOT EXISTS `PI2G7`.`event` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `date` DATE NOT NULL,
-  `time` TIME NULL,
-  `description` VARCHAR(150) NULL,
-  `stock` BIGINT NULL,
-  `image` VARCHAR(300) NULL,
+  `time` TIME NULL DEFAULT NULL,
+  `description` VARCHAR(150) NULL DEFAULT NULL,
+  `stock` BIGINT NULL DEFAULT NULL,
+  `image` VARCHAR(300) NULL DEFAULT NULL,
   `venue_id` BIGINT NOT NULL,
   `artist_id` BIGINT NOT NULL,
   `category_id` BIGINT NOT NULL,
+  `user_id` BIGINT NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_event_artist1_idx` (`artist_id` ASC) VISIBLE,
   INDEX `fk_event_venue1_idx` (`venue_id` ASC) VISIBLE,
   INDEX `fk_event_category1_idx` (`category_id` ASC) VISIBLE,
   CONSTRAINT `fk_event_artist1`
     FOREIGN KEY (`artist_id`)
-    REFERENCES `PI2G7`.`artist` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_event_venue1`
-    FOREIGN KEY (`venue_id`)
-    REFERENCES `PI2G7`.`venue` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    REFERENCES `PI2G7`.`artist` (`id`),
   CONSTRAINT `fk_event_category1`
     FOREIGN KEY (`category_id`)
-    REFERENCES `PI2G7`.`category` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    REFERENCES `PI2G7`.`category` (`id`),
+  CONSTRAINT `fk_event_venue1`
+    FOREIGN KEY (`venue_id`)
+    REFERENCES `PI2G7`.`venue` (`id`))
+ENGINE = InnoDB
 
 
 -- -----------------------------------------------------
@@ -143,16 +136,11 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `PI2G7`.`ticket` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
-  `price` DECIMAL(10,2) NULL,
-  `event_id` BIGINT NOT NULL,
+  `price` DOUBLE NULL DEFAULT NULL,
+  `event_id` BIGINT NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_ticket_event1_idx` (`event_id` ASC) VISIBLE,
-  CONSTRAINT `fk_ticket_event1`
-    FOREIGN KEY (`event_id`)
-    REFERENCES `PI2G7`.`event` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+  INDEX `fk_ticket_event1_idx` (`event_id` ASC) VISIBLE)
+ENGINE = InnoDB
 
 
 -- -----------------------------------------------------
@@ -173,28 +161,21 @@ CREATE TABLE IF NOT EXISTS `PI2G7`.`order` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
+-- -- -----------------------------------------------------
+-- Table `PI2G7`.`orders_ticket`
 -- -----------------------------------------------------
--- Table `PI2G7`.`ticket_order`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `PI2G7`.`ticket_order` (
-  `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `orderDetails_id` BIGINT NOT NULL,
+CREATE TABLE IF NOT EXISTS `PI2G7`.`orders_ticket` (
+  `order_id` BIGINT NOT NULL,
   `ticket_id` BIGINT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_order_orderDetails1_idx` (`orderDetails_id` ASC) VISIBLE,
-  INDEX `fk_order_ticket1_idx` (`ticket_id` ASC) VISIBLE,
-  CONSTRAINT `fk_order_orderDetails1`
-    FOREIGN KEY (`orderDetails_id`)
-    REFERENCES `PI2G7`.`order` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_order_ticket1`
+  INDEX `FKm4mqdnvg59oe4r0iot38x340k` (`ticket_id` ASC) VISIBLE,
+  INDEX `FK70dx4l7xhfhrdim0se1cpiy45` (`order_id` ASC) VISIBLE,
+  CONSTRAINT `FK70dx4l7xhfhrdim0se1cpiy45`
+    FOREIGN KEY (`order_id`)
+    REFERENCES `PI2G7`.`orders` (`id`),
+  CONSTRAINT `FKm4mqdnvg59oe4r0iot38x340k`
     FOREIGN KEY (`ticket_id`)
-    REFERENCES `PI2G7`.`ticket` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    REFERENCES `PI2G7`.`ticket` (`id`))
+ENGINE = InnoDB
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

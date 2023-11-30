@@ -33,7 +33,7 @@ const PaymentForm = () => {
         handleSubmit,
     } = useForm({ resolver: yupResolver(schemaCard), reValidateMode: "onChange" })
 
-    const { errors, isSubmitted, isSubmitting } = formState;
+    const { errors } = formState;
 
     const onSubmit = (data: any) => {
         console.log(data);
@@ -50,63 +50,73 @@ const PaymentForm = () => {
                 focused={state.focused}
             />
 
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <Typography variant="caption" color="red">
-                    <ErrorMessage errors={errors} name="number" />
-                </Typography>
+            <form onSubmit={handleSubmit(onSubmit)} className='payment_form'>
+                <div>
 
-                <input
-                    {...register("number")}
-                    type="number"
-                    name="number"
-                    placeholder="Card Number"
-                    value={state.number}
-                    onChange={handleInputChange}
-                    onFocus={handleInputFocus}
-                />
 
-                <Typography variant="caption" color="red">
-                    <ErrorMessage errors={errors} name="expDate" />
-                </Typography>
+                    <Typography variant="caption" color="red">
+                        <ErrorMessage errors={errors} name="number" />
+                    </Typography>
 
-                <input
-                    {...register("expDate")}
-                    type="text"
-                    name="expiry"
-                    placeholder="Card Expiry"
-                    value={state.expiry}
-                    onChange={handleInputChange}
-                    onFocus={handleInputFocus}
-                />
+                    <input
+                        className='payment_form'
+                        {...register("number")}
+                        type="number"
+                        name="number"
+                        placeholder="Card Number"
+                        value={state.number}
+                        onChange={handleInputChange}
+                        onFocus={handleInputFocus}
+                    />
 
-                <Typography variant="caption" color="red">
-                    <ErrorMessage errors={errors} name="cvc" />
-                </Typography>
+                    <Typography variant="caption" color="red">
+                        <ErrorMessage errors={errors} name="expDate" />
+                    </Typography>
+                    <input
+                        className='payment_form'
+                        {...register("expDate")}
+                        type="text"
+                        name="expiry"
+                        placeholder="Card Expiry"
+                        value={state.expiry}
+                        onChange={handleInputChange}
+                        onFocus={handleInputFocus}
+                    />
+                </div>
 
-                <input
-                    {...register("cvc")}
-                    type="number"
-                    name="cvc"
-                    placeholder="Card CVC"
-                    value={state.cvc}
-                    onChange={handleInputChange}
-                    onFocus={handleInputFocus}
-                />
+                <div>
+                    <Typography variant="caption" color="red">
+                        <ErrorMessage errors={errors} name="cvc" />
+                    </Typography>
 
-                <Typography variant="caption" color="red">
-                    <ErrorMessage errors={errors} name="nameOnCard" />
-                </Typography>
 
-                <input
-                    {...register("nameOnCard")}
-                    type="text"
-                    name="name"
-                    placeholder="Card Name"
-                    value={state.name}
-                    onChange={handleInputChange}
-                    onFocus={handleInputFocus}
-                />
+                    <input
+                        className='payment_form'
+                        {...register("cvc")}
+                        type="number"
+                        name="cvc"
+                        placeholder="Card CVC"
+                        value={state.cvc}
+                        onChange={handleInputChange}
+                        onFocus={handleInputFocus}
+                    />
 
+                    <Typography variant="caption" color="red">
+                        <ErrorMessage errors={errors} name="nameOnCard" />
+                    </Typography>
+
+                    <input
+                        className='payment_form'
+                        {...register("nameOnCard")}
+                        type="text"
+                        name="name"
+                        placeholder="Card Name"
+                        value={state.name}
+                        onChange={handleInputChange}
+                        onFocus={handleInputFocus}
+                    />
+
+                </div>
 
 
             </form>

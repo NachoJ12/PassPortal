@@ -19,6 +19,7 @@ import '@/styles/globals.css'; // Importa tus estilos globales aquí
 import type { AppProps } from 'next/app';
 import { SidebarProvider } from '@/components/context/sidebar-context';
 import SessionAuthProvider from '@/components/context/SessionAuthProvider';
+import { CheckoutProvider } from '@/components/context/checkout-context'
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -29,13 +30,13 @@ export default function App({ Component, pageProps }: AppProps) {
     setIsProfileVisible(false);
   }, [router.pathname]);
   return (
-    <>
+    <CheckoutProvider>
     {isProfileVisible && <CardProfile onClose={() => setIsProfileVisible(false)} />}
     <SessionAuthProvider>
       <SidebarProvider>
         <Component {...pageProps} onUsernameClick={() => setIsProfileVisible(true)} />
       </SidebarProvider>
     </SessionAuthProvider>
-  </>
+  </CheckoutProvider>
   );
 }

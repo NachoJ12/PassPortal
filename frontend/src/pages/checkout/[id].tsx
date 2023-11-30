@@ -18,6 +18,8 @@ import {
 } from '@mui/material'
 import BaseLayout from "@/components/layouts/base-layout";
 import PaymentForm from "@/components/ui/paymentForm/PaymentForm";
+import PaymentTable from "@/components/ui/paymentTable/PaymentTable";
+
 import { Event } from "@/types/events";
 
 
@@ -38,66 +40,46 @@ const theme = createTheme({
 
 
 const CheckOut: FC<Props> = ({ event }) => {
-    const [total, setTotal] = useState<number>(0)
     const [selectedValue, setSelectedValue] = useState('')
-
-    const handleChange = (event: SelectChangeEvent<string>, child: React.ReactNode) => {
-        setSelectedValue(event?.target.value)
-    }
     const handleReserveClick = () => {
         console.log('Reservar', selectedValue)
     }
-
     return (
         <BaseLayout>
-            <div className="container_checkout" >
-                <div className="checkout_title">
-                    <div className="checkout_title_name">
-                        <h1>{event?.name}</h1>
-                        <h2>{event?.artist?.name}</h2>
-                    </div>
 
-                    <div className="checkout_date_address">
-                        <div className="checkout_date">
-                            <h3>{event?.date}</h3>
-                            <h3>{event?.time}</h3>
+            <div className="container_checkout">
+                <div className="container_header">
+                    <header className="checkout_title">
+                        <div className="checkout_title_name">
+                            <h1>{event?.name} name</h1>
+                            <h2>{event?.artist?.name} artist</h2>
                         </div>
-                        <div className="checkout_address">
-                            <LocationOnIcon sx={{ color: theme.palette.primary.main + '!important' }} fontSize="large" />
-                            <h3>{event?.venue?.name}</h3>
-                            <h3>{event?.venue?.address.city}</h3>
+
+                        <div className="checkout_date_address">
+                            <div className="checkout_date">
+                                <CalendarMonthIcon />
+                                <h3>{event?.date} date</h3>
+                                <h3>{event?.time} time</h3>
+                            </div>
+                            <div className="checkout_address">
+                                <LocationOnIcon sx={{ color: theme.palette.primary.main + '!important' }} fontSize="large" />
+                                <h3>{event?.venue?.name} venue name</h3>
+                                <h3>{event?.venue?.address.city} city</h3>
+                            </div>
                         </div>
-                    </div>
+
+                    </header>
                 </div>
-                <InputLabel
-                    id='select-label'
-                    sx={{ color: theme.palette.primary.main + '!important' }}
-                >
-                    Choose
-                </InputLabel>
-                <Select
-                    labelId='select-label'
-                    id='select'
-                    value={selectedValue}
-                    label='Selecciona'
-                    onChange={handleChange}
-                    sx={{
-                        '& fieldset': {
-                            borderColor: '#cb74a8 !important', // Cambia "your-desired-color" al color que desees
-                        },
-                        width: '50% !important',
-                        color: 'white !important',
-                    }}
-                >
-                    <MenuItem value=''>Choose...</MenuItem>
-                    <MenuItem value='1'>1</MenuItem>
-                    <MenuItem value='2'>2</MenuItem>
-                    <MenuItem value='3'>3</MenuItem>
-                </Select>
 
-                <PaymentForm />
+                <div className="container_body">
 
-                <div className=''>
+                <PaymentTable/>
+
+
+                </div>
+
+                <div className="container_payment">
+                    <PaymentForm />
                     <Button
                         sx={{ width: '35% !important ', borderColor: theme.palette.primary.main + '!important', color: theme.palette.primary.main + '!important' }}
                         variant='outlined'

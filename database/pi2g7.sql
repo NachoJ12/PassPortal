@@ -148,8 +148,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pi21023c02_GRUPO7`.`orders` (
   `id` BIGINT NOT NULL,
-  `total_price` DECIMAL(10,2) NULL,
-  `order_datetime` DATETIME NULL,
+  `total_price` DOUBLE NULL,
+  `date_time` DATETIME NULL,
   `delivery_address` VARCHAR(255) NULL,
   `user_id` BIGINT NOT NULL,
   PRIMARY KEY (`id`),

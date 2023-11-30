@@ -67,5 +67,15 @@ services:
       - config-server
     restart: on-failure
 
+  order-service:
+    build: ./ms-order
+    container_name: order-service
+    ports:
+      - 8089:8089
+    depends_on:
+      - eureka-service
+      - config-server
+    restart: on-failure
+
 volumes:
   keycloak_data:

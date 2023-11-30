@@ -5,19 +5,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema PI2G7
+-- Schema pi21023c02_GRUPO7
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema PI2G7
+-- Schema pi21023c02_GRUPO7
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `PI2G7` DEFAULT CHARACTER SET utf8 ;
-USE `PI2G7` ;
+CREATE SCHEMA IF NOT EXISTS `pi21023c02_GRUPO7` DEFAULT CHARACTER SET utf8 ;
+USE `pi21023c02_GRUPO7` ;
 
 -- -----------------------------------------------------
--- Table `PI2G7`.`role`
+-- Table `pi21023c02_GRUPO7`.`role`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `PI2G7`.`role` (
+CREATE TABLE IF NOT EXISTS `pi21023c02_GRUPO7`.`role` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `role_name` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))
@@ -25,9 +25,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `PI2G7`.`user`
+-- Table `pi21023c02_GRUPO7`.`user`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `PI2G7`.`user` (
+CREATE TABLE IF NOT EXISTS `pi21023c02_GRUPO7`.`user` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
@@ -42,16 +42,16 @@ CREATE TABLE IF NOT EXISTS `PI2G7`.`user` (
   INDEX `fk_user_role1_idx` (`role_id` ASC) VISIBLE,
   CONSTRAINT `fk_user_role1`
     FOREIGN KEY (`role_id`)
-    REFERENCES `PI2G7`.`role` (`id`)
+    REFERENCES `pi21023c02_GRUPO7`.`role` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `PI2G7`.`artist`
+-- Table `pi21023c02_GRUPO7`.`artist`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `PI2G7`.`artist` (
+CREATE TABLE IF NOT EXISTS `pi21023c02_GRUPO7`.`artist` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
@@ -59,9 +59,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `PI2G7`.`address`
+-- Table `pi21023c02_GRUPO7`.`address`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `PI2G7`.`address` (
+CREATE TABLE IF NOT EXISTS `pi21023c02_GRUPO7`.`address` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
   `street` VARCHAR(100) NULL DEFAULT NULL,
   `city` VARCHAR(45) NULL DEFAULT NULL,
@@ -71,9 +71,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `PI2G7`.`venue`
+-- Table `pi21023c02_GRUPO7`.`venue`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `PI2G7`.`venue` (
+CREATE TABLE IF NOT EXISTS `pi21023c02_GRUPO7`.`venue` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NULL DEFAULT NULL,
   `capacity` BIGINT NULL DEFAULT NULL,
@@ -83,14 +83,14 @@ CREATE TABLE IF NOT EXISTS `PI2G7`.`venue` (
   INDEX `fk_venue_address1_idx` (`address_id` ASC) VISIBLE,
   CONSTRAINT `fk_venue_address1`
     FOREIGN KEY (`address_id`)
-    REFERENCES `PI2G7`.`address` (`id`))
+    REFERENCES `pi21023c02_GRUPO7`.`address` (`id`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `PI2G7`.`category`
+-- Table `pi21023c02_GRUPO7`.`category`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `PI2G7`.`category` (
+CREATE TABLE IF NOT EXISTS `pi21023c02_GRUPO7`.`category` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL DEFAULT NULL,
   `description` VARCHAR(45) NULL DEFAULT NULL,
@@ -100,9 +100,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `PI2G7`.`event`
+-- Table `pi21023c02_GRUPO7`.`event`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `PI2G7`.`event` (
+CREATE TABLE IF NOT EXISTS `pi21023c02_GRUPO7`.`event` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `date` DATE NOT NULL,
@@ -120,20 +120,20 @@ CREATE TABLE IF NOT EXISTS `PI2G7`.`event` (
   INDEX `fk_event_category1_idx` (`category_id` ASC) VISIBLE,
   CONSTRAINT `fk_event_artist1`
     FOREIGN KEY (`artist_id`)
-    REFERENCES `PI2G7`.`artist` (`id`),
+    REFERENCES `pi21023c02_GRUPO7`.`artist` (`id`),
   CONSTRAINT `fk_event_category1`
     FOREIGN KEY (`category_id`)
-    REFERENCES `PI2G7`.`category` (`id`),
+    REFERENCES `pi21023c02_GRUPO7`.`category` (`id`),
   CONSTRAINT `fk_event_venue1`
     FOREIGN KEY (`venue_id`)
-    REFERENCES `PI2G7`.`venue` (`id`))
+    REFERENCES `pi21023c02_GRUPO7`.`venue` (`id`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `PI2G7`.`ticket`
+-- Table `pi21023c02_GRUPO7`.`ticket`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `PI2G7`.`ticket` (
+CREATE TABLE IF NOT EXISTS `pi21023c02_GRUPO7`.`ticket` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `price` DOUBLE NULL DEFAULT NULL,
@@ -144,9 +144,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `PI2G7`.`order`
+-- Table `pi21023c02_GRUPO7`.`order`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `PI2G7`.`order` (
+CREATE TABLE IF NOT EXISTS `pi21023c02_GRUPO7`.`order` (
   `id` BIGINT NOT NULL,
   `total_price` DECIMAL(10,2) NULL,
   `order_datetime` DATETIME NULL,
@@ -156,25 +156,25 @@ CREATE TABLE IF NOT EXISTS `PI2G7`.`order` (
   INDEX `fk_orderDetails_user1_idx` (`user_id` ASC) VISIBLE,
   CONSTRAINT `fk_orderDetails_user1`
     FOREIGN KEY (`user_id`)
-    REFERENCES `PI2G7`.`user` (`id`)
+    REFERENCES `pi21023c02_GRUPO7`.`user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 -- -- -----------------------------------------------------
--- Table `PI2G7`.`orders_ticket`
+-- Table `pi21023c02_GRUPO7`.`orders_ticket`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `PI2G7`.`orders_ticket` (
+CREATE TABLE IF NOT EXISTS `pi21023c02_GRUPO7`.`orders_ticket` (
   `order_id` BIGINT NOT NULL,
   `ticket_id` BIGINT NOT NULL,
   INDEX `FKm4mqdnvg59oe4r0iot38x340k` (`ticket_id` ASC) VISIBLE,
   INDEX `FK70dx4l7xhfhrdim0se1cpiy45` (`order_id` ASC) VISIBLE,
   CONSTRAINT `FK70dx4l7xhfhrdim0se1cpiy45`
     FOREIGN KEY (`order_id`)
-    REFERENCES `PI2G7`.`orders` (`id`),
+    REFERENCES `pi21023c02_GRUPO7`.`orders` (`id`),
   CONSTRAINT `FKm4mqdnvg59oe4r0iot38x340k`
     FOREIGN KEY (`ticket_id`)
-    REFERENCES `PI2G7`.`ticket` (`id`))
+    REFERENCES `pi21023c02_GRUPO7`.`ticket` (`id`))
 ENGINE = InnoDB;
 
 

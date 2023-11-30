@@ -53,7 +53,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `PI2G7`.`artist` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NULL DEFAULT NULL,,
+  `name` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -63,7 +63,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `PI2G7`.`address` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `street` VARCHAR(45) NULL DEFAULT NULL,
+  `street` VARCHAR(100) NULL DEFAULT NULL,
   `city` VARCHAR(45) NULL DEFAULT NULL,
   `country` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
@@ -150,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `PI2G7`.`order` (
   `id` BIGINT NOT NULL,
   `total_price` DECIMAL(10,2) NULL,
   `order_datetime` DATETIME NULL,
-  `delivery_address` VARCHAR(45) NULL,
+  `delivery_address` VARCHAR(255) NULL,
   `user_id` BIGINT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_orderDetails_user1_idx` (`user_id` ASC) VISIBLE,

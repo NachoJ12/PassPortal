@@ -14,56 +14,65 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin-top: 3.5rem;
+
 }
 
-.payment_form {
+.container_order {
+    align-self: center;
+    width: 75%;
+    background-color: var(--color-hover);
+    padding: 16px;
+    border-radius: 16px;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+    flex-direction: column;
     align-items: flex-start;
+    margin-top: 2rem;
 }
 
-.payment_form {
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
-    border-radius: 0.375rem;
-    border-width: 2px;
-}
 
 .container_header,
 .container_body,
 .container_payment {
-    align-self: center;
     width: 75%;
-
-}
-
-.container_body,
-.container_payment {
-    margin-top: 3.5rem;
+    align-self: center;
 }
 
 .checkout_title {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1rem;
     border: 1px solid red;
     color: var(--color-secundario);
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding: 1rem;
 }
 
 .checkout_title_name {
     display: flex;
     align-items: center;
-    gap: 2.5rem;
+
+    gap: 1.5rem;
+}
+
+.checkout_date {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
 }
 
 .checkout_date_address {
     display: flex;
-    gap: 20px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.checkout_date_text {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    flex-wrap: wrap;
 }
 
 .checkout_date_address h3 {
@@ -73,29 +82,28 @@
 .checkout_address {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: .5rem;
 }
 
-.checkout_date {
+.checkout_address_text {
     display: flex;
-    gap: 10px;
     align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
 }
 
-.container_body{
-    border: 1px solid red;
-}
-
-.body_title {
+.payment_form {
     display: flex;
-    
-    color: var(--color-secundario);
-    justify-content: space-between;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
-.body_title_rigth{
-    display: flex;
-    gap: 16px;
+.payment_input {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    border-radius: 0.375rem;
+    border-width: 2px;
 }

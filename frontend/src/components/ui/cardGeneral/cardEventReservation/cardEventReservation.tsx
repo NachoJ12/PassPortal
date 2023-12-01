@@ -1,11 +1,15 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 import { NextPage } from 'next'
-import { Event } from '@/types/events'
+import { SingleEvent } from '@/types/events'
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
 import StadiumIcon from '@mui/icons-material/Stadium';
 import LocationOnIcon from '@mui/icons-material/LocationOn'
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney'
+import GroupsIcon from '@mui/icons-material/Groups';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import FestivalIcon from '@mui/icons-material/Festival';
+import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import logo from '../../../../../public/logo-grey.svg'
 import {
   Button,
@@ -21,7 +25,7 @@ import {
 import { useRouter } from 'next/navigation'
 
 interface Props {
-  event: Event
+  event: SingleEvent
 }
 
 const theme = createTheme({
@@ -39,7 +43,7 @@ const CardEventReservation: NextPage<Props> = ({ event }) => {
   const router = useRouter()
 
   const redirect = () => {
-    router.push(`/checkout/${event.id}`)
+    router.push(`/checkout/${event.event.id}`)
   }
 
   return (
@@ -49,13 +53,12 @@ const CardEventReservation: NextPage<Props> = ({ event }) => {
           <div className='cardReservation-title'>
             <h1>
               Reserve Your Tickets For:
-              {''}
             </h1>
-            <h2>{event?.name}</h2>
+            <h2>{event?.event?.name}</h2>
           </div>
           <div className='cardReservation-box'>
             <div className='cardReservation-containerImg'>
-              <Image className='cardReservation-image' src='' alt={event?.name} />
+              <Image className='cardReservation-image' src='' alt={event?.event.name} />
             </div>
           </div>
         </div>
@@ -65,27 +68,53 @@ const CardEventReservation: NextPage<Props> = ({ event }) => {
           </div>
 
           <div className='cardReservation-description'>
-            <p>{event?.description?.slice(0, 100)}</p>
+            <h2>{event?.event?.artist.name}</h2>
+            <p>{event?.event?.description}</p>
+
           </div>
-          <div className='cardReservation-dateUbi'>
+          <div className='cardReservation-date'>
             <p>
               <CalendarMonthIcon />
-              {event?.date}
+              {event?.event?.date}
             </p>
+            <p>
+              <AccessTimeIcon />
+              {event?.event?.time}
+            </p>
+
+          </div>
+
+          <div className='cardReservation-ubi'>
             <p>
               <LocationOnIcon />
-              {event?.venue?.address?.city}
-            </p>
-            <p>
-              <AttachMoneyIcon />
-              {Math.round(event?.venue?.capacity / event?.stock)}
+              {event?.event?.venue?.address?.city}
             </p>
             <p>
               <StadiumIcon />
-              {event?.venue?.capacity}
+              {event?.event?.venue?.name}
+
+            </p>
+            <p>
+              <GroupsIcon />
+              {event?.event?.venue?.capacity}
             </p>
           </div>
 
+
+          <ul className='tickets_list'>
+            <ConfirmationNumberIcon />
+            {event?.tickets.map(ticket => (
+              <li key={ticket.id}>
+                <div className='ticket_list'>
+                  <h4 style={{ alignSelf: "center" }}>{ticket.name}</h4>
+                  <AttachMoneyIcon />
+                  <p style={{ alignSelf: "center" }}>
+                    {ticket.price}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ul>
 
           <div className='cardReservation-button'>
             <Button

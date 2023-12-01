@@ -3,28 +3,17 @@ import { GetServerSideProps } from "next";
 import React, { FC, useState } from "react";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-
-import {
-    Box,
-    Button,
-    FormControl,
-    InputLabel,
-    MenuItem,
-    Select,
-    SelectChangeEvent,
-    ThemeProvider,
-    Typography,
-    createTheme,
-} from '@mui/material'
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import { createTheme } from '@mui/material'
 import BaseLayout from "@/components/layouts/base-layout";
 import PaymentForm from "@/components/ui/paymentForm/PaymentForm";
 import PaymentTable from "@/components/ui/paymentTable/PaymentTable";
-
-import { Event } from "@/types/events";
+import StadiumIcon from '@mui/icons-material/Stadium';
+import { SingleEvent } from "@/types/events";
 
 
 interface Props {
-    event: Event
+    event: SingleEvent
 }
 
 const theme = createTheme({
@@ -40,56 +29,55 @@ const theme = createTheme({
 
 
 const CheckOut: FC<Props> = ({ event }) => {
-    const [selectedValue, setSelectedValue] = useState('')
-    const handleReserveClick = () => {
-        console.log('Reservar', selectedValue)
-    }
+
     return (
         <BaseLayout>
 
             <div className="container_checkout">
-                <div className="container_header">
-                    <header className="checkout_title">
-                        <div className="checkout_title_name">
-                            <h1>{event?.name} name</h1>
-                            <h2>{event?.artist?.name} artist</h2>
-                        </div>
-
-                        <div className="checkout_date_address">
-                            <div className="checkout_date">
-                                <CalendarMonthIcon />
-                                <h3>{event?.date} date</h3>
-                                <h3>{event?.time} time</h3>
+                <div className="container_order">
+                    <header className="container_header">
+                        <nav className="checkout_title">
+                            <div className="checkout_title_name">
+                                <h1>{event?.event?.name} </h1>
                             </div>
-                            <div className="checkout_address">
-                                <LocationOnIcon sx={{ color: theme.palette.primary.main + '!important' }} fontSize="large" />
-                                <h3>{event?.venue?.name} venue name</h3>
-                                <h3>{event?.venue?.address.city} city</h3>
+                            <div className="checkout_date_address">
+                                <div className="checkout_date">
+                                    <div className="checkout_date_text">
+                                        <div style={{ display: "flex", gap:".5rem" }} >
+                                            <CalendarMonthIcon />
+                                            <h3>{event?.event?.date} </h3>
+                                        </div>
+                                        <div style={{ display: "flex", gap:".5rem" }}>
+                                            <AccessTimeIcon />
+                                            <h3>{event?.event?.time} </h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="checkout_address">
+                                    
+                                    <div className="checkout_address_text">
+                                        <div style={{ display: "flex", gap:".5rem" }} >
+                                            <LocationOnIcon sx={{ color: theme.palette.primary.main + '!important' }} />
+                                            <h3>{event?.event?.venue?.address.city} </h3>
+                                        </div>
+                                        <div style={{ display: "flex", gap:".5rem" }}>
+                                            <StadiumIcon />
+                                            <h3>{event?.event?.venue?.name}  </h3>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-
+                        </nav>
                     </header>
+
+                    <section className="container_body">
+                        <PaymentTable tickets={event?.tickets} />
+                    </section>
+                    <section className="container_payment">
+                        <PaymentForm />
+                    </section>
+
                 </div>
-
-                <div className="container_body">
-
-                <PaymentTable/>
-
-
-                </div>
-
-                <div className="container_payment">
-                    <PaymentForm />
-                    <Button
-                        sx={{ width: '35% !important ', borderColor: theme.palette.primary.main + '!important', color: theme.palette.primary.main + '!important' }}
-                        variant='outlined'
-                        color='primary'
-                        onClick={handleReserveClick}
-                    >
-                        Buy Tickets !
-                    </Button>
-                </div>
-
             </div>
 
         </BaseLayout>);

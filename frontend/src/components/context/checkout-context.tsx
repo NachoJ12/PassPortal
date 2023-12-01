@@ -17,9 +17,18 @@ export const CheckoutContext = createContext<CheckoutContextProps | undefined>(u
 
 export const CheckoutProvider = ({ children }: Props) => {
     const [total, setTotal] = useState<number>(0);
+
     const [selectedValue, setSelectedValue] = useState({
         regular: "",
         premium: "",
+        Premium:"",
+        Regular:"",
+        VIP:"",
+        General:"",
+        Palco:"",
+        AccesoGeneral:"",
+        PlateaAlta:"",
+        PlateaBaja:""
     });
 
     const handleChange = (event: SelectChangeEvent<string>) => {

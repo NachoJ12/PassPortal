@@ -38,6 +38,6 @@ export const schemaRegister = yup.object().shape({
 export const schemaCard = yup.object({
     number: yup.number().required("This field is required").max(16),
     cvc: yup.number().required("This field is required").max(4),
-    expDate: yup.string().required("This field is required"),
-    nameOnCard: yup.string().required("This field is required"),
+    expiry: yup.string().required("This field is required"),
+    name: yup.string().required("This field is required"),
 })

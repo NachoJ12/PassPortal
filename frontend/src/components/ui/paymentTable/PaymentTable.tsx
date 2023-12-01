@@ -8,6 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Select, createTheme, MenuItem } from '@mui/material';
 import { CheckoutContext } from '@/components/context/checkout-context';
+import { Ticket } from '@/types/events';
 
 function createData(
     name: string,
@@ -16,10 +17,6 @@ function createData(
     return { name, price, };
 }
 
-const rows = [
-    createData('regular', 10.99),
-    createData('premium', 19.99),
-];
 
 const theme = createTheme({
     palette: {
@@ -33,15 +30,13 @@ const theme = createTheme({
 })
 
 interface Props {
-    name: string,
-    price: number,
+    tickets : Ticket[]
 }
 
-export default function PaymentTable() {
+export default function PaymentTable({tickets} : Props) {
 
     const context = useContext(CheckoutContext);
 
-    // Perform a null check or provide default values
     const { selectedValue, handleChange = () => { } } = context || {};
 
     
@@ -58,7 +53,7 @@ export default function PaymentTable() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
+                    {tickets.map((row) => (
                         <TableRow
                             key={row.name}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}

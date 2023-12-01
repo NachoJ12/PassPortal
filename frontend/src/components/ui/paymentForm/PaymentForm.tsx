@@ -62,110 +62,117 @@ const PaymentForm = () => {
 
 
             <form onSubmit={handleSubmit(onSubmit)} className='payment_form'>
-                <Cards
-                    number={state.number}
-                    expiry={state.expiry}
-                    cvc={state.cvc}
-                    name={state.name}
-                    focused={state.focused}
-                />
-                <div >
-                    <div>
-                        <div>
 
-                            <Typography variant="caption" color="red">
-                                <ErrorMessage errors={errors} name="number" />
-                            </Typography>
-                            <input
-                                className='payment_input'
-                                {...register("number",
-                                    //  {
-                                    //     maxLength:{
-                                    //         value:16,
-                                    //         message:"Max Length 16 numbers"
-                                    //     }, minLength: {
-                                    //         value: 16,
-                                    //         message: "Min Length 16 numbers"
-                                    //     }
-                                    // }
-                                )}
-                                //required={true}
-                                type="number"
-                                name="number"
-                                placeholder="Card Number"
-                                value={state.number}
-                                onChange={handleInputChange}
-                                onFocus={handleInputFocus}
-                            />
+                <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center" }}>
+                    <Cards
+                        number={state.number}
+                        expiry={state.expiry}
+                        cvc={state.cvc}
+                        name={state.name}
+                        focused={state.focused}
+                    />
+                    <div style={{
+                        display: "flex", gap: "20px", flexWrap: "wrap", justifyContent: "center" }}>
+                        <div style={{ display: "flex", flexDirection: "column", gap: "20px",  }}>
+                            <div style={{ width: "100%" }} >
+
+                                <Typography variant="caption" color="red">
+                                    <ErrorMessage errors={errors} name="number" />
+                                </Typography>
+                                <input
+                                    className='payment_input'
+                                    {...register("number",
+                                        //  {
+                                        //     maxLength:{
+                                        //         value:16,
+                                        //         message:"Max Length 16 numbers"
+                                        //     }, minLength: {
+                                        //         value: 16,
+                                        //         message: "Min Length 16 numbers"
+                                        //     }
+                                        // }
+                                    )}
+                                    //required={true}
+                                    type="number"
+                                    name="number"
+                                    placeholder="Card Number"
+                                    value={state.number}
+                                    onChange={handleInputChange}
+                                    onFocus={handleInputFocus}
+                                />
+                            </div>
+
+                            <div style={{ width: "100%" }} >
+                                <Typography variant="caption" color="red">
+                                    <ErrorMessage errors={errors} name="expDate" />
+                                </Typography>
+                                <input
+                                    className='payment_input'
+                                    {...register("expiry")}
+                                    type="text"
+                                    name="expiry"
+                                    //required={true}
+                                    placeholder="Card Expiry"
+                                    value={state.expiry}
+                                    onChange={handleInputChange}
+                                    onFocus={handleInputFocus}
+                                />
+                            </div>
                         </div>
 
-                        <div>
-                            <Typography variant="caption" color="red">
-                                <ErrorMessage errors={errors} name="expDate" />
-                            </Typography>
-                            <input
-                                className='payment_input'
-                                {...register("expiry")}
-                                type="text"
-                                name="expiry"
-                                //required={true}
-                                placeholder="Card Expiry"
-                                value={state.expiry}
-                                onChange={handleInputChange}
-                                onFocus={handleInputFocus}
-                            />
-                        </div>
-                    </div>
+                        <div style={{ display: "flex", flexDirection: "column", gap: "20px",  }}>
+                            <div style={{ width: "100%" }}>
+                                <Typography variant="caption" color="red">
+                                    <ErrorMessage errors={errors} name="cvc" />
+                                </Typography>
+                                <input
+                                    className='payment_input'
+                                    {...register("cvc")}
+                                    type="number"
+                                    name="cvc"
+                                    placeholder="Card CVC"
+                                    //required={true}
+                                    value={state.cvc}
+                                    onChange={handleInputChange}
+                                    onFocus={handleInputFocus}
+                                />
+                            </div>
 
-                    <div>
-                        <div>
-                            <Typography variant="caption" color="red">
-                                <ErrorMessage errors={errors} name="cvc" />
-                            </Typography>
-                            <input
-                                className='payment_input'
-                                {...register("cvc")}
-                                type="number"
-                                name="cvc"
-                                placeholder="Card CVC"
-                                //required={true}
-                                value={state.cvc}
-                                onChange={handleInputChange}
-                                onFocus={handleInputFocus}
-                            />
-                        </div>
+                            <div style={{ width: "100%" }}>
+                                <Typography variant="caption" color="red">
+                                    <ErrorMessage errors={errors} name="name" />
+                                </Typography>
 
-                        <div>
-                            <Typography variant="caption" color="red">
-                                <ErrorMessage errors={errors} name="name" />
-                            </Typography>
-
-                            <input
-                                className='payment_input'
-                                {...register("name")}
-                                type="text"
-                                name="name"
-                                //required={true}
-                                placeholder="Card Name"
-                                value={state.name}
-                                onChange={handleInputChange}
-                                onFocus={handleInputFocus}
-                            />
+                                <input
+                                    className='payment_input'
+                                    {...register("name")}
+                                    type="text"
+                                    name="name"
+                                    //required={true}
+                                    placeholder="Card Name"
+                                    value={state.name}
+                                    onChange={handleInputChange}
+                                    onFocus={handleInputFocus}
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
 
 
-                <Button
-                    sx={{ width: '35% !important ', borderColor: theme.palette.primary.main + '!important', color: theme.palette.primary.main + '!important' }}
-                    variant='outlined'
-                    type="submit"
-                    color='primary'
+                <div style={{display:"flex", justifyContent:"center", width:"100%"}}>
 
-                >
-                    Buy Tickets !
-                </Button>
 
+                    <Button
+                        sx={{ width: '35% !important ', borderColor: theme.palette.primary.main + '!important', color: theme.palette.primary.main + '!important' }}
+                        variant='outlined'
+                        type="submit"
+                        color='primary'
+
+                    >
+                        Buy Tickets !
+                    </Button>
+                </div>
             </form>
 
         </div>

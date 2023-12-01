@@ -29,12 +29,12 @@
     margin-top: 2rem;
 }
 
-
 .container_header,
 .container_body,
 .container_payment {
     width: 75%;
     align-self: center;
+    margin-top:2rem;
 }
 
 .checkout_title {
@@ -95,8 +95,8 @@
 .payment_form {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .payment_input {
@@ -106,4 +106,5 @@
     padding-right: 0.75rem;
     border-radius: 0.375rem;
     border-width: 2px;
+    width: 100%;
 }

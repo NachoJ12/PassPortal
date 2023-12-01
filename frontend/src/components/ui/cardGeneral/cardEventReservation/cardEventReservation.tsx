@@ -92,7 +92,6 @@ const CardEventReservation: NextPage<Props> = ({ event }) => {
             <p>
               <StadiumIcon />
               {event?.event?.venue?.name}
-
             </p>
             <p>
               <GroupsIcon />

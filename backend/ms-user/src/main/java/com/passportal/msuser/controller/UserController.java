@@ -3,6 +3,7 @@ package com.passportal.msuser.controller;
 import com.passportal.msuser.dto.request.LoginRequestDTO;
 import com.passportal.msuser.dto.request.UserRequestDTO;
 import com.passportal.msuser.dto.response.AccessTokenResponseDTO;
+import com.passportal.msuser.dto.response.LoginResponseDTO;
 import com.passportal.msuser.dto.response.UserResponseDTO;
 import com.passportal.msuser.exception.DuplicatedValueException;
 import com.passportal.msuser.exception.NotFoundException;
@@ -43,7 +44,18 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
 
-        return ResponseEntity.ok(credentials);
+        UserResponseDTO userResponseDTO = userService.getByEmail(loginRequestDTO.getEmail());
+
+        LoginResponseDTO loginResponseDTO = new LoginResponseDTO(
+                userResponseDTO.getId(),
+                userResponseDTO.getUsername(),
+                userResponseDTO.getRole(),
+                credentials.getAccessToken(),
+                credentials.getExpiresIn(),
+                credentials.getRefreshToken(),
+                credentials.getScope());
+
+        return ResponseEntity.ok(loginResponseDTO);
     }
 
     @PostMapping("/logout")

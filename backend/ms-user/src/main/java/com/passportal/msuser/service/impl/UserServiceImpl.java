@@ -146,4 +146,10 @@ public class UserServiceImpl {
         keycloakServiceImpl.logout(userIdKeycloak);
     }
 
+    public UserResponseDTO getByEmail(String email){
+        Optional<User> existUser = userRepository.findByEmail(email);
+
+        UserResponseDTO userResponseDTO = userMapper.toDto(existUser.get());
+        return userResponseDTO;
+    }
 }

@@ -26,7 +26,7 @@ public interface IEventRepository extends JpaRepository<Event, Long>, JpaSpecifi
             "FROM event " +
             "WHERE date >= CURDATE() AND date <= CURDATE() + INTERVAL 30 DAY " +
             "ORDER BY RAND() " +
-            "LIMIT 5;", nativeQuery = true)
+            "LIMIT 6;", nativeQuery = true)
     List<Event> findRandomEventsWithin30Days();
 
     //TODO No sirve

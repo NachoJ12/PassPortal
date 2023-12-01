@@ -22,7 +22,9 @@ export default NextAuth({
                 })
 
                 const user = await res.json()
+                console.log(user)
                 if (res.ok && user) {
+                    
                     return user
                 }
                 return user
@@ -35,6 +37,7 @@ export default NextAuth({
         },
         async session({ session, token }) {
             session.user = token as any;
+            
             return session;
         },
     },

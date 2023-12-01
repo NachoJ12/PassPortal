@@ -21,13 +21,14 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ onUsernameClick }) => {
   const { data: session } = useSession();
+  
 
   return (
     <nav className='navbar'>
       {session?.user ? (
         <>
           <span className="navbar_link" onClick={onUsernameClick}>
-            {session.user.name}
+            {session.user.username}
           </span>
           <Link
             href="/"

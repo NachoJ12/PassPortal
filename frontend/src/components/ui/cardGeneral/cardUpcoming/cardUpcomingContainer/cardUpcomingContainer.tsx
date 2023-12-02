@@ -1,15 +1,24 @@
-import React, { FC } from "react";
+import React, { FC, useState, useEffect } from "react";
 import { Event } from '@/types/events'
 import CardUpcoming from '@/components/ui/cardGeneral/cardUpcoming/cardUpcoming'
+import { getUpcomingEvents } from "@/service/events-service";
 
 
+const CardUpcomingContainer: FC = () => {
+  const [events, setEvents] = useState<Event[]>();
 
-interface Props {
-  events: Event[];
-}
 
-const CardUpcomingContainer: FC<Props> = ({ events }) => {
-
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data: Event[] = await getUpcomingEvents();
+        setEvents(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData();
+  }, [])
 
   return (
     <div className="cardUpcoming-container">

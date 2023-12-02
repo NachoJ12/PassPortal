@@ -16,7 +16,7 @@ export const getAllEvents = async () => {
 }
 
 export const getUpcomingEvents = async () => {
-  const res = await fetch(`${NEXT_PUBLIC_BACKEND_URL}/events/all`, {
+  const res = await fetch(`${NEXT_PUBLIC_BACKEND_URL}/events/random`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

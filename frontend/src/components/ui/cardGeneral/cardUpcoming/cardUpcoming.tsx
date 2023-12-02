@@ -23,7 +23,7 @@ const CardUpcoming: FC<Props> = ({ event }) => {
 
 
   return (
-    <Card className='cardUpcoming-general' data-aos='fade-up'>
+    <Card onClick={redirect} className='cardUpcoming-general' data-aos='fade-up'>
       <CardContent className='cardUpcoming-elements'>
         <div className='cardUpcoming-image-container'>
           <Image

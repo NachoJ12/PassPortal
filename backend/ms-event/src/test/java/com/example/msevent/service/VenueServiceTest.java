@@ -26,7 +26,7 @@ public class VenueServiceTest {
     @Order(1)
     public void addVenueTest(){
 
-        Address address= new Address(1,"Oliveros","Córdoba","Argentina");
+        Address address= new Address(1L,"Oliveros","Córdoba","Argentina");
         Venue venue = new Venue("Orfeo",15000L,"imageOrfeo",address);
 
         Venue response = venueService.save(venue);
@@ -50,7 +50,7 @@ public class VenueServiceTest {
     @Test
     @Order(3)
     public void editVenueTest(){
-        Address address= new Address(1,"Oliveros","Córdoba","Argentina");
+        Address address= new Address(1L,"Oliveros","Córdoba","Argentina");
         Venue venueToAdd = new Venue("Orfeo",15000L,"imageOrfeo",address);
         Venue venueAdded= venueService.save(venueToAdd);
         venueToAdd.setCapacity(20000L);
@@ -63,7 +63,7 @@ public class VenueServiceTest {
     @Test
     @Order(4)
     public void searchAndDeleteAVenueTest(){
-        Address address= new Address(1,"Oliveros","Córdoba","Argentina");
+        Address address= new Address(1L,"Oliveros","Córdoba","Argentina");
         Venue venueToAdd = new Venue("Orfeo",15000L,"imageOrfeo",address);
         Venue venueAdded= venueService.save(venueToAdd);
 

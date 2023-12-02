@@ -16,7 +16,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Controller
-@RequestMapping("/events")
+@RequestMapping("/event")
 @RequiredArgsConstructor
 public class EventController {
 
@@ -71,15 +71,10 @@ public class EventController {
 
         return ResponseEntity.ok().body(service.filterEvents(artist, categoryNames, country, city));
     }
-    /*
-    @GetMapping("/city")
-    public ResponseEntity<List<Event>> findByVenueAddressCity(@RequestParam("name") String city) {
-        return ResponseEntity.ok().body(service.findByVenueAddressCity(city));
-    }*/
 
     @PostMapping
     public ResponseEntity<EventDTO> save(@RequestBody EventDTO eventDTO){
-        Event e = service.save(eventDTO.getEvent());
+        Event e = service.saveOrUpdateEvent(eventDTO.getEvent());
         for (TicketDTO ticket : eventDTO.getTicketDTOList()) {
             ticket.setEventid(e.getID());
             service.createTicket(ticket);

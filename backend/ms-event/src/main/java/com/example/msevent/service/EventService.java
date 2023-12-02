@@ -4,11 +4,9 @@ import com.example.msevent.Feign.ITicketFeign;
 
 import com.example.msevent.DTO.TicketDTO;
 import com.example.msevent.filter.EventSpecifications;
-import com.example.msevent.model.Artist;
-import com.example.msevent.model.Category;
-import com.example.msevent.model.Event;
+import com.example.msevent.model.*;
 import com.example.msevent.DTO.EventDTO;
-import com.example.msevent.repository.IEventRepository;
+import com.example.msevent.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
@@ -22,6 +20,10 @@ import java.util.List;
 public class EventService {
 
     private final IEventRepository repository;
+    private final ICategoryRepository categoryRepository;
+    private final IArtistRepository artistRepository;
+    private final IVenueRepository venueRepository;
+
 
     @Autowired
     private final ITicketFeign feign;
@@ -61,10 +63,10 @@ public class EventService {
         return repository.save(event);
     }
 
-
     public List<Event> findByArtistName(String name){
         return repository.findByArtistName(name);
     }
+
     public List<Event> findByCategoryName(String name){
         return repository.findByCategoryName(name);
     }
@@ -86,4 +88,25 @@ public class EventService {
         return repository.findRandomEventsWithin30Days();
     }
 
+    public Event saveOrUpdateEvent(Event event) {
+        if (event.getCategory().getID() == null) {
+            Category cat = categoryRepository.save(event.getCategory());
+            Category catToPass = new Category();
+            catToPass.setID(cat.getID());
+            event.setCategory(catToPass);
+        }
+        if (event.getArtist().getID() == null) {
+            Artist art = artistRepository.save(event.getArtist());
+            Artist artToPass= new Artist();
+            artToPass.setID(art.getID());
+            event.setArtist(artToPass);
+        }
+        if (event.getVenue().getID() == null) {
+            Venue savedVenue = venueRepository.save(event.getVenue());
+            Venue venueToPass= new Venue();
+            venueToPass.setID(savedVenue.getID());
+            event.setVenue(venueToPass);
+        }
+        return(repository.save(event));
+    }
 }

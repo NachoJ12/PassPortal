@@ -32,4 +32,5 @@ public class Category {
     @JsonIgnore
     @OneToMany(mappedBy = "category",cascade = {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
     private Set<Event> event= new HashSet<>();
+
 }

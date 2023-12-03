@@ -104,10 +104,10 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pi21023c02_GRUPO7`.`event` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
+  `name` VARCHAR(80) NOT NULL,
   `date` DATE NOT NULL,
   `time` TIME NULL DEFAULT NULL,
-  `description` VARCHAR(150) NULL DEFAULT NULL,
+  `description` VARCHAR(255) NULL DEFAULT NULL,
   `stock` BIGINT NULL DEFAULT NULL,
   `image` VARCHAR(300) NULL DEFAULT NULL,
   `venue_id` BIGINT NOT NULL,

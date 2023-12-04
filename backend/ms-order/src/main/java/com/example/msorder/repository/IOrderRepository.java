@@ -11,7 +11,7 @@ import java.util.List;
 public interface IOrderRepository extends JpaRepository<Order, Long> {
 
     List<Order> findByUserid(Long id);
+    @Query("SELECT o FROM Order o WHERE MONTH(o.date_time) = :month AND YEAR(o.date_time) = :year")
+    List<Order> findOrdersByMonthAndYear(int month, int year);
 
-    @Query("SELECT o FROM Order o WHERE MONTH(o.date_time) = :month")
-    List<Order> findOrdersByMonth(int month);
 }

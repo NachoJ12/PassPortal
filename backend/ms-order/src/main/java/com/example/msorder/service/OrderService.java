@@ -57,18 +57,14 @@ public class OrderService {
         return repository.findByUserid(id);
     }
 
-    public List<Order> findOrdersByMonth (int month){
-        return repository.findOrdersByMonth(month);
-    }
-
-    public  ByteArrayOutputStream generatePdfStream(int id) throws DocumentException, IOException {
+    public  ByteArrayOutputStream generatePdfStream(int month, int year) throws DocumentException, IOException {
 
         Document document = new Document();
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PdfWriter.getInstance(document, outputStream);
         document.open();
 
-        List<Order> orderList = repository.findOrdersByMonth(id);
+        List<Order> orderList = repository.findOrdersByMonthAndYear(month, year);
 
         int total_orders = 0;
         Double total_revenue = 0.0;
@@ -86,8 +82,10 @@ public class OrderService {
 
         document.add(new Paragraph("\n"));
 
-        String month = orderList.get(1).getDate_time().getMonth().name();
-        Paragraph title =new Paragraph("BUSINESS REPORT OF "+month, FontFactory.getFont(FontFactory.HELVETICA,24));
+        String monthW = orderList.get(1).getDate_time().getMonth().name();
+        int yearW = orderList.get(1).getDate_time().getYear();
+
+        Paragraph title =new Paragraph("BUSINESS REPORT OF "+monthW+ " " + yearW, FontFactory.getFont(FontFactory.HELVETICA,24));
         title.setAlignment(Paragraph.ALIGN_CENTER);
 
         document.add(title);
@@ -101,28 +99,7 @@ public class OrderService {
         document.add(new Paragraph("The number of orders for the month is "+ total_orders));
         document.add(new Paragraph("\n"));
 
-//        Map<Ticket, Long> ticketFrequencyMap = analyzeTickets(orderList);
-//
-//        // Find the top two tickets with most appearances
-//        List<Map.Entry<Ticket, Long>> topTickets = ticketFrequencyMap.entrySet().stream()
-//                .sorted(Map.Entry.<Ticket, Long>comparingByValue().reversed())
-//                .limit(2).toList();
-//
-//        if (topTickets.size() >= 2) {
-//            Ticket mostFrequentTicket = topTickets.get(0).getKey();
-//            Ticket secondMostFrequentTicket = topTickets.get(1).getKey();
-//
-//            System.out.println("Most Frequent Ticket: " + mostFrequentTicket.getName());
-//            System.out.println("Most Frequent Ticket: " + mostFrequentTicket.getID());
-//            System.out.println("Second Most Frequent Ticket: " + secondMostFrequentTicket.getName());
-//            System.out.println("Second Most Frequent Ticket: " + secondMostFrequentTicket.getID());
-//
-//        } else {
-//            System.out.println("Insufficient data to determine top two tickets.");
-//        }
-
         long uniqueUserCount = countUniqueUsers(orderList);
-
 
         document.add(new Paragraph("The number unique users this month was "+ uniqueUserCount));
         document.add(new Paragraph("\n"));
@@ -134,11 +111,6 @@ public class OrderService {
 
         document.close();
         return outputStream;
-    }
-    Map<Ticket, Long> analyzeTickets(List<Order> orderList) {
-        return orderList.stream()
-                .flatMap(order -> order.getTicket().stream())
-                .collect(Collectors.groupingBy(ticket -> ticket, Collectors.counting()));
     }
 
     public static long countUniqueUsers(List<Order> orderList) {

@@ -58,18 +58,13 @@ public class OrderController {
         return ResponseEntity.ok().body(service.update(order));
     }
 
-    @GetMapping("/month/{id}")
-    public ResponseEntity<List<Order>> findOrdersByMonth(@PathVariable int id){
-        return ResponseEntity.ok().body(service.findOrdersByMonth(id));
-    }
+    @GetMapping("/pdf/{month}/{year}")
+    public ResponseEntity<byte[]> exportPdf(@PathVariable int month,@PathVariable int year) throws IOException, DocumentException {
 
-    @GetMapping("/pdf/{id}")
-    public ResponseEntity<byte[]> exportPdf(@PathVariable int id) throws IOException, DocumentException {
-
-        ByteArrayOutputStream pdfStream = service.generatePdfStream(id);
+        ByteArrayOutputStream pdfStream = service.generatePdfStream(month,year);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);
-        headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=ReportOfTheMonth"+id+".pdf");
+        headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=ReportOfTheMonth"+month+year+".pdf");
         headers.setContentLength(pdfStream.size());
         return new ResponseEntity<>(pdfStream.toByteArray(), headers, HttpStatus.OK);
     }

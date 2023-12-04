@@ -130,7 +130,7 @@ public class OrderService {
         document.add(new Paragraph("The average spending per user was $"+ formattedAvgOrder));
         document.add(new Paragraph("\n"));
         String formattedSpending = String.format("%.2f", total_revenue/uniqueUserCount);
-        document.add(new Paragraph("The average spending per user was $"+ formattedSpending));
+        document.add(new Paragraph("The average spending per order was $"+ formattedSpending));
 
         document.close();
         return outputStream;

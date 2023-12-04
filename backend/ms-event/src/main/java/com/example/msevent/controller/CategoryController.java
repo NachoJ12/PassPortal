@@ -30,7 +30,7 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<Category> save(@RequestPart("category") Category category, @RequestParam("file") MultipartFile multipartFile){
+    public ResponseEntity<Category> save(@RequestPart("data") Category category, @RequestParam("file") MultipartFile multipartFile){
         return ResponseEntity.ok().body(service.save(category,multipartFile));
     }
 

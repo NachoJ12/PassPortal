@@ -46,3 +46,17 @@ export interface Ticket {
     eventid: number;
 }
 
+
+export type TicketType = {
+    regular : number,
+    premium : number,
+    Regular : number,
+    Premium : number,
+    VIP : number,
+    General : number,
+    Palco : number,
+    AccesoGeneral : number,
+    PlateaAlta : number,
+    PlateaBaja : number,
+    // Add more ticket types as needed
+}

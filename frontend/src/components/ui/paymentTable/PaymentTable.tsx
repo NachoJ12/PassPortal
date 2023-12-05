@@ -8,14 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Select, createTheme, MenuItem } from '@mui/material';
 import { CheckoutContext } from '@/components/context/checkout-context';
-import { Ticket } from '@/types/events';
-
-function createData(
-    name: string,
-    price: number,
-) {
-    return { name, price, };
-}
+import { Ticket, TicketType } from '@/types/events';
 
 
 const theme = createTheme({
@@ -30,16 +23,16 @@ const theme = createTheme({
 })
 
 interface Props {
-    tickets : Ticket[]
+    tickets: Ticket[]
 }
 
-export default function PaymentTable({tickets} : Props) {
+export default function PaymentTable({ tickets }: Props) {
 
     const context = useContext(CheckoutContext);
 
     const { selectedValue, handleChange = () => { } } = context || {};
 
-    
+    console.log(selectedValue)
 
     return (
         <TableContainer component={Paper}>
@@ -53,7 +46,7 @@ export default function PaymentTable({tickets} : Props) {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {tickets.map((row) => (
+                    {tickets.map((row: Ticket) => (
                         <TableRow
                             key={row.name}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -65,25 +58,26 @@ export default function PaymentTable({tickets} : Props) {
                             <TableCell align="right">
                                 <div>
                                     <Select
+                                        defaultValue="0"
                                         labelId='select-label'
                                         id='select'
-                                        value={"premium" === row.name ? selectedValue?.premium : selectedValue?.regular}
-                                        name={row.name}
-                                        label='Selecciona'
+                                        name={row.name.split(" ").join("")}
+                                        label='Choose'
                                         onChange={handleChange}
                                         sx={{
                                             '& fieldset': {
                                                 borderColor: '#cb74a8 !important', // Cambia "your-desired-color" al color que desees
                                             },
                                             width: '50% !important',
-                                            color: 'black !important',
+                                            color: 'white !important',
                                         }}
-
                                     >
-                                        <MenuItem value=''>Choose...</MenuItem>
+                                        <MenuItem value='0'>0</MenuItem>
                                         <MenuItem value='1'>1</MenuItem>
                                         <MenuItem value='2'>2</MenuItem>
                                         <MenuItem value='3'>3</MenuItem>
+                                        <MenuItem value='4'>4</MenuItem>
+                                        <MenuItem value='5'>5</MenuItem>
                                     </Select>
                                 </div>
                             </TableCell>

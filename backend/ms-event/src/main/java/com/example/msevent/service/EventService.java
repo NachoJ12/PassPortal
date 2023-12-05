@@ -7,6 +7,7 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.example.msevent.Feign.ITicketFeign;
@@ -20,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -58,8 +60,34 @@ public class EventService {
     public List<Event> findByDate(LocalDate date){
         return repository.findByDate(date);
     }
+
+    @Transactional
     public void delete(Long id){
-        repository.deleteById(id);
+
+        AWSCredentialsProvider credentialsProvider = new AWSStaticCredentialsProvider(credentials);
+        final AmazonS3 s3 = AmazonS3ClientBuilder.standard()
+                .withCredentials(credentialsProvider)
+                .withRegion(Regions.US_EAST_1)
+                .build();
+
+        try {
+            // Fetch the link from the database
+            String link = repository.findAllByID(id).get().getImage();
+            String imgName = link.substring(link.lastIndexOf("/")+1);
+
+            // Delete the corresponding S3 object
+            String key = "images/events/" + imgName;
+            s3.deleteObject(new DeleteObjectRequest("grupo7-bucket",key));
+
+            // Delete the entity from the database
+            repository.deleteById(id);
+        } catch (AmazonServiceException ex) {
+            // Log the exception or handle it as needed
+            ex.printStackTrace();
+            // You can throw a custom exception if needed
+            throw new RuntimeException("Error deleting entity and S3 object", ex);
+        }
+
     }
 
    public EventDTO findbyIDDTO(Long id) {

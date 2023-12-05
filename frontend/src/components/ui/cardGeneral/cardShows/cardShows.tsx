@@ -25,7 +25,7 @@ const CardsShowEvents: FC<Props> = ({ event }) => {
         <CardContent className="cardShow-container-image">
           <div>
             <Image
-              src=""
+              src={event?.image}
               alt={event?.name}
               width={200} height={200}
               className="cardShow-Image"

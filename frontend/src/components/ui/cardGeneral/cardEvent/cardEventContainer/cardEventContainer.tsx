@@ -1,32 +1,13 @@
-"use client"
 import React, { FC, useEffect, useState } from "react";
 import { Grid } from "@mui/material";
 import { Event } from '@/types/events'
 import CardEvent from "../cardEvent";
-import { getAllEvents } from "@/service/events-service";
 
 interface Props {
   events: Event[]
 }
 
 export const CardEventContainer: FC<Props> = ({ events }) => {
-  const [eee, setEEE] = useState<Event[]>()
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getAllEvents();
-        setEEE(data);
-
-      } catch (error) {
-
-        console.error('Error fetching data:', error);
-      }
-    };
-    fetchData();
-  }, []);
-
-
 
   return (
     <Grid container spacing={4} className="card-container">

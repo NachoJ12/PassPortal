@@ -34,7 +34,7 @@ const CardEvent: FC<Props> = ({ event }) => {
             <Card  key={event.id} className="card-general" data-aos="fade-up">
                 <CardContent className="card-elements">
                     {/* TODO usar img del evento correspondiente */}
-                    <Image src="" alt={event?.name} width={200} height={200} className="card-image" />
+                    <Image src={event?.image} alt={event?.name} width={200} height={200} className="card-image" />
                     <div className="card-info">
                         <div className="description-card">
                             <div className="card-date-ubication">

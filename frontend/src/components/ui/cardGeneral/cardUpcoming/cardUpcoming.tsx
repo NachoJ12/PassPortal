@@ -27,11 +27,13 @@ const CardUpcoming: FC<Props> = ({ event }) => {
       <CardContent className='cardUpcoming-elements'>
         <div className='cardUpcoming-image-container'>
           <Image
-            src=""
+            src={event?.image}
             alt={event?.name}
             width={50}
             height={50}
-            className='cardUpcoming-image'
+            className='cardUpcoming-image '
+            objectFit="cover"
+            priority
           />
         </div>
         <div className='cardUpcoming-info'>

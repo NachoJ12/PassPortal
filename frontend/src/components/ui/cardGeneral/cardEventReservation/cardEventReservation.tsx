@@ -58,7 +58,7 @@ const CardEventReservation: NextPage<Props> = ({ event }) => {
           </div>
           <div className='cardReservation-box'>
             <div className='cardReservation-containerImg'>
-              <Image className='cardReservation-image' src='' alt={event?.event.name} />
+              <Image className='cardReservation-image' width={250} height={250} src={event?.event.image} alt={event?.event.name} />
             </div>
           </div>
         </div>
@@ -67,7 +67,7 @@ const CardEventReservation: NextPage<Props> = ({ event }) => {
             <Image src={logo} alt='logo' width={250} height={250}></Image>
           </div>
 
-          <div className='cardReservation-description'>
+          <div className='cardReservation-description'> 
             <h2>{event?.event?.artist.name}</h2>
             <p>{event?.event?.description}</p>
 

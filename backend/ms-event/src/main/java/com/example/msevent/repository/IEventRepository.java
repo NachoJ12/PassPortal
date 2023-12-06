@@ -29,6 +29,4 @@ public interface IEventRepository extends JpaRepository<Event, Long>, JpaSpecifi
             "LIMIT 6;", nativeQuery = true)
     List<Event> findRandomEventsWithin30Days();
 
-    //TODO No sirve
-    //List<Event> findByVenueAddressCity(String city);
 }

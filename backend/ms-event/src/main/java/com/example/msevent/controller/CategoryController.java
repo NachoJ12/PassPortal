@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,8 +30,8 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<Category> save(@RequestBody Category category){
-        return ResponseEntity.ok().body(service.save(category));
+    public ResponseEntity<Category> save(@RequestPart("data") Category category, @RequestParam("file") MultipartFile multipartFile){
+        return ResponseEntity.ok().body(service.save(category,multipartFile));
     }
 
     @PutMapping

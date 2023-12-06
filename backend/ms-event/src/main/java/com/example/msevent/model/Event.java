@@ -36,7 +36,7 @@ public class Event {
     @Column(name = "user_id")
     private Long userid;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "venue_id", referencedColumnName = "ID")
     private Venue venue;
 
@@ -44,7 +44,7 @@ public class Event {
     @JoinColumn(name = "category_id", referencedColumnName = "ID")
     private Category category;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "artist_id", referencedColumnName = "ID")
     private Artist artist;
 

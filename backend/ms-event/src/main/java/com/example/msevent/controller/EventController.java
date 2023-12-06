@@ -1,5 +1,12 @@
 package com.example.msevent.controller;
 
+import com.amazonaws.AmazonServiceException;
+import com.amazonaws.auth.AWSCredentialsProvider;
+import com.amazonaws.auth.AWSCredentialsProviderChain;
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.example.msevent.DTO.TicketDTO;
 import com.example.msevent.model.Event;
 import com.example.msevent.DTO.EventDTO;
@@ -7,10 +14,17 @@ import com.example.msevent.service.EventService;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.amazonaws.services.s3.AmazonS3;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.time.LocalDate;
 
 import java.util.List;
@@ -71,15 +85,10 @@ public class EventController {
 
         return ResponseEntity.ok().body(service.filterEvents(artist, categoryNames, country, city));
     }
-    /*
-    @GetMapping("/city")
-    public ResponseEntity<List<Event>> findByVenueAddressCity(@RequestParam("name") String city) {
-        return ResponseEntity.ok().body(service.findByVenueAddressCity(city));
-    }*/
 
     @PostMapping
-    public ResponseEntity<EventDTO> save(@RequestBody EventDTO eventDTO){
-        Event e = service.save(eventDTO.getEvent());
+    public ResponseEntity<EventDTO> save(@RequestPart("data") EventDTO eventDTO, @RequestParam("file")MultipartFile multifile){
+        Event e = service.saveOrUpdateEvent(eventDTO.getEvent(),multifile);
         for (TicketDTO ticket : eventDTO.getTicketDTOList()) {
             ticket.setEventid(e.getID());
             service.createTicket(ticket);

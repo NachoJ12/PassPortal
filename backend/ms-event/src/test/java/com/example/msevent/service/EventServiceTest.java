@@ -26,7 +26,7 @@ public class EventServiceTest {
     @Test
     @Order(1)
     public void addEventTest(){
-        Address address= new Address(1,"Oliveros","Córdoba","Argentina");
+        Address address= new Address(1L,"Oliveros","Córdoba","Argentina");
         Venue venue = new Venue("Orfeo",15000L,"imageOrfeo",address);
         Category category = new Category("Bailes", "Cuarteto cordobés", "imageCuarteto");
         Artist artist = new Artist("La Konga");
@@ -53,7 +53,7 @@ Event event2 = new Event();
     @Test
     @Order(3)
     public void editEventTest(){
-        Address address= new Address(1,"Oliveros","Córdoba","Argentina");
+        Address address= new Address(1L,"Oliveros","Córdoba","Argentina");
         Venue venue = new Venue("Orfeo",15000L,"imageOrfeo",address);
         Category category = new Category("Bailes", "Cuarteto cordobés", "imageCuarteto");
         Artist artist = new Artist("La Konga");
@@ -71,7 +71,7 @@ Event event2 = new Event();
     @Test
     @Order(4)
     public void searchAndDeleteAnEventTest(){
-        Address address= new Address(1,"Oliveros","Córdoba","Argentina");
+        Address address= new Address(1L,"Oliveros","Córdoba","Argentina");
         Venue venue = new Venue("Orfeo",15000L,"imageOrfeo",address);
         Category category = new Category("Bailes", "Cuarteto cordobés", "imageCuarteto");
         Artist artist = new Artist("La Konga");
@@ -82,7 +82,7 @@ Event event2 = new Event();
 
 
         eventService.delete(eventToAdd.getID());
-        Optional<Event> eventSearched=eventService.findbyID(eventToAdd.getID());
+        Optional<Event> eventSearched= Optional.ofNullable(eventService.findByID(eventToAdd.getID()));
 
         assertTrue(eventSearched.isEmpty());
     }

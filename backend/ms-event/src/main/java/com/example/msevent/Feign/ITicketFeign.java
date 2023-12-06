@@ -19,5 +19,4 @@ public interface ITicketFeign {
     @PostMapping("/ticket")
     TicketDTO ticketspost(@RequestBody TicketDTO ticket);
 
-
 }

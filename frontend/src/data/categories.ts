@@ -2,10 +2,10 @@ import { ICategory } from "@/interface/categories";
 
 
 export const categories: ICategory[] = [
-    { id: 1, name: 'Music' },
-    { id: 2, name: 'Art' },
-    { id: 3, name: 'Technology' },
+    { id: 1, name: 'Concierto' },
+    { id: 2, name: 'eSports' },
+    { id: 3, name: 'Fiesta' },
     { id: 4, name: 'Film' },
-    { id: 5, name: 'Sports' },
+    { id: 5, name: 'Deporte' },
     { id: 6, name: 'Party' }
 ];

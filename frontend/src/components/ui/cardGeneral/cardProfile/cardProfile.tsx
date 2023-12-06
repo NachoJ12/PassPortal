@@ -7,6 +7,17 @@ interface CardProfileProps {
   onClose: () => void;
 }
 
+const eventsReserved = [
+  { amount: 2, name: "League Of Legends",date: "24-11-2023" },
+  { amount: 2, name: "League Of Legends",date: "24-11-2023" },
+  { amount: 2, name: "League Of Legends",date: "24-11-2023" },
+  { amount: 2, name: "League Of Legends",date: "24-11-2023" },
+  { amount: 2, name: "League Of Legends",date: "24-11-2023" },
+  { amount: 2, name: "League Of Legends",date: "24-11-2023" },
+  { amount: 2, name: "League Of Legends",date: "24-11-2023" },
+  { amount: 2, name: "League Of Legends",date: "24-11-2023" },
+];
+
 export const CardProfile: React.FC<CardProfileProps> = ({ onClose }) => {
   const { data: session } = useSession();
 
@@ -26,7 +37,9 @@ export const CardProfile: React.FC<CardProfileProps> = ({ onClose }) => {
         <div className="cardProfile-info">
           {session?.user ? (
             <>
-              <span className="cardProfile-userName">{session.user.name}</span>
+              <span className="cardProfile-userName">
+                {session.user.username}
+              </span>
             </>
           ) : (
             <ul></ul>
@@ -35,14 +48,22 @@ export const CardProfile: React.FC<CardProfileProps> = ({ onClose }) => {
             <h2>Booked Events</h2>
           </div>
           <div className="cardProfile-description">
-          <div className="cardProfile-chart">
-            <span>Amount: </span>
-            <span>3</span>
-          </div>
-          <div className="cardProfile-chart">
-            <span>Event: </span>
-            <span>worlds</span>
-          </div>
+            {eventsReserved.map((event, index) => (
+              <div key={index} className="cardProfile-chart">
+                <div className="cardProfile-chart-amount">
+                <span className="span-name">Amount </span>
+                <span>{event.amount}</span>
+                </div>
+                <div className="cardProfile-chart-name">
+                <span className="span-name" >Event </span>
+                <span>{event.name.length > 15 ? `${event.name.slice(0, 15)}...` : event.name}</span>
+                </div>
+                <div className="cardProfile-chart-date">
+                <span className="span-name">Date </span>
+                <span>{event.date}</span>
+                </div>
+              </div>
+            ))}
           </div>
           <div className="cardProfile-close-button" onClick={onClose}>
             X

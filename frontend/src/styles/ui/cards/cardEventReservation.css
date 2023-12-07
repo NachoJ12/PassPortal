@@ -49,13 +49,15 @@
 .cardReservation-containerImg {
     padding-top: 25px !important;
     width: 90% !important;
-
+    align-self: center;
+    height: 60% !important;
 }
 
 .cardReservation-image {
+    position: relative !important;
     width: 100% !important;
     border-radius: 15% 0% 0% 15% !important;
-    height: 400px !important;
+    height: 100% !important;
 }
 
 .cardReservation-box {
@@ -65,7 +67,7 @@
     width: 90% !important;
     background-color: rgb(17, 17, 17) !important;
     border-radius: 15% 0% 0% 15% !important;
-    height: 550px !important;
+    height: 60% !important;
 }
 
 .cardReservation-description {

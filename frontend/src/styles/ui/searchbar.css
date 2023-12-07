@@ -1,5 +1,6 @@
 .input-searchbar{
     color: white !important;
+    border-radius: 4px;
 }
 
 .searchbar_form{
@@ -31,5 +32,5 @@
         justify-content: center;
         gap:1rem
     }
-
+    
 }

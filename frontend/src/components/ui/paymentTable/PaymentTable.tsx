@@ -61,7 +61,7 @@ export default function PaymentTable({ tickets }: Props) {
                                         defaultValue="0"
                                         labelId='select-label'
                                         id='select'
-                                        name={row.name.split(" ").join("")}
+                                        name={row.id.toString() }
                                         label='Choose'
                                         onChange={handleChange}
                                         sx={{

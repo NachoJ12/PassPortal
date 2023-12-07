@@ -1,9 +1,9 @@
-export interface IOder {
+export interface IOrder {
     deliveryAddress: string;
     userid: number;
-    ticket: Ticket[];
+    tickets: TicketOrder[];
 }
 
-interface Ticket {
+interface TicketOrder {
     id: number;
 }

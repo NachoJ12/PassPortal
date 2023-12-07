@@ -52,8 +52,13 @@ const PaymentForm = () => {
     const { errors } = formState;
 
     const onSubmit = (data: any) => {
-        console.log( selectedValue );
-
+        
+        const dataFormat = {
+            delivery_address: "Av siempreviva 123",
+            userid: 8,
+            tickets: ""
+        }
+        console.log(dataFormat);
     }
 
     return (
@@ -68,8 +73,9 @@ const PaymentForm = () => {
                         focused={state.focused}
                     />
                     <div style={{
-                        display: "flex", gap: "20px", flexWrap: "wrap", justifyContent: "center" }}>
-                        <div style={{ display: "flex", flexDirection: "column", gap: "20px",  }}>
+                        display: "flex", gap: "20px", flexWrap: "wrap", justifyContent: "center"
+                    }}>
+                        <div style={{ display: "flex", flexDirection: "column", gap: "20px", }}>
                             <div style={{ width: "100%" }} >
 
                                 <Typography variant="caption" color="red">
@@ -116,7 +122,7 @@ const PaymentForm = () => {
                             </div>
                         </div>
 
-                        <div style={{ display: "flex", flexDirection: "column", gap: "20px",  }}>
+                        <div style={{ display: "flex", flexDirection: "column", gap: "20px", }}>
                             <div style={{ width: "100%" }}>
                                 <Typography variant="caption" color="red">
                                     <ErrorMessage errors={errors} name="cvc" />
@@ -156,8 +162,8 @@ const PaymentForm = () => {
                 </div>
                 <div style={{ display: "flex", justifyContent: "center", width: "100%", marginTop: "1.5rem !important" }}>
                     <Button
-                        
-                        sx={{ width: '35% !important ', borderColor: theme.palette.primary.main + '!important', color: theme.palette.primary.main + '!important'}}
+
+                        sx={{ width: '35% !important ', borderColor: theme.palette.primary.main + '!important', color: theme.palette.primary.main + '!important' }}
                         variant='outlined'
                         type="submit"
                         color='primary'>

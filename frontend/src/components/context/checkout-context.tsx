@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
 import { SelectChangeEvent } from '@mui/material';
 import { TicketType } from '@/types/events';
+import { IOrder } from '@/types/order';
 
 interface CheckoutContextProps {
     selectedValue: TicketType
@@ -16,26 +17,37 @@ export const CheckoutContext = createContext<CheckoutContextProps | undefined>(u
 export const CheckoutProvider = ({ children }: Props) => {
     const [total, setTotal] = useState<number>(0);
 
+    const [order, setOrder] = useState<IOrder>({
+        deliveryAddress: "",
+        userid: 0,
+        tickets: [{id:0}],
+    })
+
     const [selectedValue, setSelectedValue] = useState<TicketType>({
-        regular: 0,
-        premium: 0,
-        Regular: 0,
-        Premium: 0,
-        VIP: 0,
-        General: 0,
-        Palco: 0,
-        AccesoGeneral: 0,
-        PlateaAlta: 0,
-        PlateaBaja: 0,
+        1: 0,
+        2: 0,
+        3: 0,
+        4: 0,
+        5: 0,
+        6: 0,
+        7: 0,
+        8: 0,
+        9: 0,
+        10: 0,
     });
 
 
+
     const handleChange = (event: SelectChangeEvent<string>) => {
-        const { name, value } = event.target // Assuming the value matches the TicketType enum
+        const { name, value } = event.target
         setSelectedValue(prevState => ({
             ...prevState,
-                [name]: value
+            [name]: value
         }));
+        setOrder(prevState => ({
+            ...prevState, 
+            
+        }))
     };
 
     const contextValue: CheckoutContextProps = {

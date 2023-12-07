@@ -1,7 +1,7 @@
 import BaseLayout from '@/components/layouts/base-layout'
 import React from 'react'
 import { GetServerSideProps, NextPage } from 'next'
-import { getAllEvents, getEventByName, getEventByDate, getEventByCategory, getEventByArtist, getEventByFilters } from '@/service/events-service'
+import { getAllEvents, getEventByName, getEventByDate, getEventByArtist, getEventByCategories, getEventByArtistAndCategories, } from '@/service/events-service'
 import { Event } from '@/types/events'
 import { CardEventContainer } from '@/components/ui/cardGeneral/cardEvent/cardEventContainer/cardEventContainer'
 import { IMunicipioResponse } from "@/interface/municipio";
@@ -15,16 +15,20 @@ import Filters from './../../components/ui/filters/Filters';
 
 interface Props {
   events: Event[]
-  municipios: IMunicipioResponse
-  provincias: IProvinciaResponse
+  // municipios: IMunicipioResponse
+  // provincias: IProvinciaResponse
 }
 
-const Events: NextPage<Props> = ({ events, municipios, provincias }) => {
+const Events: NextPage<Props> = ({ events, }) => {
   return (
     <BaseLayout>
       <div className='event-page'>
         <Image src={passPortalLogo} alt="logo" className="logo-main" />
-        <SearchBar municipios={municipios} provincias={provincias} />
+        <SearchBar
+        // municipios={municipios} 
+        // provincias={provincias}
+
+        />
         <Filters />
         <CardEventContainer events={events} />
       </div>
@@ -36,34 +40,34 @@ export default Events;
 
 export const getServerSideProps: GetServerSideProps = async ({ res, query }) => {
 
-  let municipios: IMunicipioResponse = {
-    cantidad: 0,
-    inicio: 0,
-    municipios: [
-      {
-        centroideLat: 0,
-        centroideLon: 0,
-        id: "",
-        nombre: "",
-        provinciaID: "",
-        provinciaNombre: ""
-      }
-    ],
-    parametros: {
-      aplanar: true,
-      max: 0,
-      provincia: ""
-    },
-    total: 0,
-  };
+  // let municipios: IMunicipioResponse = {
+  //   cantidad: 0,
+  //   inicio: 0,
+  //   municipios: [
+  //     {
+  //       centroideLat: 0,
+  //       centroideLon: 0,
+  //       id: "",
+  //       nombre: "",
+  //       provinciaID: "",
+  //       provinciaNombre: ""
+  //     }
+  //   ],
+  //   parametros: {
+  //     aplanar: true,
+  //     max: 0,
+  //     provincia: ""
+  //   },
+  //   total: 0,
+  // };
 
-  const { provincia, municipio, name, artist, date, categories }: any = query;
+  const { name, artist, dateFormat, categories }: any = query;
 
-  if (provincia) {
-    municipios = await getMunicipiosByProvincia(provincia)
-  }
+  // if (provincia) {
+  //   municipios = await getMunicipiosByProvincia(provincia)
+  // }
 
-  const provincias = await getProvinces()
+  // const provincias = await getProvinces()
 
 
   res.setHeader(
@@ -71,34 +75,23 @@ export const getServerSideProps: GetServerSideProps = async ({ res, query }) => 
     'public, s-maxage=10, stale-while-revalidate=59'
   )
 
-
   let events: Event[] = [];
-
 
   switch (true) {
     case Boolean(name):
       events = await getEventByName(name);
       break;
-    case Boolean(artist && date && categories):
-      events = await getEventByFilters(artist, date, categories);
-      break;
-    case Boolean(artist && date):
-      events = await getEventByFilters(artist, date,"");
-      break;
     case Boolean(artist && categories):
-      events = await getEventByFilters(artist,"", categories);
-      break;
-    case Boolean(date && categories):
-      events = await getEventByFilters("",date,categories);
+      events = await getEventByArtistAndCategories(artist, categories);
       break;
     case Boolean(categories):
-      events = await getEventByCategory(categories);
+      events = await getEventByCategories(categories);
       break;
     case Boolean(artist):
       events = await getEventByArtist(artist);
       break;
-    case Boolean(date):
-      events = await getEventByDate(date);
+    case Boolean(dateFormat):
+      events = await getEventByDate(dateFormat);
       break;
     default:
       events = await getAllEvents();
@@ -107,7 +100,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res, query }) => 
 
   return {
     props: {
-      events, provincias, municipios
+      events
     }
   }
 }

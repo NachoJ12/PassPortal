@@ -1,22 +1,24 @@
 import React, { useState, FC, use } from 'react';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { IMunicipioResponse } from '@/interface/municipio';
-import { IProvinciaResponse } from '@/interface/provincia';
 import { useRouter } from 'next/router';
 import { TextField, Button } from '@mui/material';
-import { useSearchParams } from 'next/navigation';
+import dayjs, { Dayjs } from 'dayjs';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import DatePickerValue from '../calendar/Calendar';
 
 interface Props {
-    municipios: IMunicipioResponse
-    provincias: IProvinciaResponse
+    //    municipios: IMunicipioResponse
+    //    provincias: IProvinciaResponse
 }
 
-const SearchBar: FC<Props> = ({ municipios, provincias }) => {
-
-
+const SearchBar: FC<Props> = ({ }) => {
+    const [date, setValue] = useState<Dayjs | null>(dayjs(new Date()));
+    // console.log(value!.format("YYYY-MM-DD"))
     // useSearchParams({
     //     name:"",
     //     artist:"",
@@ -60,11 +62,39 @@ const SearchBar: FC<Props> = ({ municipios, provincias }) => {
 
     const handleSubmit = (e: any) => {
         e.preventDefault()
-        router.push({
-            query: {
-                ...router.query, name, artist
-            }
-        })
+        
+        const dateFormat = date!.format("YYYY-MM-DD")
+
+        switch(true){
+            case Boolean(name && artist):
+                router.push({
+                    query: {
+                        ...router.query, name, artist
+                    }
+                })
+            break;
+            case Boolean(name):
+                router.push({
+                    query: {
+                        ...router.query, name
+                    }
+                })
+            break;
+            case Boolean(artist):
+                router.push({
+                    query: {
+                        ...router.query, artist
+                    }
+                })
+            case Boolean(date !== null):
+                router.push({
+                    query: {
+                        ...router.query, dateFormat
+                    }
+                })
+            break;
+        }
+
         const dataFormt = {
             name,
             municipio: search.municipio,
@@ -93,7 +123,7 @@ const SearchBar: FC<Props> = ({ municipios, provincias }) => {
                     <TextField sx={{ width: "100% !important", border: "1px solid #d67ab1 !important" }} className="input-searchbar" InputProps={{ style: { color: "white" } }} name="artist" onChange={handleChangeArtist} variant="outlined" />
                 </Box>
 
-                <Box sx={{ minWidth: 120 + "!important", width: "100% !important" }}>
+                {/* <Box sx={{ minWidth: 120 + "!important", width: "100% !important" }}>
                     <InputLabel id="demo-simple-select-label" className="input-searchbar" style={{ color: "white !important" }}>Province</InputLabel>
                     <Select
                         sx={{ width: "100% !important ", border: "1px solid #d67ab1 !important ", color: "white !important" }}
@@ -119,16 +149,17 @@ const SearchBar: FC<Props> = ({ municipios, provincias }) => {
                         label="Please Select a Location"
                         onChange={handleChange}
                         className="input-searchbar"
-                    >
+                        >
                         {municipios.municipios.length > 0 ? municipios.municipios.map(municipio => (<MenuItem value={municipio.nombre} key={municipio.id}>{municipio.nombre}</MenuItem>)) : <MenuItem>There are no Location Available</MenuItem>}
                     </Select>
-                </Box>
+                </Box> */}
+                <DatePickerValue date={date} setValue={setValue}/>
             </div>
-
-            <div style={{display:"flex", gap:"16px"}}>
+            <div style={{ display: "flex", gap: "16px" }}>
 
                 <Button sx={{ height: "fit - content !important", alignSelf: "center !important ", marginTop: "1rem !important", border: "1px solid #d67ab1 !important", color: "#d67ab1 !important" }} size="small" type="submit" variant="outlined">Search</Button>
                 <Button sx={{ height: "fit - content !important", alignSelf: "center !important ", marginTop: "1rem !important", border: "1px solid #d67ab1 !important", color: "#d67ab1 !important" }} size="small" onClick={handleClear} variant="outlined"> Clear </Button>
+
             </div>
 
         </form >

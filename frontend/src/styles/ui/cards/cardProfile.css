@@ -70,7 +70,7 @@
   
   .cardProfile-close-button{
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -82,9 +82,9 @@
   .cardProfile-description{
     display: flex;
     flex-direction: column;
-    max-height: 250px;
+    max-height: 200px;
     overflow-y: auto;
-    width: 300px;
+    width: 400px;
   }
 
   .cardProfile-chart{
@@ -92,28 +92,43 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 50px;
+    height: 80px;
+    padding: 10px;
   }
   .cardProfile-chart-amount{
     display: flex;
     flex-direction: column;
     align-items: center;
     border: 1px solid white;
-    
+    height: 70px;
+    width: 100px;
   }
   .cardProfile-chart-name{
     display: flex;
     flex-direction: column;
     align-items: center;
     border: 1px solid white;
+    height: 70px;
+    width: 100px;
   }
   .cardProfile-chart-date{
     display: flex;
     flex-direction: column;
     align-items: center;
     border: 1px solid white;
+    height: 70px;
+    width: 100px;
+  }
+  .cardProfile-chart-type{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid white;
+    height: 70px;
+    width: 100px;
   }
   .span-name{
+    padding: 2px;
     font-weight: bold;
     text-align: center;
     color: #0e0c0d;
@@ -154,5 +169,38 @@
       max-width: 600px;
       max-height: 600px;
       
+    }
+  }
+
+  @media screen and (max-width: 767px){
+    .cardProfile-general{
+
+      margin-left: 20%;
+      left: auto;
+      top: 9%;
+      border-radius: 0%;
+      width: 400px;
+    }
+    .image-profile {
+      display: none;
+    }
+    .cardProfile-background{
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 500px){
+    .cardProfile-general{
+      margin-left: 2%;
+      width: 360px;
+    }
+  }
+
+  @media screen and (max-width: 375){
+    .cardProfile-general{
+      margin-left: 0%;
+      top: 9%;
+      border-radius: 0%;
+      width: 350px;
     }
   }

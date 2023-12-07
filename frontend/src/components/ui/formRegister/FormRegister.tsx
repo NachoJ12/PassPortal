@@ -63,7 +63,8 @@ const FormRegister = () => {
     if (!post.ok) {
       setErrorsApi('Error while creating user')
     }
-
+    alert('Registro exitoso');
+    router.push('/login');
     const responseNextAuth = await signIn('credentials', {
       email,
       password,

@@ -1,7 +1,9 @@
-import BaseLayout from '@/components/layouts/base-layout'
 import React from 'react'
+import BaseLayout from '@/components/layouts/base-layout'
 import { GetServerSideProps, NextPage } from 'next'
 import { getAllEvents, getEventByName, getEventByDate, getEventByArtist, getEventByCategories, getEventByArtistAndCategories, } from '@/service/events-service'
+import { getCategories } from '@/service/categories-service'
+
 import { Event } from '@/types/events'
 import { CardEventContainer } from '@/components/ui/cardGeneral/cardEvent/cardEventContainer/cardEventContainer'
 import { IMunicipioResponse } from "@/interface/municipio";
@@ -11,15 +13,17 @@ import { getProvinces } from "@/service/province-service";
 import SearchBar from '@/components/ui/searchbar/SearchBar'
 import Image from "next/image";
 import passPortalLogo from "../../../public/logo-grey.svg";
-import Filters from './../../components/ui/filters/Filters';
+import Filters from '@/components/ui/filters/Filters';
+import { Category } from '@/types/categories'
 
 interface Props {
   events: Event[]
+  category: Category[]
   // municipios: IMunicipioResponse
   // provincias: IProvinciaResponse
 }
 
-const Events: NextPage<Props> = ({ events, }) => {
+const Events: NextPage<Props> = ({ events, category }) => {
   return (
     <BaseLayout>
       <div className='event-page'>
@@ -29,7 +33,7 @@ const Events: NextPage<Props> = ({ events, }) => {
         // provincias={provincias}
 
         />
-        <Filters />
+        <Filters category={category} />
         <CardEventContainer events={events} />
       </div>
     </BaseLayout>
@@ -98,9 +102,11 @@ export const getServerSideProps: GetServerSideProps = async ({ res, query }) => 
       break;
   }
 
+  const category = await getCategories()
+
   return {
     props: {
-      events
+      events, category
     }
   }
 }

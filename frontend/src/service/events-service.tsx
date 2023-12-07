@@ -68,7 +68,7 @@ export const getEventByDate = async (date: string) => {
 
 export const getEventByCategories = async (category: string) => {
   const categories = category?.split("-").join(",")
-  const res = await fetch(`http://ec2-34-207-225-181.compute-1.amazonaws.com:8092/events?categories=${categories}`, {
+  const res = await fetch(`${NEXT_PUBLIC_BACKEND_URL}/events?categories=${categories}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ export const getEventByCategories = async (category: string) => {
 
 export const getEventByArtistAndCategories = async (artist: string, category: string) => {
   const categories = category?.split("-").join(",")
-  const res = await fetch(`http://ec2-34-207-225-181.compute-1.amazonaws.com:8092/events?categories=${categories}&artist=${artist}`, {
+  const res = await fetch(`${NEXT_PUBLIC_BACKEND_URL}/events?categories=${categories}&artist=${artist}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

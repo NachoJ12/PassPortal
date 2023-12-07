@@ -1,4 +1,4 @@
-"use client"
+
 import { getEventById } from "@/service/events-service";
 import { GetServerSideProps } from "next";
 import React, { FC, useState } from "react";
@@ -13,9 +13,14 @@ import StadiumIcon from '@mui/icons-material/Stadium';
 import { SingleEvent } from "@/types/events";
 import { useSession } from "next-auth/react"
 import { redirect } from 'next/navigation'
+import { authOptions } from './../api/auth/[...nextauth]';
+import { getServerSession } from "next-auth/next"
+import { User } from "@/types/user";
+import { Session } from "next-auth";
 
 interface Props {
     event: SingleEvent;
+    session : Session  | null
 }
 
 const theme = createTheme({
@@ -30,22 +35,12 @@ const theme = createTheme({
 })
 
 
-const CheckOut: FC<Props> = ({ event }) => {
-    const { data: session } = useSession()
+const CheckOut: FC<Props> = ({ event, session }) => {
 
-    if (!session) {
-        try {
-            redirect("/login");
-        } catch (error) {
-            console.error("Error during redirect:", error);
-            // Handle the error appropriately (e.g., log, display an error message, etc.)
-        }
-    }
-
+    console.log(session ,"sesssion")
 
     return (
         <BaseLayout>
-
             <div className="container_checkout">
                 <div className="container_order">
                     <header className="container_header">
@@ -56,24 +51,25 @@ const CheckOut: FC<Props> = ({ event }) => {
                             <div className="checkout_date_address">
                                 <div className="checkout_date">
                                     <div className="checkout_date_text">
-                                        <div style={{ display: "flex", gap:".5rem" }} >
+                                        <div style={{ display: "flex", gap: ".5rem" }} >
                                             <CalendarMonthIcon />
                                             <h3>{event?.event?.date} </h3>
                                         </div>
-                                        <div style={{ display: "flex", gap:".5rem" }}>
+                                        <div style={{ display: "flex", gap: ".5rem" }}>
                                             <AccessTimeIcon />
                                             <h3>{event?.event?.time} </h3>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="checkout_address">
-                                    
+
                                     <div className="checkout_address_text">
-                                        <div style={{ display: "flex", gap:".5rem" }} >
+                                        <div style={{ display: "flex", gap: ".5rem" }} >
                                             <LocationOnIcon sx={{ color: theme.palette.primary.main + '!important' }} />
                                             <h3>{event?.event?.venue?.address.city} </h3>
+
                                         </div>
-                                        <div style={{ display: "flex", gap:".5rem" }}>
+                                        <div style={{ display: "flex", gap: ".5rem" }}>
                                             <StadiumIcon />
                                             <h3>{event?.event?.venue?.name}  </h3>
                                         </div>
@@ -82,14 +78,12 @@ const CheckOut: FC<Props> = ({ event }) => {
                             </div>
                         </nav>
                     </header>
-
                     <section className="container_body">
                         <PaymentTable tickets={event?.tickets} />
                     </section>
                     <section className="container_payment">
                         <PaymentForm />
                     </section>
-
                 </div>
             </div>
 
@@ -98,14 +92,25 @@ const CheckOut: FC<Props> = ({ event }) => {
 
 export default CheckOut;
 
-export const getServerSideProps: GetServerSideProps<Props> = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps<Props> = async ({ params, req, res }) => {
 
     const id: string = typeof params?.id === 'string' ? params.id : '';
     const event = await getEventById(id)
+    const session =  await getServerSession(req, res, authOptions)
+
+    if (!session) {
+        return {
+            redirect: {
+                destination: '/login',
+                permanent: false,
+            },
+        }
+    }
     
     return {
         props: {
-            event
+            event,
+            session
         },
     };
 };

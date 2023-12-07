@@ -67,9 +67,11 @@ public class EventController {
             @RequestParam(name = "artist", required = false) String artist,
             @RequestParam(name = "categories", required = false) List<String> categoryNames,
             @RequestParam(name ="city", required = false) String city,
-            @RequestParam(name ="country", required = false) String country){
-
-        return ResponseEntity.ok().body(service.filterEvents(artist, categoryNames, country, city));
+            @RequestParam(name ="country", required = false) String country,
+            @RequestParam(name ="name", required = false) String name,
+            @RequestParam(name ="date", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date
+            ){
+        return ResponseEntity.ok().body(service.filterEvents(artist, categoryNames, country, city, name, date));
     }
 
     @PostMapping

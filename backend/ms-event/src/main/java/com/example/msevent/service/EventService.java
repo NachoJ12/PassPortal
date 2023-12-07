@@ -122,8 +122,8 @@ public class EventService {
         return feign.ticketspost(ticket);
     }
 
-    public List<Event> filterEvents(String artistName, List<String> categoryNames,String country, String city) {
-        Specification<Event> spec = EventSpecifications.filterEvents(artistName, categoryNames, country, city);
+    public List<Event> filterEvents(String artistName, List<String> categoryNames,String country, String city, String name, LocalDate date) {
+        Specification<Event> spec = EventSpecifications.filterEvents(artistName, categoryNames, country, city, name, date);
         return repository.findAll(spec);
     }
 

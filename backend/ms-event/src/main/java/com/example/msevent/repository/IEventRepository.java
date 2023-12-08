@@ -22,11 +22,13 @@ public interface IEventRepository extends JpaRepository<Event, Long>, JpaSpecifi
 
     List<Event> findByUserid(Long id);
 
-    @Query(value = "SELECT * " +
-            "FROM event " +
-            "WHERE date >= CURDATE() AND date <= CURDATE() + INTERVAL 30 DAY " +
-            "ORDER BY RAND() " +
-            "LIMIT 6;", nativeQuery = true)
+    @Query(value = "SELECT * FROM ( " +
+            "    SELECT * FROM event " +
+            "    WHERE date >= CURRENT_DATE AND date <= CURRENT_DATE + INTERVAL 30 DAY " +
+            "    ORDER BY RAND() " +
+            "    LIMIT 6 " +
+            ") AS randomEvents " +
+            "ORDER BY randomEvents.date", nativeQuery = true)
     List<Event> findRandomEventsWithin30Days();
 
 }

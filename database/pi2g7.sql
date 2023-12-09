@@ -147,7 +147,7 @@ ENGINE = InnoDB;
 -- Table `pi21023c02_GRUPO7`.`orders`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pi21023c02_GRUPO7`.`orders` (
-  `id` BIGINT NOT NULL,
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
   `total_price` DOUBLE NULL,
   `date_time` DATETIME NULL,
   `delivery_address` VARCHAR(255) NULL,

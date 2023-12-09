@@ -60,6 +60,9 @@ services:
   event-service:
     build: ./ms-event
     container_name: event-service
+    environment:
+      ACCESS: ${ACCESS_KEY_ID}
+      SECRET: ${SECRET_ACCESS_KEY}
     ports:
       - 8092:8092
     depends_on:

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/events")
@@ -89,8 +90,8 @@ public class EventController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id){
-        Event event = service.findByID(id);
-        if (event != null){
+        Optional<Event> event = service.findByID(id);
+        if (event.isPresent()){
          service.delete(id);
          return ResponseEntity.ok("Deleted successfully");
         }

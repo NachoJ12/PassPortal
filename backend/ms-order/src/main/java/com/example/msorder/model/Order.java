@@ -33,10 +33,9 @@ public class Order {
     @JoinColumn(name = "ticket_id", referencedColumnName = "id")
     private List<Ticket> ticket;
 
-    public Order( Double total_price, String delivery_address, Long userid) {
-
-        this.total_price = total_price;
+    public Order(String delivery_address, Long userid, List<Ticket> ticket) {
         this.delivery_address = delivery_address;
         this.userid = userid;
+        this.ticket = ticket;
     }
 }

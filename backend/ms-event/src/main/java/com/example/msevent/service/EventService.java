@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -51,8 +52,8 @@ public class EventService {
         return eventDTO;
     }
 
-    public Event findByID(Long id){
-        return repository.findAllByID(id).get();
+    public Optional<Event> findByID(Long id){
+        return repository.findAllByID(id);
     }
 
     public Event update(Event event) {

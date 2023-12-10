@@ -61,29 +61,29 @@ public class EventServiceTest {
 
 
         Event eventAdded= eventService.save(eventToAdd);
-        eventToAdd.setName("25 años");
+        eventAdded.setName("25 años");
 
-        eventService.update(eventToAdd);
-        assertEquals("25 años", eventToAdd.getName());
-        eventService.delete(eventAdded.getID());
+        Event eventEdit = eventService.update(eventAdded);
+        assertEquals("25 años", eventEdit.getName());
+        eventService.delete(eventEdit.getID());
+        assertEquals(eventAdded.getID(),eventEdit.getID());
 
     }
-    /*@Test
+    @Test
     @Order(4)
     public void searchAndDeleteAnEventTest(){
         Address address= new Address("Oliveros","Córdoba","Argentina");
         Venue venue = new Venue("Orfeo",15000L,"imageOrfeo",address);
         Category category = new Category(1L,"Bailes", "Cuarteto cordobés", "imageCuarteto");
-        Artist artist = new Artist(1L,"La Konga");
-        Event eventToAdd = new Event("20 años",LocalDate.of(2023,12,03), LocalTime.of(22,00,00),"El grupo más famoso del momento",20000,"imageEvent",1L,venue,category,artist);
+        Artist artist = new Artist("La Konga");
+        Event event = new Event("20 años", LocalDate.of(2023,12,03), LocalTime.of(22,00,00),"El grupo más famoso del momento",20000,"imageEvent",1L,venue,category,artist);
+
+        Event response = eventService.save(event);
 
 
-        Event eventAdded= eventService.save(eventToAdd);
+        eventService.delete(response.getID());
+        Optional<Event> eventSearched= eventService.findByID(response.getID());
 
-
-        eventService.delete(eventToAdd.getID());
-        Optional<Event> eventSearched= Optional.ofNullable(eventService.findByID(eventToAdd.getID()));
-
-        assertTrue(eventSearched.isEmpty());
-    }*/
+        assertTrue(!eventSearched.isPresent());
+    }
 }

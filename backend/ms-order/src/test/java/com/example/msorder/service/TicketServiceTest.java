@@ -48,8 +48,8 @@ public class TicketServiceTest {
         Ticket ticketAdded= ticketService.postTicket(ticketToAdd);
 
 
-        ticketService.deleteTicket(ticketToAdd.getID());
-        Optional<Ticket> ticketSearched=ticketService.findTicketById(ticketToAdd.getID());
+        ticketService.deleteTicket(ticketAdded.getID());
+        Optional<Ticket> ticketSearched=ticketService.findTicketById(ticketAdded.getID());
 
        assertTrue(ticketSearched.isEmpty());
     }

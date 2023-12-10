@@ -11,6 +11,7 @@ import lombok.SneakyThrows;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,12 +21,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class OrderServiceTest {
     @Autowired
     OrderService orderService;
+    TicketService ticketService;
 
     @Test
     //@Order(1)
     public void addOrderTest(){
 
-        Order order=new Order(10000.0,"Mitre 2566,Cordoba,Arg",1L);
+        Ticket ticket=new Ticket("test",10000.0,2L);
+        Ticket responset = ticketService.postTicket(ticket);
+        List<Ticket> ticketList = new ArrayList<>();
+        ticketList.add(responset);
+        Order order=new Order("Mitre 2566",1L,ticketList);
         Order response = orderService.save(order);
         assertNotNull(response);
     }
@@ -47,12 +53,15 @@ public class OrderServiceTest {
    // @Order(3)
     public void searchAndDeleteAOrderTest(){
 
-        Order orderToAdd=new Order(10000.0,"Mitre 2566,Cordoba,Arg",1L);
-        Order orderAdded = orderService.save(orderToAdd);
+        List<Ticket> ticketList = new ArrayList<>();
+        Ticket ticket = new Ticket("regular",100.0,1L);
+        ticketList.add(ticket);
+        Order order=new Order("Mitre 2566,Cordoba,Arg",1L,ticketList);
+        Order orderAdded = orderService.save(order);
 
 
-        orderService.delete(orderToAdd.getID());
-        Optional<Order> orderSearched=orderService.findById(orderToAdd.getID());
+        orderService.delete(orderAdded.getID());
+        Optional<Order> orderSearched=orderService.findById(orderAdded.getID());
 
         assertTrue(orderSearched.isEmpty());
     }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/backend/ms-order/pom.xml" />
+        <option value="$PROJECT_DIR$/backend/ms-event/pom.xml" />
+        <option value="$PROJECT_DIR$/backend/ms-discovery/pom.xml" />
+        <option value="$PROJECT_DIR$/backend/ms-configServer/pom.xml" />
+        <option value="$PROJECT_DIR$/backend/ms-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/backend/ms-user/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_X" default="true" project-jdk-name="18" project-jdk-type="JavaSDK" />
+  <component name="ProjectType">
+    <option name="id" value="jpab" />
+  </component>
+</project>

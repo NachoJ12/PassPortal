@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/backend/ms-configServer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/backend/ms-configServer/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/backend/ms-discovery/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/backend/ms-discovery/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/backend/ms-event/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/backend/ms-event/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/backend/ms-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/backend/ms-gateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/backend/ms-order/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/backend/ms-order/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/backend/ms-user/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/backend/ms-user/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

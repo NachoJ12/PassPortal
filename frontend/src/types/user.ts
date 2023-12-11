@@ -1,5 +1,5 @@
 export interface User {
-    userID: number;
+    userId: number;
     username: string;
     role: string;
     accessToken: string;

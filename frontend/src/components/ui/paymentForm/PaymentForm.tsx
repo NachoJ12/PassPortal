@@ -1,3 +1,4 @@
+"use client";
 import { useForm } from "react-hook-form"
 import React, { useContext, useState } from 'react';
 import Cards from 'react-credit-cards-2';
@@ -8,9 +9,10 @@ import {
     Typography,
     createTheme,
 } from '@mui/material'
-
+import { useRouter } from 'next/router'
 import { CheckoutContext } from '@/components/context/checkout-context';
-
+import { TicketOrder } from "@/types/order";
+import { useSession } from "next-auth/react";
 const theme = createTheme({
     palette: {
         primary: {
@@ -22,9 +24,13 @@ const theme = createTheme({
     },
 })
 
+
+
 const PaymentForm = () => {
+    const { data: session } = useSession();
     const context = useContext(CheckoutContext);
-    const { selectedValue } = context || {};
+    const router = useRouter()
+    const { selectedValue, ticket } = context || {};
 
     const [state, setState] = useState({
         number: '',
@@ -51,14 +57,42 @@ const PaymentForm = () => {
 
     const { errors } = formState;
 
+
+
     const onSubmit = (data: any) => {
-        
+        const arr: any[] = [];
+        const result: number = ticket?.length
+            ? ticket.reduce((accumulator: number, currentTicket: TicketOrder) => {
+                return accumulator + currentTicket.cantTickets;
+            }, 0)
+            : 0;
+            
         const dataFormat = {
             delivery_address: "Av siempreviva 123",
-            userid: 8,
-            tickets: ""
+            userid: session!.user.userId,
+            tickets: arr
         }
-        console.log(dataFormat);
+
+        // Loop to push ticket IDs to the arr array
+        let totalTicketsAdded = 0;
+
+        if(ticket !== undefined){
+            for (let i = 0; i < ticket.length; i++) {
+                const currentTicket = ticket[i];
+                const ticketsToAdd = Math.min(currentTicket.cantTickets, result - totalTicketsAdded, 10 - arr.length);
+    
+                for (let j = 0; j < ticketsToAdd; j++) {
+                    arr.push({ id: currentTicket.id });
+                    totalTicketsAdded++;
+                }
+    
+                if (totalTicketsAdded >= result || arr.length >= 10) {
+                    break;
+                }
+            }
+        }
+
+        console.log(result, dataFormat);
     }
 
     return (

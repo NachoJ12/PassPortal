@@ -30,10 +30,9 @@ export default function PaymentTable({ tickets }: Props) {
 
     const context = useContext(CheckoutContext);
 
-    const { selectedValue, handleChange = () => { } } = context || {};
+    const { selectedValue, handleChange = () => { }, ticket } = context || {};
 
-    console.log(selectedValue)
-
+    
     return (
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 350 }} aria-label="simple table">
@@ -61,7 +60,7 @@ export default function PaymentTable({ tickets }: Props) {
                                         defaultValue="0"
                                         labelId='select-label'
                                         id='select'
-                                        name={row.id.toString() }
+                                        name={`${row.name}-${row.id}-${row.eventid}`}
                                         label='Choose'
                                         onChange={handleChange}
                                         sx={{

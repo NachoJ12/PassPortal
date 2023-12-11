@@ -1,9 +1,13 @@
 export interface IOrder {
-    deliveryAddress: string;
-    userid: number;
+    emailAddress: string;
+    userId: number;
+    eventId: number;
     tickets: TicketOrder[];
+    totalPrice: number
 }
 
-interface TicketOrder {
+export interface TicketOrder {
     id: number;
+    name: string;
+    cantTickets : number
 }

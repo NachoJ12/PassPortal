@@ -49,6 +49,7 @@ public class UserController {
         LoginResponseDTO loginResponseDTO = new LoginResponseDTO(
                 userResponseDTO.getId(),
                 userResponseDTO.getUsername(),
+                userResponseDTO.getEmail(),
                 userResponseDTO.getRole(),
                 credentials.getAccessToken(),
                 credentials.getExpiresIn(),

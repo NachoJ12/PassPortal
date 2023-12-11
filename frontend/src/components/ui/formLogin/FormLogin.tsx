@@ -67,7 +67,7 @@ const FormLogin = () => {
                             name='email'
                             className='input-form'
                         />
-                        <Typography variant="caption" color="black">
+                        <Typography variant="caption" color="red">
                             <ErrorMessage errors={errors} name="email" />
                         </Typography>
                         <label htmlFor='password' className='input-label'>
@@ -80,7 +80,7 @@ const FormLogin = () => {
                             name='password'
                             className='input-form'
                         />
-                        <Typography variant="caption" color="black">
+                        <Typography variant="caption" color="red">
                             <ErrorMessage errors={errors} name="password" />
                         </Typography>
                     </div>
@@ -110,13 +110,13 @@ const FormLogin = () => {
                         </button>
 
                         {errorsApi &&
-                            <Typography variant="caption" color="black">
+                            <Typography variant="caption" color="red">
                                 {errorsApi}
                             </Typography>
                         }
 
-                        <h3 >or continue with</h3>
-                        <GoogleButton />
+                        {/* <h3 >or continue with</h3>
+                        <GoogleButton /> */}
                         <div style={{ marginTop: "0.2rem" }}>
                             <p className=''>
                                 Don´t have an account yet?{'  '}
@@ -134,7 +134,7 @@ const FormLogin = () => {
             </div>
             <div className='container-logo'>
                 <Link href="/">
-                    <Image src="/logoPassPortalTicket.svg" alt={''} width={600} height={600} />
+                    <Image src="/logoPassPortalTicket.svg" alt={'logo'} width={600} height={600} />
                 </Link>
             </div>
         </div>

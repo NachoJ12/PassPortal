@@ -1,10 +1,10 @@
 import BaseLayout from '@/components/layouts/base-layout'
 import React from 'react'
 import { GetServerSideProps, NextPage } from 'next'
-import { getAllEvents } from '@/service/events-service'
+import { getAllEvents, getEventByName, getEventByDate, getEventByArtist, getEventByCategories, getEventByArtistAndCategories, } from '@/service/events-service'
 import { Event } from '@/types/events'
 import { CardEventContainer } from '@/components/ui/cardGeneral/cardEvent/cardEventContainer/cardEventContainer'
-import { IMunicipioResponse,} from "@/interface/municipio";
+import { IMunicipioResponse } from "@/interface/municipio";
 import { IProvinciaResponse } from "@/interface/provincia";
 import { getMunicipiosByProvincia } from "@/service/municipio-service";
 import { getProvinces } from "@/service/province-service";
@@ -15,19 +15,24 @@ import Filters from './../../components/ui/filters/Filters';
 
 interface Props {
   events: Event[]
-  municipios: IMunicipioResponse
-  provincias: IProvinciaResponse
+  // municipios: IMunicipioResponse
+  // provincias: IProvinciaResponse
 }
 
-const Events: NextPage<Props> = ({ events, municipios, provincias }) => {
+const Events: NextPage<Props> = ({ events, }) => {
   return (
     <BaseLayout>
-    <div className='event-page'>
-      <Image src={passPortalLogo} alt="logo" className="logo-main" />
-      <SearchBar municipios={municipios} provincias={provincias} />
-      <Filters/>
-      <CardEventContainer events={events} />
-    </div>
+      <div className='event-page'>
+        <Image src={passPortalLogo} alt="logo" className="logo-main" />
+        <SearchBar
+        // municipios={municipios} 
+        // provincias={provincias}
+
+        />
+        <Filters category={[]} />
+        
+        <CardEventContainer events={events} />
+      </div>
     </BaseLayout>
   )
 }
@@ -36,34 +41,34 @@ export default Events;
 
 export const getServerSideProps: GetServerSideProps = async ({ res, query }) => {
 
-  let municipios: IMunicipioResponse = {
-    cantidad: 0,
-    inicio: 0,
-    municipios: [
-      {
-        centroideLat: 0,
-        centroideLon: 0,
-        id: "",
-        nombre: "",
-        provinciaID: "",
-        provinciaNombre: ""
-      }
-    ],
-    parametros: {
-      aplanar: true,
-      max: 0,
-      provincia: ""
-    },
-    total: 0,
-  };
+  // let municipios: IMunicipioResponse = {
+  //   cantidad: 0,
+  //   inicio: 0,
+  //   municipios: [
+  //     {
+  //       centroideLat: 0,
+  //       centroideLon: 0,
+  //       id: "",
+  //       nombre: "",
+  //       provinciaID: "",
+  //       provinciaNombre: ""
+  //     }
+  //   ],
+  //   parametros: {
+  //     aplanar: true,
+  //     max: 0,
+  //     provincia: ""
+  //   },
+  //   total: 0,
+  // };
 
-  const { provincia, municipio }: any = query;
+  const { name, artist, dateFormat, categories }: any = query;
 
-  if (provincia) {
-    municipios = await getMunicipiosByProvincia(provincia)
-  }
+  // if (provincia) {
+  //   municipios = await getMunicipiosByProvincia(provincia)
+  // }
 
-  const provincias = await getProvinces()
+  // const provincias = await getProvinces()
 
 
   res.setHeader(
@@ -71,11 +76,32 @@ export const getServerSideProps: GetServerSideProps = async ({ res, query }) => 
     'public, s-maxage=10, stale-while-revalidate=59'
   )
 
-  const events = await getAllEvents()
+  let events: Event[] = [];
+
+  switch (true) {
+    case Boolean(name):
+      events = await getEventByName(name);
+      break;
+    case Boolean(artist && categories):
+      events = await getEventByArtistAndCategories(artist, categories);
+      break;
+    case Boolean(categories):
+      events = await getEventByCategories(categories);
+      break;
+    case Boolean(artist):
+      events = await getEventByArtist(artist);
+      break;
+    case Boolean(dateFormat):
+      events = await getEventByDate(dateFormat);
+      break;
+    default:
+      events = await getAllEvents();
+      break;
+  }
 
   return {
     props: {
-      events, provincias, municipios
+      events
     }
   }
 }

@@ -20,7 +20,7 @@
 .container_order {
     align-self: center;
     width: 75%;
-    background-color: var(--color-hover);
+    background-color: var(--color-main);
     padding: 16px;
     border-radius: 16px;
     display: flex;
@@ -34,7 +34,7 @@
 .container_payment {
     width: 75%;
     align-self: center;
-    margin-top:2rem;
+    margin-top: 2rem;
 }
 
 .checkout_title {
@@ -42,17 +42,37 @@
     flex-direction: column;
     flex-wrap: wrap;
     gap: 1rem;
-    border: 1px solid red;
+    background-color: var(--color-hover);
+    border-radius: 10px;
     color: var(--color-secundario);
     padding: 1rem;
+}
+
+.css-11xur9t-MuiPaper-root-MuiTableContainer-root {
+    border-radius: 10px !important;
+    background-color: var(--color-hover) !important;
+    color: var(--color-secundario) !important;
+}
+
+.MuiTableCell-root, .MuiTableCell-head ,.MuiTableCell-sizeMedium ,.css-1ygcj2i-MuiTableCell-root{
+    color: var(--color-secundario) !important;
+}
+
+.css-177gid-MuiTableCell-root, .css-1azl6jz-MuiTableCell-root{
+    text-align: left;
+}
+
+.css-1tn2fmy-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root,
+.css-1v0jd34-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root{
+    width: 100% !important;
 }
 
 .checkout_title_name {
     display: flex;
     align-items: center;
-
     gap: 1.5rem;
 }
+
 
 .checkout_date {
     display: flex;

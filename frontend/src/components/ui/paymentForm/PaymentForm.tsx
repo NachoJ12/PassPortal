@@ -26,7 +26,6 @@ const PaymentForm = () => {
     const context = useContext(CheckoutContext);
     const { selectedValue } = context || {};
 
-
     const [state, setState] = useState({
         number: '',
         expiry: '',
@@ -53,16 +52,18 @@ const PaymentForm = () => {
     const { errors } = formState;
 
     const onSubmit = (data: any) => {
-        console.log({ ...data, ...selectedValue });
-
+        
+        const dataFormat = {
+            delivery_address: "Av siempreviva 123",
+            userid: 8,
+            tickets: ""
+        }
+        console.log(dataFormat);
     }
 
     return (
         <div>
-
-
             <form onSubmit={handleSubmit(onSubmit)} className='payment_form'>
-
                 <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center" }}>
                     <Cards
                         number={state.number}
@@ -72,8 +73,9 @@ const PaymentForm = () => {
                         focused={state.focused}
                     />
                     <div style={{
-                        display: "flex", gap: "20px", flexWrap: "wrap", justifyContent: "center" }}>
-                        <div style={{ display: "flex", flexDirection: "column", gap: "20px",  }}>
+                        display: "flex", gap: "20px", flexWrap: "wrap", justifyContent: "center"
+                    }}>
+                        <div style={{ display: "flex", flexDirection: "column", gap: "20px", }}>
                             <div style={{ width: "100%" }} >
 
                                 <Typography variant="caption" color="red">
@@ -120,7 +122,7 @@ const PaymentForm = () => {
                             </div>
                         </div>
 
-                        <div style={{ display: "flex", flexDirection: "column", gap: "20px",  }}>
+                        <div style={{ display: "flex", flexDirection: "column", gap: "20px", }}>
                             <div style={{ width: "100%" }}>
                                 <Typography variant="caption" color="red">
                                     <ErrorMessage errors={errors} name="cvc" />
@@ -158,23 +160,17 @@ const PaymentForm = () => {
                         </div>
                     </div>
                 </div>
-
-
-                <div style={{display:"flex", justifyContent:"center", width:"100%"}}>
-
-
+                <div style={{ display: "flex", justifyContent: "center", width: "100%", marginTop: "1.5rem !important" }}>
                     <Button
+
                         sx={{ width: '35% !important ', borderColor: theme.palette.primary.main + '!important', color: theme.palette.primary.main + '!important' }}
                         variant='outlined'
                         type="submit"
-                        color='primary'
-
-                    >
+                        color='primary'>
                         Buy Tickets !
                     </Button>
                 </div>
             </form>
-
         </div>
     );
 };

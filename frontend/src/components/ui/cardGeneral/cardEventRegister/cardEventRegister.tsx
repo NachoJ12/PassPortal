@@ -65,7 +65,10 @@ const CardEventRegister: React.FC<EventFormProps> = ({ onSubmit }) => {
           },
           body: JSON.stringify(apiData),
         }
+        
       );
+      console.log("Token de Acceso:", session?.user?.accessToken);
+
 
       // Verifica si la solicitud fue exitosa (código de respuesta 2xx)
       if (response.ok) {

@@ -1,37 +1,49 @@
 "use client"
-import { categories } from '@/data/categories'
-import {  Button } from '@mui/material';
-import React from 'react'
+import React, { FC } from 'react'
+import { Button } from '@mui/material';
 import { useRouter } from 'next/router';
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams, } from 'next/navigation'
+import Link from 'next/link';
+import { Category } from '@/types/categories'
 
-const Filters = () => {
-    const router = useRouter()
-    const searchParams = useSearchParams()
-    const selected = searchParams.get("category")
-    
+interface Props {
+    category: Category[]
+}
+
+const Filters: FC<Props> = ({ category }) => {
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const selectedCategories = searchParams.get("categories")?.split('-') || [];
+
     const handleClick = (name: string) => {
+        let updatedCategories = [...selectedCategories];
+        const categoryIndex = updatedCategories.indexOf(name);
+        if (categoryIndex === -1) {
+            updatedCategories.push(name);
+        }
+        const encodedCategories = updatedCategories.join('-');
         router.push({
             query: {
-                ...router.query, category: name
-            }
-        })
+                ...router.query,
+                categories: encodedCategories 
+            },
+        });
+        console.log(encodedCategories);
     };
 
     return (
         <div className='category_container'>
-            {categories.map(category => (
+            {category.map(ca => (
                 <Button
-                    onClick={() => handleClick(category.name)}
-                    key={category.id}
-                    className={selected === category.name ? 'categoty_item selected' : 'categoty_item'}
+                    onClick={() => handleClick(ca.name)}
+                    key={ca.id}
+                    className={selectedCategories.includes(ca.name, 0) ? 'category_item selected' : 'category_item'}
                 >
-                    {category.name}
+                    {ca.name}
                 </Button>
-            )
-            )}
+            ))}
         </div>
-    )
+    );
 }
 
 export default Filters

@@ -9,6 +9,7 @@ import { schemaRegister } from '@/rules'
 import Image from 'next/image'
 import GoogleButton from '../googlebutton/GoogleButton'
 import Link from 'next/link'
+import alertify from 'alertifyjs';
 
 interface FormData {
   name: string
@@ -63,7 +64,7 @@ const FormRegister = () => {
     if (!post.ok) {
       setErrorsApi('Error while creating user')
     }
-    alert('Registro exitoso');
+    alertify.success('Registro exitoso');
     router.push('/login');
     const responseNextAuth = await signIn('credentials', {
       email,
@@ -93,7 +94,7 @@ const FormRegister = () => {
               name='name'
               className='input-form'
             />
-            <Typography variant='caption' color='black'>
+            <Typography variant='caption' color='red'>
               <ErrorMessage errors={errors} name='name' />
             </Typography>
 
@@ -107,7 +108,7 @@ const FormRegister = () => {
               name='lastName'
               className='input-form'
             />
-            <Typography variant='caption' color='black'>
+            <Typography variant='caption' color='red'>
               <ErrorMessage errors={errors} name='lastName' />
             </Typography>
 
@@ -121,7 +122,7 @@ const FormRegister = () => {
               name='email'
               className='input-form'
             />
-            <Typography variant='caption' color='black'>
+            <Typography variant='caption' color='red'>
               <ErrorMessage errors={errors} name='email' />
             </Typography>
 
@@ -135,7 +136,7 @@ const FormRegister = () => {
               name='username'
               className='input-form'
             />
-            <Typography variant='caption' color='black'>
+            <Typography variant='caption' color='red'>
               <ErrorMessage errors={errors} name='username' />
             </Typography>
 
@@ -149,7 +150,7 @@ const FormRegister = () => {
               name='password'
               className='input-form'
             />
-            <Typography variant='caption' color='black'>
+            <Typography variant='caption' color='red'>
               <ErrorMessage errors={errors} name='password' />
             </Typography>
 
@@ -163,7 +164,7 @@ const FormRegister = () => {
               name='repeatPassword'
               className='input-form'
             />
-            <Typography variant='caption' color='black'>
+            <Typography variant='caption' color='red'>
               <ErrorMessage errors={errors} name='repeatPassword' />
             </Typography>
           </div>
@@ -190,12 +191,12 @@ const FormRegister = () => {
               Register
             </button>
             {errorsApi && (
-              <Typography variant='caption' color='black'>
+              <Typography variant='caption' color='red'>
                 {errorsApi}
               </Typography>
             )}
-            <h3>or continue with</h3>
-            <GoogleButton />
+            {/* <h3>or continue with</h3>
+            <GoogleButton /> */}
             <div style={{ marginTop: '0.2rem' }}>
               <p className=''>
                 Have an account?{'  '}

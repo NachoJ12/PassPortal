@@ -1,3 +1,4 @@
+"use client"
 import { getEventById } from "@/service/events-service";
 import { GetServerSideProps } from "next";
 import React, { FC, useState } from "react";
@@ -10,10 +11,11 @@ import PaymentForm from "@/components/ui/paymentForm/PaymentForm";
 import PaymentTable from "@/components/ui/paymentTable/PaymentTable";
 import StadiumIcon from '@mui/icons-material/Stadium';
 import { SingleEvent } from "@/types/events";
-
+import { useSession } from "next-auth/react"
+import { redirect } from 'next/navigation'
 
 interface Props {
-    event: SingleEvent
+    event: SingleEvent;
 }
 
 const theme = createTheme({
@@ -29,6 +31,17 @@ const theme = createTheme({
 
 
 const CheckOut: FC<Props> = ({ event }) => {
+    const { data: session } = useSession()
+
+    if (!session) {
+        try {
+            redirect("/login");
+        } catch (error) {
+            console.error("Error during redirect:", error);
+            // Handle the error appropriately (e.g., log, display an error message, etc.)
+        }
+    }
+
 
     return (
         <BaseLayout>
@@ -86,11 +99,13 @@ const CheckOut: FC<Props> = ({ event }) => {
 export default CheckOut;
 
 export const getServerSideProps: GetServerSideProps<Props> = async ({ params }) => {
+
     const id: string = typeof params?.id === 'string' ? params.id : '';
     const event = await getEventById(id)
+    
     return {
         props: {
-            event,
+            event
         },
     };
 };

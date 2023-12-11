@@ -1,7 +1,7 @@
 import React from 'react'
 import BaseLayout from '@/components/layouts/base-layout'
 import { GetServerSideProps, NextPage } from 'next'
-import { getAllEvents, getEventByName, getEventByDate, getEventByArtist, getEventByCategories, getEventByArtistAndCategories, } from '@/service/events-service'
+import { getAllEvents, getEventByName, getEventByDate, getEventByArtist, getEventByCategories, getEventByArtistAndCategories, getEventsByFilters, } from '@/service/events-service'
 import { getCategories } from '@/service/categories-service'
 
 import { Event } from '@/types/events'
@@ -65,7 +65,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res, query }) => 
   //   total: 0,
   // };
 
-  const { name, artist, dateFormat, categories }: any = query;
+  const { country, city, artist, categories, name, dateFormat }: any = query;
 
   // if (provincia) {
   //   municipios = await getMunicipiosByProvincia(provincia)
@@ -79,31 +79,21 @@ export const getServerSideProps: GetServerSideProps = async ({ res, query }) => 
     'public, s-maxage=10, stale-while-revalidate=59'
   )
 
-  let events: Event[] = [];
+  let events: Event[] = []
 
   switch (true) {
-    case Boolean(name):
-      events = await getEventByName(name);
-      break;
-    case Boolean(artist && categories):
-      events = await getEventByArtistAndCategories(artist, categories);
-      break;
-    case Boolean(categories):
-      events = await getEventByCategories(categories);
-      break;
-    case Boolean(artist):
-      events = await getEventByArtist(artist);
-      break;
-    case Boolean(dateFormat):
-      events = await getEventByDate(dateFormat);
+    case Boolean(country || city || artist || categories || name || dateFormat):
+      // Perform actions for when at least one filter parameter is provided
+      events = await getEventsByFilters(country, city, artist, categories, name, dateFormat);
       break;
     default:
-      events = await getAllEvents();
+      // Perform actions when no filter parameters are provided
+      events = await getEventsByFilters(); // This will call the function with no parameters
       break;
   }
 
   const category = await getCategories()
-
+  console.log(events)
   return {
     props: {
       events, category

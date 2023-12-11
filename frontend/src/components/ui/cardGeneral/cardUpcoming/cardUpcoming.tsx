@@ -1,26 +1,20 @@
-import React, { FC } from "react";
+import React, { FC } from 'react'
 import { Event } from '@/types/events'
-import {
-  Card,
-  CardContent,
-  Typography,
-} from "@mui/material";
-import Image from "next/image";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
+import { Card, CardContent, Typography } from '@mui/material'
+import Image from 'next/image'
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
+import LocationOnIcon from '@mui/icons-material/LocationOn'
 import { useRouter } from 'next/navigation'
 interface Props {
   event: Event
 }
 
 const CardUpcoming: FC<Props> = ({ event }) => {
-
   const router = useRouter()
 
   const redirect = () => {
     router.push(`events/${event.id}`)
   }
-
 
   return (
     <Card onClick={redirect} className='cardUpcoming-general' data-aos='fade-up'>
@@ -29,10 +23,10 @@ const CardUpcoming: FC<Props> = ({ event }) => {
           <Image
             src={event?.image}
             alt={event?.name}
-            width={50}
-            height={50}
             className='cardUpcoming-image '
-            objectFit="cover"
+            quality={100}
+            fill
+            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
             priority
           />
         </div>
@@ -58,5 +52,5 @@ const CardUpcoming: FC<Props> = ({ event }) => {
       </CardContent>
     </Card>
   )
-};
-export default CardUpcoming;
+}
+export default CardUpcoming

@@ -39,6 +39,7 @@
     width: 80px !important;
     height: 80px !important;
     cursor: pointer !important;
+    object-fit: cover !important;
 }
 .cardUpcoming-elements{
     display: flex !important;

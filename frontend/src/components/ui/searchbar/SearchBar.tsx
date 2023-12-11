@@ -13,18 +13,11 @@ import DatePickerValue from '../calendar/Calendar';
 
 interface Props {
     //    municipios: IMunicipioResponse
-    //    provincias: IProvinciaResponse
 }
 
 const SearchBar: FC<Props> = ({ }) => {
     const [date, setValue] = useState<Dayjs | null>(dayjs(new Date()));
-    // console.log(value!.format("YYYY-MM-DD"))
-    // useSearchParams({
-    //     name:"",
-    //     artist:"",
-    //     date:"",
-    //     category:"",
-    // })
+
 
     const router = useRouter()
     const [search, setSearch] = useState({
@@ -62,43 +55,59 @@ const SearchBar: FC<Props> = ({ }) => {
 
     const handleSubmit = (e: any) => {
         e.preventDefault()
-        
-        const dateFormat = date!.format("YYYY-MM-DD")
 
-        switch(true){
+        const dateFormat = date !== null ? date.format("YYYY-MM-DD") : "";
+
+        switch (true) {
+            case Boolean(name && artist && date !== null):
+                router.push({
+                    query: {
+                        ...router.query, name, artist, dateFormat
+                    }
+                })
+                break;
             case Boolean(name && artist):
                 router.push({
                     query: {
                         ...router.query, name, artist
                     }
                 })
-            break;
+                break;
+            case Boolean(name && date !== null):
+                router.push({
+                    query: {
+                        ...router.query, name, dateFormat
+                    }
+                })
+                break;
             case Boolean(name):
                 router.push({
                     query: {
                         ...router.query, name
                     }
                 })
-            break;
+                break;
+            case Boolean(artist && date !== null):
+                router.push({
+                    query: {
+                        ...router.query, artist, dateFormat
+                    }
+                })
+                break;
             case Boolean(artist):
                 router.push({
                     query: {
                         ...router.query, artist
                     }
                 })
+                break;
             case Boolean(date !== null):
                 router.push({
                     query: {
                         ...router.query, dateFormat
                     }
                 })
-            break;
-        }
-
-        const dataFormt = {
-            name,
-            municipio: search.municipio,
-            provincia: search.provincia
+                break;
         }
     }
 
@@ -153,7 +162,7 @@ const SearchBar: FC<Props> = ({ }) => {
                         {municipios.municipios.length > 0 ? municipios.municipios.map(municipio => (<MenuItem value={municipio.nombre} key={municipio.id}>{municipio.nombre}</MenuItem>)) : <MenuItem>There are no Location Available</MenuItem>}
                     </Select>
                 </Box> */}
-                <DatePickerValue date={date} setValue={setValue}/>
+                <DatePickerValue date={date} setValue={setValue} />
             </div>
             <div style={{ display: "flex", gap: "16px" }}>
 

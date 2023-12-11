@@ -91,3 +91,13 @@ export const getEventByArtistAndCategories = async (artist: string, category: st
 
 
 
+export const getEventsByFilters = async (country: string = "", city: string = "", artist: string = "", category: string = "", name: string = "", date: string = "") => {
+  const categories = category?.split("-").join(",");
+  const res = await fetch(`${NEXT_PUBLIC_BACKEND_URL}/events?county=${country}&city=${city}&artist=${artist}&categories=${categories}&name=${name}&date=${date}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+  return await res.json()
+}

@@ -13,6 +13,7 @@ import { useRouter } from 'next/router'
 import { CheckoutContext } from '@/components/context/checkout-context';
 import { TicketOrder } from "@/types/order";
 import { useSession } from "next-auth/react";
+import { postOrder } from "@/service/order-service";
 const theme = createTheme({
     palette: {
         primary: {
@@ -59,7 +60,7 @@ const PaymentForm = () => {
 
 
 
-    const onSubmit = (data: any) => {
+    const onSubmit = async (data: any) => {
         const arr: any[] = [];
         const result: number = ticket?.length
             ? ticket.reduce((accumulator: number, currentTicket: TicketOrder) => {
@@ -70,7 +71,7 @@ const PaymentForm = () => {
         const dataFormat = {
             delivery_address: "Av siempreviva 123",
             userid: session!.user.userId,
-            tickets: arr
+            ticket: arr
         }
 
         // Loop to push ticket IDs to the arr array
@@ -93,6 +94,9 @@ const PaymentForm = () => {
         }
 
         console.log(result, dataFormat);
+        const res = await postOrder(dataFormat, session!.user.accessToken)
+        console.log(res);
+        
     }
 
     return (

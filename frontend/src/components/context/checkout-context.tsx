@@ -8,6 +8,8 @@ interface CheckoutContextProps {
     selectedValue: TicketType
     handleChange: (event: SelectChangeEvent<string>) => void;
     ticket: TicketOrder[];
+    total: number;
+    handleTotal: (price : number) => void 
 }
 
 interface Props {
@@ -19,13 +21,7 @@ export const CheckoutContext = createContext<CheckoutContextProps | undefined>(u
 export const CheckoutProvider = ({ children }: Props) => {
     const [total, setTotal] = useState<number>(0);
 
-    const [order, setOrder] = useState<IOrder>({
-        emailAddress: "",
-        userId: 0,
-        eventId: 0,
-        totalPrice: 0,
-        tickets: [],
-    })
+    const handleTotal = (price : number) => setTotal(price)
 
     const [selectedValue, setSelectedValue] = useState<TicketType>({
         regular: 0,
@@ -55,7 +51,6 @@ export const CheckoutProvider = ({ children }: Props) => {
         const existingTicketIndex = ticket.findIndex(t => t.name === cleanName);
 
         if (existingTicketIndex !== -1) {
-            // Update the cantTickets value for the existing ticket
             const updatedTickets = [...ticket];
             updatedTickets[existingTicketIndex] = {
                 ...updatedTickets[existingTicketIndex],
@@ -78,7 +73,9 @@ export const CheckoutProvider = ({ children }: Props) => {
     const contextValue: CheckoutContextProps = {
         selectedValue,
         handleChange,
-        ticket
+        ticket,
+        handleTotal,
+        total
     };
 
     return (

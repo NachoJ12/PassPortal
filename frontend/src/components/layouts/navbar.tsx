@@ -27,6 +27,9 @@ const Navbar: React.FC<NavbarProps> = ({ onUsernameClick }) => {
     <nav className='navbar'>
       {session?.user ? (
         <>
+          <Link href="/EventRegister" className="navbar_linkRegister">
+            Registrar Evento
+          </Link>
           <span className="navbar_link" onClick={onUsernameClick}>
             {session.user.username}
           </span>

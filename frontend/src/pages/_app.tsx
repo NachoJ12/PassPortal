@@ -6,6 +6,7 @@ import "@/styles/layoutCss/navbar.css"
 import '@/styles/ui/cards/cardUpcoming.css'
 import '@/styles/ui/cards/cardShows.css'
 import '@/styles/ui/cards/cardEventReservation.css'
+import '@/styles/ui/cards/cardEventRegister.css'
 import '@/styles/ui/carousel.css'
 import '@/styles/ui/searchbar.css'
 import '@/styles/ui/checkout.css'
@@ -31,7 +32,7 @@ export default function App({ Component, pageProps }: AppProps) {
   }, [router.pathname]);
   return (
     <CheckoutProvider>
-    {isProfileVisible && <CardProfile onClose={() => setIsProfileVisible(false)} />}
+    {isProfileVisible && <CardProfile onClose={() => setIsProfileVisible(false)} data-aos="zoom-in"/>}
     <SessionAuthProvider>
       <SidebarProvider>
         <Component {...pageProps} onUsernameClick={() => setIsProfileVisible(true)} />

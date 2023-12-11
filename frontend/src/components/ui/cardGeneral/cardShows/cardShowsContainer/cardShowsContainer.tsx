@@ -23,14 +23,15 @@ export const CardShowsContainer:FC = () => {
 
 
   return (
-    <div className="grid-container">
-      {events?.slice(0, 8).map((item : Event) => (
-        <div key={item.id}
+ <div className="grid-container">
+      {events?.slice(0, 6).map((item: Event, index: number) => (
+        <div
+          key={item.id}
           className={`grid-item ${
-            item.image === "large" ? "large-card" : "small-card"
+            index === 0 ? "large-card" : "small-card"
           }`}
         >
-          <CardsShowEvents event={item}/>
+          <CardsShowEvents event={item} />
         </div>
       ))}
     </div>

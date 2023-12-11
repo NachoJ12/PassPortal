@@ -29,6 +29,7 @@
 
 .cardShow-container-info {
   background-color: white !important;
+  
 }
 
 .cardShow-container-info:hover {
@@ -99,7 +100,7 @@
   }
   .cardShow-container-info {
     width: 100% !important;
-    height: 100% !important;
+    height: 125px !important;
     padding: 10px !important;
   }
   .cardShow-description {

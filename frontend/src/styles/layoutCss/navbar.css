@@ -46,6 +46,28 @@
     text-shadow: var(--color-secundario) 3px 0px 10px;
 }
 
+.navbar_linkRegister {
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+    text-decoration: none;
+    color: black;
+    display: flex;
+    background-color: #d67ab1;
+    justify-content: flex-start;
+    margin-right: 20px;
+    height: 35px;
+    padding: 10px;
+    align-items: center;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+.navbar_linkRegister:hover {
+    color: var(--color-secundario);
+    text-shadow: var(--color-secundario) 3px 0px 10px;
+    background-color: #d67ab18f;
+}
+
 @media screen and (max-width: 767px) {
     .navbar {
         height: 3rem;

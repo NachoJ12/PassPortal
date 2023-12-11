@@ -8,14 +8,14 @@ interface CardProfileProps {
 }
 
 const eventsReserved = [
-  { amount: 2, name: "League Of Legends",date: "24-11-2023" },
-  { amount: 2, name: "League Of Legends",date: "24-11-2023" },
-  { amount: 2, name: "League Of Legends",date: "24-11-2023" },
-  { amount: 2, name: "League Of Legends",date: "24-11-2023" },
-  { amount: 2, name: "League Of Legends",date: "24-11-2023" },
-  { amount: 2, name: "League Of Legends",date: "24-11-2023" },
-  { amount: 2, name: "League Of Legends",date: "24-11-2023" },
-  { amount: 2, name: "League Of Legends",date: "24-11-2023" },
+  { type: "general", amount: 2, name: "League Of Legends",date: "24-11-2023" },
+  { type: "general",amount: 2, name: "League Of Legends",date: "24-11-2023" },
+  { type: "general",amount: 2, name: "League Of Legends",date: "24-11-2023" },
+  { type: "general",amount: 2, name: "League Of Legends",date: "24-11-2023" },
+  { type: "general",amount: 2, name: "League Of Legends",date: "24-11-2023" },
+  { type: "general",amount: 2, name: "League Of Legends",date: "24-11-2023" },
+  { type: "general",amount: 2, name: "League Of Legends",date: "24-11-2023" },
+  { type: "general",amount: 2, name: "League Of Legends",date: "24-11-2023" },
 ];
 
 export const CardProfile: React.FC<CardProfileProps> = ({ onClose }) => {
@@ -53,6 +53,10 @@ export const CardProfile: React.FC<CardProfileProps> = ({ onClose }) => {
                 <div className="cardProfile-chart-amount">
                 <span className="span-name">Amount </span>
                 <span>{event.amount}</span>
+                </div>
+                <div className="cardProfile-chart-type">
+                <span className="span-name">Type</span>
+                <span>{event.type.length > 8 ? `${event.name.slice(0, 8)}...` : event.type}</span>
                 </div>
                 <div className="cardProfile-chart-name">
                 <span className="span-name" >Event </span>

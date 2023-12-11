@@ -50,7 +50,7 @@
     padding-top: 25px !important;
     width: 90% !important;
     align-self: center;
-    height: 60% !important;
+    height: 95% !important;
 }
 
 .cardReservation-image {
@@ -122,4 +122,35 @@
 
 .ticket_list {
     display: flex;
+}
+
+@media screen and (max-width: 767px) {
+    .cardReservation-general {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    .cardReservation-boxEvent{
+        width: 80% !important;
+        border-radius: 0% 0% 0% 0% !important;
+        
+    }
+    .cardReservation-box{
+        border-radius: 0px !important;
+    }
+
+    .cardReservation-image{
+        border-radius: 0px !important;
+    }
+    .cardReservation-boxReserve{
+        width: 80% !important;
+        border-radius: 0% 0% 0% 0% !important;
+        
+    }
+    .cardReservation-button{
+        text-align: center !important;
+    }
+    .cardReservation-date, .cardReservation-ubi{
+        flex-wrap: wrap !important;
+    }
 }

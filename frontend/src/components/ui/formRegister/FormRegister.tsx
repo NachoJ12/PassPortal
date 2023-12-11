@@ -9,6 +9,7 @@ import { schemaRegister } from '@/rules'
 import Image from 'next/image'
 import GoogleButton from '../googlebutton/GoogleButton'
 import Link from 'next/link'
+import alertify from 'alertifyjs';
 
 interface FormData {
   name: string
@@ -63,7 +64,8 @@ const FormRegister = () => {
     if (!post.ok) {
       setErrorsApi('Error while creating user')
     }
-
+    alertify.success('Registro exitoso');
+    router.push('/login');
     const responseNextAuth = await signIn('credentials', {
       email,
       password,

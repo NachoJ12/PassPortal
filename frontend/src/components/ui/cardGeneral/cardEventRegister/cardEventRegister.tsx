@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
-import { Button, Container, Grid, TextField } from "@mui/material";
+import { Button, Container, Grid, TextField, MenuItem, Select, InputLabel } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { useRouter } from "next/router";
 import dayjs from "dayjs";
-import toastr from "toastr"; // Importa Toastr
+import toastr from "toastr";
 import "toastr/build/toastr.min.css";
+import { getCategories } from "@/service/categories-service"; // Importa la función getCategories
 
 import logo from "../../../../../public/logo-grey.svg";
 import Image from "next/image";
@@ -21,6 +23,20 @@ const CardEventRegister: React.FC<EventFormProps> = ({ onSubmit }) => {
   const { handleSubmit, control } = useForm();
   const { data: session } = useSession();
   const [file, setFile] = useState<File | null>(null);
+  const [categories, setCategories] = useState([]);
+  const router = useRouter();
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const categoriesData = await getCategories();
+        setCategories(categoriesData);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
+    fetchCategories();
+  }, []);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.target.files?.[0];
@@ -101,6 +117,9 @@ const CardEventRegister: React.FC<EventFormProps> = ({ onSubmit }) => {
   
         // Llama a la función onSubmit si es necesario
         onSubmit(data);
+
+        router.push("/events");
+
       } else {
         console.error("Error al enviar datos a la API:", response.statusText);
       }
@@ -228,22 +247,30 @@ const CardEventRegister: React.FC<EventFormProps> = ({ onSubmit }) => {
                     )}
                   />
                 </Grid>
-                <Grid item xs={12} sm={6}>
-                  <Controller
-                    name="categoria"
-                    control={control}
-                    rules={{ required: "This field is required" }}
-                    render={({ field }) => (
-                      <TextField
-                        {...field}
-                        label="category"
-                        fullWidth
-                        required
-                        type="number"
-                      />
-                    )}
-                  />
-                </Grid>
+ <Grid item xs={12} sm={6}>
+  <Controller
+    name="categoria"
+    control={control}
+    rules={{ required: "This field is required" }}
+    render={({ field }) => (
+      <>
+        <InputLabel>Category</InputLabel>
+        <Select
+          {...field}
+          label="Category"
+          fullWidth
+          required
+        >
+          {categories.map((category) => (
+            <MenuItem key={category.id} value={category.id}>
+              {category.name}
+            </MenuItem>
+          ))}
+        </Select>
+      </>
+    )}
+  />
+</Grid>
                 <Grid item xs={12} sm={6}>
                   <Controller
                     name="artista"

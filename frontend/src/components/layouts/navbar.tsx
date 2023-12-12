@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { signOut, useSession } from "next-auth/react";
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+
 
 const navbarItems = [
   {
@@ -20,7 +22,11 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ onUsernameClick }) => {
   const { data: session } = useSession();
-
+  const router = useRouter();
+  const handleSignOut = async () => {
+    await signOut({});
+    router.push('/');
+  };
   return (
     <nav className='navbar'>
       {session?.user ? (
@@ -33,13 +39,9 @@ const Navbar: React.FC<NavbarProps> = ({ onUsernameClick }) => {
           <span className="navbar_link" onClick={onUsernameClick}>
             {session.user.username}
           </span>
-          <Link
-            href="/"
-            onClick={() => signOut({ callbackUrl: '/login' })}
-            className="navbar_link"
-          >
+          <a className="navbar_link" onClick={handleSignOut}>
             Sign-Out
-          </Link>
+          </a>
         </>
       ) : (
         <ul className='navbar_list'>

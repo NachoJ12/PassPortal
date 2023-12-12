@@ -12,7 +12,7 @@ export default function report() {
   const handleSubmit = async (e: any) => {
     e.preventDefault()
     try {
-      const pdf = await getReportByDate(9, 2023);
+      const pdf = await getReportByDate(11, 2023);
       const url = window.URL.createObjectURL(new Blob([pdf]));
       // const url = window.URL.createObjectURL(pdf);
       const link = document.createElement('a');

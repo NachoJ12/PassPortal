@@ -1,5 +1,6 @@
 package com.example.msorder.controller;
 
+import com.example.msorder.dto.OrderResponseDTO;
 import com.example.msorder.model.Order;
 import com.example.msorder.service.OrderService;
 import com.itextpdf.text.DocumentException;
@@ -34,8 +35,9 @@ public class OrderController {
         return ResponseEntity.ok().body(service.findById(id).get());
     }
     @GetMapping("/user/{id}")
-    public ResponseEntity<List<Order>> findbyUserid(@PathVariable Long id){
-        return ResponseEntity.ok().body(service.findByUserid(id));
+    public ResponseEntity<List<OrderResponseDTO>> findbyUserid(@PathVariable Long id){
+        //return ResponseEntity.ok().body(service.findByUserid(id));
+        return ResponseEntity.ok().body(service.findOrderByUseridAndEvent(id));
     }
 
     @PostMapping

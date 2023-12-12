@@ -1,5 +1,7 @@
 package com.example.msorder.service;
 
+import com.example.msorder.dto.OrderResponseDTO;
+import com.example.msorder.feign.IEventFeing;
 import com.example.msorder.model.Order;
 import com.example.msorder.model.Ticket;
 import com.example.msorder.repository.IOrderRepository;
@@ -7,16 +9,15 @@ import com.example.msorder.repository.IticketRepository;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfWriter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import java.net.URL;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,6 +26,9 @@ public class OrderService {
 
     private final IOrderRepository repository;
     private final IticketRepository ticketrepository;
+
+    @Autowired
+    private final IEventFeing eventFeign;
 
     public List<Order> findAll() {
         return repository.findAll();
@@ -56,6 +60,31 @@ public class OrderService {
     public List<Order> findByUserid(Long id){
         return repository.findByUserid(id);
     }
+
+    public List<OrderResponseDTO> findOrderByUseridAndEvent(Long id){
+
+        List<Order> orders = repository.findByUserid(id);
+
+        List<OrderResponseDTO> ordersDTO = new ArrayList<>();
+
+        if(!orders.isEmpty()){
+            orders.stream().forEach(order -> {
+                Long eventId = order.getTicket().get(0).getEventid();
+
+                IEventFeing.EventDTO eventDTO = eventFeign.getEventById(eventId);
+                OrderResponseDTO orderResponseDTO = new OrderResponseDTO();
+
+                orderResponseDTO.setEvent_id(eventDTO.getEvent().getID());
+                orderResponseDTO.setEvent_name(eventDTO.getEvent().getName());
+                orderResponseDTO.setOrder(order);
+
+                ordersDTO.add(orderResponseDTO);
+            });
+        }
+
+        return ordersDTO;
+    }
+
 
     public  ByteArrayOutputStream generatePdfStream(int month, int year) throws DocumentException, IOException {
 

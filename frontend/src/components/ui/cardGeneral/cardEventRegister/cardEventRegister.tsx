@@ -97,19 +97,7 @@ const CardEventRegister: React.FC<EventFormProps> = ({ onSubmit }) => {
         const responseData = await response.json();
         console.log("Respuesta de la API:", responseData);
 
-        toastr.options = {
-          closeButton: false,
-          debug: false,
-          newestOnTop: false,
-          progressBar: false,
-          positionClass: "toast-top-right",
-          preventDuplicates: false,
-          showEasing: "swing",
-          hideEasing: "linear",
-          showMethod: "fadeIn",
-          hideMethod: "fadeOut",
-        };
-        toastr.success("El evento se ha creado exitosamente!");
+        toastr.success("The event has been created successfully!");
   
         // Llama a la función onSubmit si es necesario
         onSubmit(data);
@@ -119,20 +107,7 @@ const CardEventRegister: React.FC<EventFormProps> = ({ onSubmit }) => {
     } catch (error) {
       console.error("Error en el servidor:", error);
 
-      toastr.options = {
-        closeButton: false,
-        debug: false,
-        newestOnTop: false,
-        progressBar: false,
-        positionClass: "toast-top-right",
-        preventDuplicates: false,
-        showEasing: "swing",
-        hideEasing: "linear",
-        showMethod: "fadeIn",
-        hideMethod: "fadeOut",
-      };
-
-      toastr.error("Error al crear el evento.");
+      toastr.error("Error creating event.");
     }
   };
 
@@ -145,17 +120,17 @@ const CardEventRegister: React.FC<EventFormProps> = ({ onSubmit }) => {
             className="CardEventRegister-Form"
           >
             <Container>
-              <h1>Registre su evento</h1>
+              <h1>Register Event</h1>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
                   <Controller
                     name="eventName"
                     control={control}
-                    rules={{ required: "Este campo es obligatorio" }}
+                    rules={{ required: "This field is required" }}
                     render={({ field }) => (
                       <TextField
                         {...field}
-                        label="Nombre del evento"
+                        label="Event name"
                         fullWidth
                         required
                       />
@@ -166,11 +141,11 @@ const CardEventRegister: React.FC<EventFormProps> = ({ onSubmit }) => {
                   <Controller
                     name="eventDescription"
                     control={control}
-                    rules={{ required: "Este campo es obligatorio" }}
+                    rules={{ required: "This field is required" }}
                     render={({ field }) => (
                       <TextField
                         {...field}
-                        label="Descripción del evento"
+                        label="Event description"
                         multiline
                         fullWidth
                         required
@@ -182,11 +157,11 @@ const CardEventRegister: React.FC<EventFormProps> = ({ onSubmit }) => {
                   <Controller
                     name="eventDate"
                     control={control}
-                    rules={{ required: "Este campo es obligatorio" }}
+                    rules={{ required: "This field is required" }}
                     render={({ field }) => (
                       <DatePicker
                         {...field}
-                        label="Fecha del evento"
+                        label="Event Date"
                         value={field.value || null}
                         className="datePicker"
                       />
@@ -197,11 +172,11 @@ const CardEventRegister: React.FC<EventFormProps> = ({ onSubmit }) => {
                   <Controller
                     name="eventTime"
                     control={control}
-                    rules={{ required: "Este campo es obligatorio" }}
+                    rules={{ required: "This field is required" }}
                     render={({ field }) => (
                       <TimePicker
                         {...field}
-                        label="Hora del evento"
+                        label="Event time"
                         value={field.value || null}
                         className="timePicker"
                       />
@@ -212,11 +187,11 @@ const CardEventRegister: React.FC<EventFormProps> = ({ onSubmit }) => {
                   <Controller
                     name="provincia"
                     control={control}
-                    rules={{ required: "Este campo es obligatorio" }}
+                    rules={{ required: "This field is required" }}
                     render={({ field }) => (
                       <TextField
                         {...field}
-                        label="Provincia"
+                        label="province"
                         fullWidth
                         required
                       />
@@ -227,11 +202,11 @@ const CardEventRegister: React.FC<EventFormProps> = ({ onSubmit }) => {
                   <Controller
                     name="municipio"
                     control={control}
-                    rules={{ required: "Este campo es obligatorio" }}
+                    rules={{ required: "This field is required" }}
                     render={({ field }) => (
                       <TextField
                         {...field}
-                        label="Municipio"
+                        label="Municipality"
                         fullWidth
                         required
                       />
@@ -242,11 +217,11 @@ const CardEventRegister: React.FC<EventFormProps> = ({ onSubmit }) => {
                   <Controller
                     name="direccion"
                     control={control}
-                    rules={{ required: "Este campo es obligatorio" }}
+                    rules={{ required: "This field is required" }}
                     render={({ field }) => (
                       <TextField
                         {...field}
-                        label="Dirección"
+                        label="Adress"
                         fullWidth
                         required
                       />
@@ -257,11 +232,11 @@ const CardEventRegister: React.FC<EventFormProps> = ({ onSubmit }) => {
                   <Controller
                     name="categoria"
                     control={control}
-                    rules={{ required: "Este campo es obligatorio" }}
+                    rules={{ required: "This field is required" }}
                     render={({ field }) => (
                       <TextField
                         {...field}
-                        label="Categoría"
+                        label="category"
                         fullWidth
                         required
                         type="number"
@@ -273,11 +248,11 @@ const CardEventRegister: React.FC<EventFormProps> = ({ onSubmit }) => {
                   <Controller
                     name="artista"
                     control={control}
-                    rules={{ required: "Este campo es obligatorio" }}
+                    rules={{ required: "This field is required" }}
                     render={({ field }) => (
                       <TextField
                         {...field}
-                        label="Artista"
+                        label="Artist"
                         fullWidth
                         required
                       />
@@ -288,11 +263,11 @@ const CardEventRegister: React.FC<EventFormProps> = ({ onSubmit }) => {
                   <Controller
                     name="stockEntradas"
                     control={control}
-                    rules={{ required: "Este campo es obligatorio" }}
+                    rules={{ required: "This field is required" }}
                     render={({ field }) => (
                       <TextField
                         {...field}
-                        label="Stock de Entradas"
+                        label="Entry Stocks"
                         type="number"
                         fullWidth
                         required
@@ -304,11 +279,11 @@ const CardEventRegister: React.FC<EventFormProps> = ({ onSubmit }) => {
                   <Controller
                     name="tipoTickets"
                     control={control}
-                    rules={{ required: "Este campo es obligatorio" }}
+                    rules={{ required: "This field is required" }}
                     render={({ field }) => (
                       <TextField
                         {...field}
-                        label="Tipo de Tickets"
+                        label="Type of Tickets"
                         fullWidth
                         required
                       />
@@ -319,11 +294,11 @@ const CardEventRegister: React.FC<EventFormProps> = ({ onSubmit }) => {
                   <Controller
                     name="precioTickets"
                     control={control}
-                    rules={{ required: "Este campo es obligatorio" }}
+                    rules={{ required: "This field is required" }}
                     render={({ field }) => (
                       <TextField
                         {...field}
-                        label="Precio de Tickets"
+                        label="Ticket Price"
                         type="number"
                         fullWidth
                         required
@@ -335,11 +310,11 @@ const CardEventRegister: React.FC<EventFormProps> = ({ onSubmit }) => {
                   <Controller
                     name="tipoTickets2"
                     control={control}
-                    rules={{ required: "Este campo es obligatorio" }}
+                    rules={{ required: "This field is required" }}
                     render={({ field }) => (
                       <TextField
                         {...field}
-                        label="Tipo de Tickets"
+                        label="Type of Tickets"
                         fullWidth
                         required
                       />
@@ -350,11 +325,11 @@ const CardEventRegister: React.FC<EventFormProps> = ({ onSubmit }) => {
                   <Controller
                     name="precioTickets2"
                     control={control}
-                    rules={{ required: "Este campo es obligatorio" }}
+                    rules={{ required: "This field is required" }}
                     render={({ field }) => (
                       <TextField
                         {...field}
-                        label="Precio de Tickets"
+                        label="Ticket Price"
                         type="number"
                         fullWidth
                         required
@@ -367,7 +342,7 @@ const CardEventRegister: React.FC<EventFormProps> = ({ onSubmit }) => {
                 </Grid>
                 <Grid item xs={12}>
                   <Button type="submit" variant="contained" color="primary">
-                    Registrar evento
+                  Register event
                   </Button>
                 </Grid>
               </Grid>

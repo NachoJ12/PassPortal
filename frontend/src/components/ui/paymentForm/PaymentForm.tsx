@@ -14,6 +14,8 @@ import { CheckoutContext } from '@/components/context/checkout-context';
 import { TicketOrder } from "@/types/order";
 import { useSession } from "next-auth/react";
 import { postOrder } from "@/service/order-service";
+import toastr from "toastr"; // Importa Toastr
+import "toastr/build/toastr.min.css";
 const theme = createTheme({
     palette: {
         primary: {
@@ -93,6 +95,7 @@ const PaymentForm = () => {
             }
         }
 
+        toastr.success("Order placed successfully!");
         console.log(result, dataFormat);
         const res = await postOrder(dataFormat, session!.user.accessToken)
         console.log(res);

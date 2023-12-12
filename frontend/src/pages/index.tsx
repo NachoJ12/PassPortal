@@ -16,7 +16,10 @@ const Home: NextPage = () => {
   return (
     <BaseLayout>
       <div className="home-page">
-        <Image src={passPortalLogo} alt="logo" className="logo-main" />
+        <Image 
+          src={passPortalLogo} 
+          alt="logo" 
+          className="logo-main" />
         <div className="main-container">
           <div>
             <CarouselImage />

@@ -102,7 +102,7 @@ const PaymentForm = () => {
     return (
         <div>
             <form onSubmit={handleSubmit(onSubmit)} className='payment_form'>
-                <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center" }}>
+                <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center", marginTop: "1.5rem !important" }}>
                     <Cards
                         number={state.number}
                         expiry={state.expiry}

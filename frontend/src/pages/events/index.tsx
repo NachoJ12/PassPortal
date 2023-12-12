@@ -93,7 +93,6 @@ export const getServerSideProps: GetServerSideProps = async ({ res, query }) => 
   }
 
   const category = await getCategories()
-  console.log(events)
   return {
     props: {
       events, category

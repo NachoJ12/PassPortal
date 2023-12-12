@@ -27,15 +27,15 @@ const Navbar: React.FC<NavbarProps> = ({ onUsernameClick }) => {
     <nav className='navbar'>
       {session?.user ? (
         <>
-          <Link href="/EventRegister" className="navbar_linkRegister">
-            Registrar Evento
+          <Link href="/EventRegister" className="navbar_link">
+            Create Event
           </Link>
           <span className="navbar_link" onClick={onUsernameClick}>
             {session.user.username}
           </span>
           <Link
             href="/"
-            onClick={() => signOut()}
+            onClick={() => signOut({ callbackUrl: '/login' })}
             className="navbar_link"
           >
             Sign-Out

@@ -28,7 +28,6 @@ const Filters: FC<Props> = ({ category }) => {
                 categories: encodedCategories 
             },
         });
-        console.log(encodedCategories);
     };
 
     return (

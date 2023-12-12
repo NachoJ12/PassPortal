@@ -86,7 +86,9 @@ body {
   gap: 0.5rem;
 }
 
-.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+
+
+.category_item, .css-1ujsas3 {
   font-size: 1rem !important;
   text-decoration: none !important;
   color: var(--color-terciario) !important;
@@ -94,10 +96,9 @@ body {
   transition: all 0.3s ease-in-out !important;
   padding-top: 25px !important;
   padding-bottom: 25px !important;
-  flex-basis: 150px !important;
-}
+  flex-basis: 150px !important;}
 
-.css-1e6y48t-MuiButtonBase-root-MuiButton-root:hover {
+.category_item:hover, .css-1ujsas3:hover {
   color: var(--color-secundario) !important;
   text-shadow: var(--color-secundario) 3px 0px 10px !important;
 }
@@ -107,10 +108,12 @@ body {
     text-shadow: var(--color-secundario) 3px 0px 10px !important;
 }
 
-.css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root{
-  color:white !important;
-  border: 1px solid #d67ab1 !important;
+.css-1bn53lx{
+  border: 1px solid rgb(214, 122, 177) !important;
   width: 100%;
+}
+.css-1uvydh2, .css-1bn53lx{
+  color:white !important;
 }
 
 .main-content {

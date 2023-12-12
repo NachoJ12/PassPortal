@@ -14,6 +14,8 @@ import { CheckoutContext } from '@/components/context/checkout-context';
 import { TicketOrder } from "@/types/order";
 import { useSession } from "next-auth/react";
 import { postOrder } from "@/service/order-service";
+import toastr from "toastr"; // Importa Toastr
+import "toastr/build/toastr.min.css";
 const theme = createTheme({
     palette: {
         primary: {
@@ -67,9 +69,9 @@ const PaymentForm = () => {
                 return accumulator + currentTicket.cantTickets;
             }, 0)
             : 0;
-            
+
         const dataFormat = {
-            delivery_address: "Av siempreviva 123",
+            delivery_address: session!.user.email,
             userid: session!.user.userId,
             ticket: arr
         }
@@ -77,32 +79,33 @@ const PaymentForm = () => {
         // Loop to push ticket IDs to the arr array
         let totalTicketsAdded = 0;
 
-        if(ticket !== undefined){
+        if (ticket !== undefined) {
             for (let i = 0; i < ticket.length; i++) {
                 const currentTicket = ticket[i];
                 const ticketsToAdd = Math.min(currentTicket.cantTickets, result - totalTicketsAdded, 10 - arr.length);
-    
+
                 for (let j = 0; j < ticketsToAdd; j++) {
                     arr.push({ id: currentTicket.id });
                     totalTicketsAdded++;
                 }
-    
+
                 if (totalTicketsAdded >= result || arr.length >= 10) {
                     break;
                 }
             }
         }
 
+        toastr.success("Order placed successfully!");
         console.log(result, dataFormat);
         const res = await postOrder(dataFormat, session!.user.accessToken)
         console.log(res);
-        
+
     }
 
     return (
         <div>
             <form onSubmit={handleSubmit(onSubmit)} className='payment_form'>
-                <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center" }}>
+                <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center", marginTop: "1.5rem !important" }}>
                     <Cards
                         number={state.number}
                         expiry={state.expiry}
@@ -195,6 +198,24 @@ const PaymentForm = () => {
                                     onFocus={handleInputFocus}
                                 />
                             </div>
+
+                        </div>
+                        <div style={{ width: "50%" }}>
+                            <Typography variant="caption" color="red">
+                                <ErrorMessage errors={errors} name="name" />
+                            </Typography>
+
+                            <input
+                                className='payment_input'
+                                {...register("email")}
+                                type="text"
+                                name="email"
+                                //required={true}
+                                placeholder="Email addrees"
+                                defaultValue={ session && session.user && session.user.email ? session.user.email : "" }
+
+                                readOnly
+                                />
                         </div>
                     </div>
                 </div>

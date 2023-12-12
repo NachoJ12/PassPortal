@@ -22,6 +22,7 @@
 .cardUpcoming-image-container{
     width:100px !important;
     height:100px !important;
+    position: relative !important;    
 }
 .cardUpcoming-general:hover{
     .cardUpcoming-image{
@@ -39,7 +40,8 @@
     width: 80px !important;
     height: 80px !important;
     cursor: pointer !important;
-    object-fit: cover !important;
+    object-fit: fill !important;
+    position: relative !important;
 }
 .cardUpcoming-elements{
     display: flex !important;

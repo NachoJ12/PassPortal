@@ -35,7 +35,7 @@ const Navbar: React.FC<NavbarProps> = ({ onUsernameClick }) => {
           </span>
           <Link
             href="http://ec2-50-16-167-162.compute-1.amazonaws.com/login"
-            onClick={() => signOut()}
+            onClick={() => signOut({ callbackUrl: "http://ec2-50-16-167-162.compute-1.amazonaws.com/login" })}
             className="navbar_link"
           >
             Sign-Out

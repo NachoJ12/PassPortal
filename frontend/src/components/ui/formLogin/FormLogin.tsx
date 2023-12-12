@@ -44,7 +44,7 @@ const FormLogin = () => {
         });
 
         if (!responseNextAuth?.ok) {
-            setErrorsApi(responseNextAuth?.error)
+            setErrorsApi("Username or Password incorrect")
         }
     }
 

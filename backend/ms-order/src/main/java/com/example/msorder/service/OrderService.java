@@ -1,7 +1,8 @@
 package com.example.msorder.service;
 
 import com.example.msorder.dto.OrderResponseDTO;
-import com.example.msorder.feign.IEventFeing;
+import com.example.msorder.feign.EventDTOStock;
+import com.example.msorder.feign.IEventFeign;
 import com.example.msorder.model.Order;
 import com.example.msorder.model.Ticket;
 import com.example.msorder.repository.IOrderRepository;
@@ -29,7 +30,7 @@ public class OrderService {
     private final EmailService emailSenderService;
 
     @Autowired
-    private final IEventFeing eventFeign;
+    private final IEventFeign eventFeign;
 
     public List<Order> findAll() {
         return repository.findAll();
@@ -52,6 +53,8 @@ public class OrderService {
 
         Order o = repository.save(order);
         emailSenderService.simpleEmail(order.getEmail(),tot,o.getID(),order.getTicket().size(),ticket.getEventid());
+        EventDTOStock eventDTOStock = new EventDTOStock(ticket.getEventid(),order.getTicket().size());
+        eventFeign.updateStock(eventDTOStock);
         return o;
     }
 
@@ -77,7 +80,7 @@ public class OrderService {
             orders.stream().forEach(order -> {
                 Long eventId = order.getTicket().get(0).getEventid();
 
-                IEventFeing.EventDTO eventDTO = eventFeign.getEventById(eventId);
+                IEventFeign.EventDTO eventDTO = eventFeign.getEventById(eventId);
                 OrderResponseDTO orderResponseDTO = new OrderResponseDTO();
 
                 orderResponseDTO.setEvent_id(eventDTO.getEvent().getID());

@@ -8,13 +8,17 @@ import org.springframework.cloud.loadbalancer.annotation.LoadBalancerClient;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient(name="event-service",url = "http://localhost:8092")
+@FeignClient(name="event-service",url = "http://localhost:8092/events")
 @LoadBalancerClient(value="event-service", configuration= LoadBalancerConfiguration.class)
-public interface IEventFeing {
+public interface IEventFeign {
 
-        @GetMapping("/events/{id}")
+        @GetMapping("/{id}")
         EventDTO getEventById(@PathVariable Long id);
+        @PutMapping()
+        EventDTO updateStock(@RequestBody EventDTOStock eventDTOStock);
 
         @Getter
         @Setter

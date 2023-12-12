@@ -94,7 +94,7 @@ public class EventController {
         return ResponseEntity.notFound().build();
     }
 
-    @PutMapping("/{id}")
+    @PutMapping()
     public ResponseEntity<Event> put(@RequestBody Event event){
         return ResponseEntity.ok().body(service.update(event));
     }

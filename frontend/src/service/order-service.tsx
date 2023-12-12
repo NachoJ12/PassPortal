@@ -11,3 +11,13 @@ export const postOrder = async (body : {} , token : string) => {
     })
     return await res.json()
 }
+
+export const getReportByDate = async (month: number, year: number ) => {
+    const res = await fetch(`${NEXT_PUBLIC_BACKEND_URL}/order/pdf/${month}/${year}`, {
+        method: 'GET',
+    })
+    if (!res.ok) {
+        throw new Error('Error en la creacion del reporte');
+    }
+    return await res.blob();
+}

@@ -4,11 +4,13 @@ import React from 'react'
 import HomeIcon from '@mui/icons-material/Home';
 import CategoryIcon from '@mui/icons-material/Category';
 import HelpIcon from '@mui/icons-material/Help';
+import BarChartIcon from '@mui/icons-material/BarChart';
 import { useContext } from "react"
 import { SidebarContext } from '@/components/context/sidebar-context'
 import ContactPageIcon from '@mui/icons-material/ContactPage';
 import PassPortalLogoTicket from "../../../public/logoPassPortalTicket.svg"
 import { usePathname  } from 'next/navigation'
+import { useSession } from 'next-auth/react';
 
 const sidebarItems = [
     {
@@ -35,6 +37,7 @@ const sidebarItems = [
 
 export default function Sidebar() {
     const { selectedItem, dispatch }: any = useContext(SidebarContext);
+    const { data: session } = useSession();
 
     const toggleSelected = (index: any) => {
         dispatch({ type: 'SELECT_ITEM', payload: index });
@@ -58,6 +61,14 @@ export default function Sidebar() {
                             </Link>
                         </li>
                     ))}
+                    {session?.user && session.user.role == 'ADMIN' &&
+                        <li className={"sidebar_item"} key="Report">
+                            <Link  href="/report" className={path === '/report'  ? 'sidebar_link selected' : 'sidebar_link'} onClick={() => toggleSelected(4)}>
+                                <span className='sidebar_icon'><BarChartIcon /></span>
+                                <span className='sidebar_name'>Report</span>
+                            </Link>
+                        </li>
+                    }
                 </ul>
             </aside>
         </div>

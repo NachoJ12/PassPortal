@@ -14,6 +14,9 @@ const Filters: FC<Props> = ({ category }) => {
     const router = useRouter();
     const searchParams = useSearchParams();
     const selectedCategories = searchParams.get("categories")?.split('-') || [];
+    const selectedArtist = searchParams.get("artist") || ""
+    const selectedEvent = searchParams.get("name") || ""
+    console.log(selectedArtist, selectedEvent )
 
     const handleClick = (name: string) => {
         let updatedCategories = [...selectedCategories];

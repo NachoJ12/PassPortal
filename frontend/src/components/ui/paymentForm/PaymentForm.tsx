@@ -67,9 +67,9 @@ const PaymentForm = () => {
                 return accumulator + currentTicket.cantTickets;
             }, 0)
             : 0;
-            
+
         const dataFormat = {
-            delivery_address: "Av siempreviva 123",
+            delivery_address: session!.user.email,
             userid: session!.user.userId,
             ticket: arr
         }
@@ -77,16 +77,16 @@ const PaymentForm = () => {
         // Loop to push ticket IDs to the arr array
         let totalTicketsAdded = 0;
 
-        if(ticket !== undefined){
+        if (ticket !== undefined) {
             for (let i = 0; i < ticket.length; i++) {
                 const currentTicket = ticket[i];
                 const ticketsToAdd = Math.min(currentTicket.cantTickets, result - totalTicketsAdded, 10 - arr.length);
-    
+
                 for (let j = 0; j < ticketsToAdd; j++) {
                     arr.push({ id: currentTicket.id });
                     totalTicketsAdded++;
                 }
-    
+
                 if (totalTicketsAdded >= result || arr.length >= 10) {
                     break;
                 }
@@ -96,7 +96,7 @@ const PaymentForm = () => {
         console.log(result, dataFormat);
         const res = await postOrder(dataFormat, session!.user.accessToken)
         console.log(res);
-        
+
     }
 
     return (
@@ -195,6 +195,24 @@ const PaymentForm = () => {
                                     onFocus={handleInputFocus}
                                 />
                             </div>
+
+                        </div>
+                        <div style={{ width: "50%" }}>
+                            <Typography variant="caption" color="red">
+                                <ErrorMessage errors={errors} name="name" />
+                            </Typography>
+
+                            <input
+                                className='payment_input'
+                                {...register("email")}
+                                type="text"
+                                name="email"
+                                //required={true}
+                                placeholder="Email addrees"
+                                defaultValue={ session && session.user && session.user.email ? session.user.email : "" }
+
+                                readOnly
+                                />
                         </div>
                     </div>
                 </div>

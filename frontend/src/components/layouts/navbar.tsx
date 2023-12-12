@@ -34,7 +34,7 @@ const Navbar: React.FC<NavbarProps> = ({ onUsernameClick }) => {
             {session.user.username}
           </span>
           <Link
-            href="/"
+            href="/login"
             onClick={() => signOut({ callbackUrl: '/login' })}
             className="navbar_link"
           >

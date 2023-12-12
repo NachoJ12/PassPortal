@@ -92,7 +92,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 80px;
     padding: 10px;
   }
   .cardProfile-chart-amount{
@@ -100,7 +99,7 @@
     flex-direction: column;
     align-items: center;
     border: 1px solid white;
-    height: 70px;
+    height: 100%;
     width: 100px;
   }
   .cardProfile-chart-name{
@@ -108,7 +107,7 @@
     flex-direction: column;
     align-items: center;
     border: 1px solid white;
-    height: 70px;
+    height: 100%;
     width: 100px;
   }
   .cardProfile-chart-date{
@@ -116,7 +115,7 @@
     flex-direction: column;
     align-items: center;
     border: 1px solid white;
-    height: 70px;
+    height: 100%;
     width: 100px;
   }
   .cardProfile-chart-type{
@@ -124,7 +123,7 @@
     flex-direction: column;
     align-items: center;
     border: 1px solid white;
-    height: 70px;
+    height: 100%;
     width: 100px;
   }
   .span-name{

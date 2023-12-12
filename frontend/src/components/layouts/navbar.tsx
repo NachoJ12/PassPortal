@@ -1,19 +1,18 @@
 "use client";
-import React, { ReactNode, useState } from 'react'
+import React, { useState } from 'react';
 import { signOut, useSession } from "next-auth/react";
-import Link from 'next/link'
+import Link from 'next/link';
 
 const navbarItems = [
   {
     name: "Sign-In",
     href: "/login"
-
   },
   {
     name: "Register",
     href: "/register"
   }
-]
+];
 
 interface NavbarProps {
   onUsernameClick: () => void;
@@ -21,15 +20,16 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ onUsernameClick }) => {
   const { data: session } = useSession();
-  
 
   return (
     <nav className='navbar'>
       {session?.user ? (
         <>
-          <Link href="/EventRegister" className="navbar_link">
-            Create Event
-          </Link>
+          {session.user.role === 'ADMIN' && (
+            <Link href="/EventRegister" className="navbar_link">
+              Create Event
+            </Link>
+          )}
           <span className="navbar_link" onClick={onUsernameClick}>
             {session.user.username}
           </span>

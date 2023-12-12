@@ -19,11 +19,16 @@ interface EventFormProps {
   onSubmit: (values: any) => void;
 }
 
+interface Category {
+  id: number;
+  name: string;
+}
+
 const CardEventRegister: React.FC<EventFormProps> = ({ onSubmit }) => {
   const { handleSubmit, control } = useForm();
   const { data: session } = useSession();
   const [file, setFile] = useState<File | null>(null);
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState<Category[]>([]);
   const router = useRouter();
 
   useEffect(() => {

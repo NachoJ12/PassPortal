@@ -65,19 +65,7 @@ const FormRegister = () => {
     if (!post.ok) {
       setErrorsApi('Error while creating user')
     }
-    toastr.options = {
-      closeButton: false,
-      debug: false,
-      newestOnTop: false,
-      progressBar: false,
-      positionClass: "toast-top-right",
-      preventDuplicates: false,
-      showEasing: "swing",
-      hideEasing: "linear",
-      showMethod: "fadeIn",
-      hideMethod: "fadeOut",
-    };
-    toastr.success("El evento se ha creado exitosamente!");
+    toastr.success("Successful registration!");
     router.push('/login');
     const responseNextAuth = await signIn('credentials', {
       email,

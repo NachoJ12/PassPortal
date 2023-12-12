@@ -7,13 +7,10 @@ const CarouselCard = () => {
       <Card className="card-carousel" data-aos="fade-up">
         <CardContent>
           <Typography variant="h6" component="div">
-            Worlds 2019 Finals - League of Legends
+            Worlds 2023 Finals - League of Legends
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, vel
-            corporis? Perspiciatis veritatis inventore, similique assumenda,
-            architecto ducimus quibusdam eum minus sequi quia omnis quidem?
-            Excepturi debitis necessitatibus amet aliquid?
+          ¡Bienvenidos a la emocionante final del Campeonato Mundial de League of Legends 2023 (Worlds)! Este evento épico reúne a los mejores equipos de todo el mundo en una confrontación decisiva para determinar al campeón supremo de League of Legends.
           </Typography>
         </CardContent>
       </Card>

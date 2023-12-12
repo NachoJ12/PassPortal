@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSession } from "next-auth/react";
 import { Button, Container, Grid, TextField } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
@@ -7,6 +7,8 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import dayjs from "dayjs";
+import toastr from "toastr"; // Importa Toastr
+import "toastr/build/toastr.min.css";
 
 import logo from "../../../../../public/logo-grey.svg";
 import Image from "next/image";
@@ -17,23 +19,31 @@ interface EventFormProps {
 
 const CardEventRegister: React.FC<EventFormProps> = ({ onSubmit }) => {
   const { handleSubmit, control } = useForm();
-  const { data: session } = useSession(); // Obtén la sesión de NextAuth
+  const { data: session } = useSession();
+  const [file, setFile] = useState<File | null>(null);
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = event.target.files?.[0];
+    if (selectedFile) {
+      setFile(selectedFile);
+    }
+  };
 
   const handleFormSubmit = async (data: any) => {
     try {
       const formattedDate = dayjs(data.eventDate).format("YYYY-MM-DD");
       const formattedTime = dayjs(data.eventTime).format("HH:mm:ss");
-
+  
       const apiData = {
         event: {
           name: data.eventName,
           date: formattedDate,
           time: formattedTime,
           description: data.eventDescription,
-          stock: parseInt(data.stockEntradas), // Convertir a número
+          stock: parseInt(data.stockEntradas),
           venue: {
             name: data.eventName,
-            capacity: parseInt(data.stockEntradas), // Convertir a número
+            capacity: parseInt(data.stockEntradas),
             address: {
               street: data.direccion,
               city: data.municipio,
@@ -44,49 +54,88 @@ const CardEventRegister: React.FC<EventFormProps> = ({ onSubmit }) => {
             name: data.artista,
           },
           category: {
-            id: parseInt(data.categoria), // Convertir a número
+            id: parseInt(data.categoria),
           },
         },
         tickets: [
           {
             name: data.tipoTickets,
-            price: parseFloat(data.precioTickets), // Convertir a número decimal
+            price: parseFloat(data.precioTickets),
           },
           {
             name: data.tipoTickets2,
-            price: parseFloat(data.precioTickets2), // Convertir a número decimal
+            price: parseFloat(data.precioTickets2),
           },
         ],
       };
-      console.log("Datos a enviar:", apiData);
+  
+      const formData = new FormData();
+  
+      // Adjuntar archivo si está presente
+      if (file) {
+        formData.append("file", file);
+      }
+  
+      // Convertir datos a formato JSON y adjuntarlos
+      formData.append(
+        "data",
+        new Blob([JSON.stringify(apiData)], {
+          type: "application/json",
+        })
+      );
+  
+  
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/events`,
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json", // Accede al token de sesión
-          },
-          body: JSON.stringify(apiData),
+          body: formData,
         }
       );
-      console.log("Token de Acceso:", session?.user?.accessToken);
-
-      // Verifica si la solicitud fue exitosa (código de respuesta 2xx)
+  
       if (response.ok) {
         const responseData = await response.json();
         console.log("Respuesta de la API:", responseData);
 
+        toastr.options = {
+          closeButton: false,
+          debug: false,
+          newestOnTop: false,
+          progressBar: false,
+          positionClass: "toast-top-right",
+          preventDuplicates: false,
+          showEasing: "swing",
+          hideEasing: "linear",
+          showMethod: "fadeIn",
+          hideMethod: "fadeOut",
+        };
+        toastr.success("El evento se ha creado exitosamente!");
+  
         // Llama a la función onSubmit si es necesario
         onSubmit(data);
       } else {
-        // Maneja errores de la API aquí
         console.error("Error al enviar datos a la API:", response.statusText);
       }
     } catch (error) {
-      // Maneja errores generales aquí
       console.error("Error en el servidor:", error);
+
+      toastr.options = {
+        closeButton: false,
+        debug: false,
+        newestOnTop: false,
+        progressBar: false,
+        positionClass: "toast-top-right",
+        preventDuplicates: false,
+        showEasing: "swing",
+        hideEasing: "linear",
+        showMethod: "fadeIn",
+        hideMethod: "fadeOut",
+      };
+
+      toastr.error("Error al crear el evento.");
     }
   };
+
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <>
@@ -312,6 +361,9 @@ const CardEventRegister: React.FC<EventFormProps> = ({ onSubmit }) => {
                       />
                     )}
                   />
+                </Grid>
+                <Grid item xs={12}>
+                  <input type="file" onChange={handleFileChange} />
                 </Grid>
                 <Grid item xs={12}>
                   <Button type="submit" variant="contained" color="primary">

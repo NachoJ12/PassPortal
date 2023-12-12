@@ -13,7 +13,8 @@
   background: none !important;
   padding: 15px !important;
   cursor: pointer !important;
-  max-width:900px
+  max-width:900px;
+  position: relative !important;
 }
 .cardShow-main-container {
   display: flex !important;

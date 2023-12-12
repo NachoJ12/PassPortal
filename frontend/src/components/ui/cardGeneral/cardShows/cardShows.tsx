@@ -23,14 +23,16 @@ const CardsShowEvents: FC<Props> = ({ event }) => {
     <div onClick={redirect}>
       <Card className="cardShow-general" data-aos="fade-up">
         <CardContent className="cardShow-container-image">
-          <div>
             <Image
               src={event?.image}
               alt={event?.name}
-              width={200} height={200}
-              className="cardShow-Image"
-            ></Image>
-          </div>
+              quality={100}
+              fill
+              sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+              priority
+              className="cardShow-image"
+            />
+
         </CardContent>
         <CardContent className="cardShow-container-info">
           <Typography variant="h6" component="div" className="cardShow-title">

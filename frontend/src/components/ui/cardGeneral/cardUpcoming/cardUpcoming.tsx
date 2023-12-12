@@ -23,7 +23,7 @@ const CardUpcoming: FC<Props> = ({ event }) => {
           <Image
             src={event?.image}
             alt={event?.name}
-            className='cardUpcoming-image '
+            className='cardUpcoming-image'
             quality={100}
             fill
             sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'

@@ -37,7 +37,6 @@ const theme = createTheme({
 
 const CheckOut: FC<Props> = ({ event, session }) => {
 
-    console.log(session ,"sesssion")
 
     return (
         <BaseLayout>

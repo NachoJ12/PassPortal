@@ -1,3 +1,4 @@
+"use client"
 import React, { useState, FC, use } from 'react';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
@@ -10,6 +11,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import DatePickerValue from '../calendar/Calendar';
+import { useSearchParams, } from 'next/navigation'
 
 interface Props {
     //    municipios: IMunicipioResponse
@@ -18,6 +20,12 @@ interface Props {
 const SearchBar: FC<Props> = ({ }) => {
     const [date, setValue] = useState<Dayjs | null>(dayjs(new Date()));
 
+    const searchParams = useSearchParams();
+    const selectedArtist = searchParams.get("artist") || ""
+    const selectedEvent = searchParams.get("name") || ""
+    const selectedDate = searchParams.get("dateFormat") || null
+
+    console.log(selectedArtist, selectedEvent, selectedDate )
 
     const router = useRouter()
     const [search, setSearch] = useState({
@@ -124,44 +132,15 @@ const SearchBar: FC<Props> = ({ }) => {
             <div className='searchbar_inputs'>
                 <Box sx={{ minWidth: 120, width: "100%" }}>
                     <InputLabel sx={{ color: "white !important" }} id="demo-simple-select-label" className="input-searchbar">Evente Name</InputLabel>
-                    <TextField sx={{ width: "100% !important", border: "1px solid #d67ab1 !important" }} className="input-searchbar" InputProps={{ style: { color: "white" } }} name="event" onChange={handleChangeEvent} variant="outlined" />
+                    <TextField value={selectedEvent} sx={{ width: "100% !important", border: "1px solid #d67ab1 !important" }} className="input-searchbar" InputProps={{ style: { color: "white" } }} name="event" onChange={handleChangeEvent} variant="outlined" />
                 </Box>
 
                 <Box sx={{ minWidth: 120, width: "100%" }}>
                     <InputLabel sx={{ color: "white !important" }} id="demo-simple-select-label" className="input-searchbar">Artist Name</InputLabel>
-                    <TextField sx={{ width: "100% !important", border: "1px solid #d67ab1 !important" }} className="input-searchbar" InputProps={{ style: { color: "white" } }} name="artist" onChange={handleChangeArtist} variant="outlined" />
+                    <TextField value={selectedArtist} sx={{ width: "100% !important", border: "1px solid #d67ab1 !important" }} className="input-searchbar" InputProps={{ style: { color: "white" } }} name="artist" onChange={handleChangeArtist} variant="outlined" />
                 </Box>
 
-                {/* <Box sx={{ minWidth: 120 + "!important", width: "100% !important" }}>
-                    <InputLabel id="demo-simple-select-label" className="input-searchbar" style={{ color: "white !important" }}>Province</InputLabel>
-                    <Select
-                        sx={{ width: "100% !important ", border: "1px solid #d67ab1 !important ", color: "white !important" }}
-                        id="demo-simple-select"
-                        name="provincia"
-                        value={search.provincia}
-                        label="Please Select a Province"
-                        className="input-searchbar"
-                        onChange={handleChange}>
 
-                        {provincias?.provincias?.map(provincia => (<MenuItem value={provincia.nombre} key={provincia.id}>{provincia.nombre}</MenuItem>))}
-
-                    </Select>
-                </Box>
-
-                <Box sx={{ minWidth: 120 + "!important", width: "100% !important" }}>
-                    <InputLabel id="select-label" className="input-searchbar" style={{ color: "white !important" }}>Location</InputLabel>
-                    <Select
-                        sx={{ width: "100% !important", border: "1px solid #d67ab1 !important", color: "white !important" }}
-                        id="simple-select"
-                        name="municipio"
-                        value={search.municipio}
-                        label="Please Select a Location"
-                        onChange={handleChange}
-                        className="input-searchbar"
-                        >
-                        {municipios.municipios.length > 0 ? municipios.municipios.map(municipio => (<MenuItem value={municipio.nombre} key={municipio.id}>{municipio.nombre}</MenuItem>)) : <MenuItem>There are no Location Available</MenuItem>}
-                    </Select>
-                </Box> */}
                 <DatePickerValue date={date} setValue={setValue} />
             </div>
             <div style={{ display: "flex", gap: "16px" }}>

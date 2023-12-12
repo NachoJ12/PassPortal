@@ -103,6 +103,12 @@ body {
   text-shadow: var(--color-secundario) 3px 0px 10px !important;
 }
 
+.category_item.selected,
+.css-1ujsas3.selected {
+  color: var(--color-secundario) !important;
+  text-shadow: var(--color-secundario) 3px 0px 10px !important;
+}
+
 .css-1e6y48t-MuiButtonBase-root-MuiButton-root.selected {
     color: var(--color-secundario)  !important;
     text-shadow: var(--color-secundario) 3px 0px 10px !important;

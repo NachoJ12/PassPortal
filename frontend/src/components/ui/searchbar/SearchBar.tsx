@@ -1,4 +1,3 @@
-"use client"
 import React, { useState, FC, use } from 'react';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
@@ -20,12 +19,8 @@ interface Props {
 const SearchBar: FC<Props> = ({ }) => {
     const [date, setValue] = useState<Dayjs | null>(dayjs(new Date()));
 
-    const searchParams = useSearchParams();
-    const selectedArtist = searchParams.get("artist") || ""
-    const selectedEvent = searchParams.get("name") || ""
-    const selectedDate = searchParams.get("dateFormat") || null
 
-    console.log(selectedArtist, selectedEvent, selectedDate )
+
 
     const router = useRouter()
     const [search, setSearch] = useState({
@@ -132,12 +127,12 @@ const SearchBar: FC<Props> = ({ }) => {
             <div className='searchbar_inputs'>
                 <Box sx={{ minWidth: 120, width: "100%" }}>
                     <InputLabel sx={{ color: "white !important" }} id="demo-simple-select-label" className="input-searchbar">Evente Name</InputLabel>
-                    <TextField value={selectedEvent} sx={{ width: "100% !important", border: "1px solid #d67ab1 !important" }} className="input-searchbar" InputProps={{ style: { color: "white" } }} name="event" onChange={handleChangeEvent} variant="outlined" />
+                    <TextField  sx={{ width: "100% !important", border: "1px solid #d67ab1 !important" }} className="input-searchbar" InputProps={{ style: { color: "white" } }} name="event" onChange={handleChangeEvent} variant="outlined" />
                 </Box>
 
                 <Box sx={{ minWidth: 120, width: "100%" }}>
                     <InputLabel sx={{ color: "white !important" }} id="demo-simple-select-label" className="input-searchbar">Artist Name</InputLabel>
-                    <TextField value={selectedArtist} sx={{ width: "100% !important", border: "1px solid #d67ab1 !important" }} className="input-searchbar" InputProps={{ style: { color: "white" } }} name="artist" onChange={handleChangeArtist} variant="outlined" />
+                    <TextField  sx={{ width: "100% !important", border: "1px solid #d67ab1 !important" }} className="input-searchbar" InputProps={{ style: { color: "white" } }} name="artist" onChange={handleChangeArtist} variant="outlined" />
                 </Box>
 
 

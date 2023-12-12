@@ -26,6 +26,7 @@ public class OrderService {
 
     private final IOrderRepository repository;
     private final IticketRepository ticketrepository;
+    private final EmailService emailSenderService;
 
     @Autowired
     private final IEventFeing eventFeign;
@@ -40,13 +41,18 @@ public class OrderService {
 
     public Order save(Order order) {
         Double tot  = 0.0;
+        Ticket ticket = new Ticket();
+        ticket.setEventid(ticketrepository.findById(order.getTicket().get(0).getID()).get().getEventid());
         for (Ticket tickets: order.getTicket()
              ) {
             Ticket tot2 = ticketrepository.findById(tickets.getID()).get();
             tot += tot2.getPrice();
         }
         order.setTotal_price(tot);
-        return repository.save(order);
+
+        Order o = repository.save(order);
+        emailSenderService.simpleEmail(order.getEmail(),tot,o.getID(),order.getTicket().size(),ticket.getEventid());
+        return o;
     }
 
     public void delete(Long id){

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="ms-configServer" />
+        <module name="ms-event" />
+        <module name="ms-discovery" />
+        <module name="ms-user" />
+        <module name="ms-gateway" />
+        <module name="ms-order" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ms-configServer" target="17" />
+      <module name="ms-discovery" target="17" />
+      <module name="ms-event" target="17" />
+      <module name="ms-gateway" target="17" />
+      <module name="ms-order" target="17" />
+      <module name="ms-user" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ms-configServer" options="-parameters" />
+      <module name="ms-discovery" options="-parameters" />
+      <module name="ms-event" options="-parameters" />
+      <module name="ms-gateway" options="-parameters" />
+      <module name="ms-order" options="-parameters" />
+      <module name="ms-user" options="-parameters" />
+    </option>
+  </component>
+</project>

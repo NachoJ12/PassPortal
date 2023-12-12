@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/PassPortal.iml" filepath="$PROJECT_DIR$/.idea/PassPortal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/backend/ms-configServer/ms-configServer.iml" filepath="$PROJECT_DIR$/backend/ms-configServer/ms-configServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/backend/ms-discovery/ms-discovery.iml" filepath="$PROJECT_DIR$/backend/ms-discovery/ms-discovery.iml" />
+      <module fileurl="file://$PROJECT_DIR$/backend/ms-event/ms-event.iml" filepath="$PROJECT_DIR$/backend/ms-event/ms-event.iml" />
+      <module fileurl="file://$PROJECT_DIR$/backend/ms-gateway/ms-gateway.iml" filepath="$PROJECT_DIR$/backend/ms-gateway/ms-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/backend/ms-order/ms-order.iml" filepath="$PROJECT_DIR$/backend/ms-order/ms-order.iml" />
+      <module fileurl="file://$PROJECT_DIR$/backend/ms-user/ms-user.iml" filepath="$PROJECT_DIR$/backend/ms-user/ms-user.iml" />
+    </modules>
+  </component>
+</project>

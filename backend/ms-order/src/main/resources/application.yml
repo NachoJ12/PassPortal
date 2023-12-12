@@ -2,6 +2,19 @@
 #  port: ${PORT:8089}
 #
 #spring:
+#  mail:
+#    host: smtp.gmail.com
+#    port: 587
+#    username: passportalg7@gmail.com
+#    password: qwos wdup noth vqyz
+#    properties:
+#      mail:
+#        mime:
+#          charset: UTF-8
+#        smtp:
+#          starttls:
+#            enable: true
+#          auth: true
 #  application:
 #    name: order
 #  jpa:

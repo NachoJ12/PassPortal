@@ -33,5 +33,7 @@ public class Order {
     @JoinColumn(name = "ticket_id", referencedColumnName = "id")
     private List<Ticket> ticket;
 
+    @Transient
+    private String email;
 
 }

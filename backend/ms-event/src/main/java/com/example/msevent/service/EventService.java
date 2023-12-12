@@ -103,7 +103,14 @@ public class EventService {
     }
 
     public Event update(Event event) {
-        return repository.save(event);
+        Event eventToMod = repository.findById(event.getID()).get();
+        if (eventToMod.getStock()-event.getStock()<0){
+            throw new RuntimeException("no hay stock, elija menos tickets");
+        }
+        eventToMod.setStock(eventToMod.getStock()-event.getStock());
+
+        return repository.save(eventToMod);
+
     }
 
     public List<Event> findByArtistName(String name){

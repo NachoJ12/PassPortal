@@ -46,6 +46,7 @@
 .cardUpcoming-elements{
     display: flex !important;
     cursor: pointer !important;
+    padding: 0px !important;
 }
 .cardUpcoming-info{
     display: flex !important;

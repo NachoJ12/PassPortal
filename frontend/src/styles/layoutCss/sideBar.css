@@ -1,0 +1,156 @@
+.sidebar_wrapper {
+    position: sticky;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 5.3rem;
+    height: 100%;
+    background-color: var(--color-primario);
+    transition: all .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly
+}
+
+.sidebar_top {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #666666;
+}
+
+.sidebar_logo {
+    width: 6.5rem;
+    height: 8rem;
+    object-fit: cover;
+    padding-left: 20px;
+}
+
+.sidebar_list {
+    list-style: none;
+}
+
+.sidebar_link {
+    display: inline-block;
+    font-size: 1rem;
+    text-decoration: none;
+    color: var(--color-terciario);
+    padding: 10px;
+    padding-top: 15px;
+    display: flex;
+    background-color: var(--color-primario);
+    margin-bottom: 1rem;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.sidebar_link:hover {
+    color: var(--color-secundario);
+    text-shadow: var(--color-secundario) 3px 0px 10px;
+}
+
+.sidebar_link.selected {
+    color: var(--color-secundario);
+    text-shadow: var(--color-secundario) 3px 0px 10px;
+}
+
+
+
+.sidebar_icon {
+    font-size: 1.4rem;
+    display: inline-block;
+}
+
+.sidebar_logoName {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--color-terciario);
+    padding-top: 30px;
+    transition: all .10s ease;
+}
+
+
+.sidebar_logo {
+    margin-left: -20px;
+}
+
+.sidebar_top {
+    width: auto;
+}
+
+.sidebar_logoName {
+    display: none;
+    transition: all 10s ease-in-out;
+}
+
+.sidebar_link {
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media screen and (max-width: 767px) {
+    .sidebar {
+        display: flex;
+        flex-direction: row;
+        width: 100svw;
+        position: fixed;
+        bottom: 0%;
+        height: 8.5%;
+        align-items: center;
+        transition: none;
+        z-index: 2;
+        margin-top: 2rem;
+    }
+
+    .sidebar_wrapper {
+        position: inherit;
+    }
+
+    .sidebar_list {
+        width: 100svw;
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .sidebar_logo {
+        display: none;
+    }
+
+    .sidebar_logoName {
+        display: none;
+    }
+
+    .sidebar_name {
+        margin: 0px;
+        font-size: 13px;
+    }
+
+    .sidebar_link {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 0px;
+        padding: 0px 10px
+    }
+
+    .sidebar_top {
+        display: none;
+    }
+
+    .sidebar_btn {
+        display: none;
+    }
+
+    .sidebar_link:hover {
+        background-color: var(--color-primario);
+    }
+
+    .sidebar_link.selected {
+        background-color: var(--color-primario);
+    }
+}

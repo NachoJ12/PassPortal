@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
+
+:root {
+  --color-primario: #070607;
+  /*layouts, backgrounds*/
+  --color-secundario: rgb(250, 250, 250);
+  /*color fonts hovers & selected*/
+  --color-terciario: #9d9c9d;
+  /*color fonts normals*/
+  --color-hover: #2e2d2d;
+  /*hovers backgrounds*/
+  --color-main: #0e0c0d;
+}
+
+html {
+  overflow-x: initial !important;
+
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background-color: #e4e1e1;
+}
+
+.home-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.event-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.help-page span{
+  color: var(--color-terciario);
+}
+
+.help-page span:hover{
+  color: var(--color-secundario);
+  text-shadow: var(--color-secundario) 3px 0px 10px;
+}
+
+.faqs_list{
+  display:flex;
+  flex-direction: column;
+  margin-top:3rem
+}
+.main-container {
+  display: flex;
+  width: 100%;
+  justify-content: center
+}
+
+.logo-main {
+  width: 300px;
+}
+
+.base-layout {
+  display: flex;
+}
+
+.layout-sidebar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  z-index: 1;
+}
+
+.category_container{
+  display: flex;
+  width: 60%;
+  align-self: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin: 1rem;
+  gap: 0.5rem;
+}
+
+
+
+.category_item, .css-1ujsas3 {
+  font-size: 1rem !important;
+  text-decoration: none !important;
+  color: var(--color-terciario) !important;
+  background-color: var(--color-primario) !important;
+  transition: all 0.3s ease-in-out !important;
+  padding-top: 25px !important;
+  padding-bottom: 25px !important;
+  flex-basis: 150px !important;}
+
+.category_item:hover, .css-1ujsas3:hover {
+  color: var(--color-secundario) !important;
+  text-shadow: var(--color-secundario) 3px 0px 10px !important;
+}
+
+.category_item.selected,
+.css-1ujsas3.selected {
+  color: var(--color-secundario) !important;
+  text-shadow: var(--color-secundario) 3px 0px 10px !important;
+}
+
+.css-1e6y48t-MuiButtonBase-root-MuiButton-root.selected {
+    color: var(--color-secundario)  !important;
+    text-shadow: var(--color-secundario) 3px 0px 10px !important;
+}
+
+.css-1bn53lx{
+  border: 1px solid rgb(214, 122, 177) !important;
+  width: 100%;
+}
+.css-1uvydh2, .css-1bn53lx{
+  color:white !important;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.layout-navbar {
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  z-index: 1000
+}
+
+.layout-footer {
+  background-color: var(--color-primario);
+  display: flex;
+  justify-content: center;
+  transition: none;
+  margin-top:100px;
+}
+/* Cambia el ancho del pulgar del scrollbar */
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-hover);
+  width: 40px;
+  border-radius: 10px;
+}
+
+/* Cambia el ancho de la pista del scrollbar */
+::-webkit-scrollbar-track {
+  width: 40px;
+  background-color: #cecdcd;
+}
+
+/* Oculta el scrollbar en navegadores WebKit */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+
+/*Mobile*/
+@media screen and (max-width: 767px) {
+  .main {
+    overflow: unset;
+    padding-top: 48px;
+  }
+
+  .main-container {
+    flex-direction: column;
+  }
+
+  .layout-footer {
+    display: none;
+  }
+
+}

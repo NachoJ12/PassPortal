@@ -1,0 +1,176 @@
+.grid-container {
+  width: 75vw !important;
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important; /* Dos columnas en la primera fila */
+  color: white !important;
+  gap: 1rem !important;
+}
+
+.cardShow-general {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  background: none !important;
+  padding: 15px !important;
+  cursor: pointer !important;
+  max-width:900px;
+  position: relative !important;
+}
+.cardShow-main-container {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  margin-top: 50px !important;
+  margin-bottom: 100px !important;
+}
+.cardShow-main-title {
+  font-size: 30px !important;
+  color: white !important;
+}
+
+.cardShow-container-info {
+  background-color: white !important;
+  
+}
+
+.cardShow-container-info:hover {
+  width: 50% !important;
+}
+
+
+
+.large-card {
+  width: 100% !important;
+  height: 100% !important;
+  grid-column: span 3 !important;
+  background-color: none !important;
+  color: black !important; /* La tarjeta grande ocupa 2 columnas */
+  .cardShow-general {
+    display: flex !important;
+    flex-direction: row !important;
+  }
+  .cardShow-image {
+    position: relative !important;
+    width: 100% !important;
+    height: 360px !important;
+  }
+  .cardShow-container-image {
+    width: 60% !important;
+  }
+  .cardShow-container-info {
+    width: 40% !important;
+    padding: 20px !important;
+  }
+  .cardShow-title {
+    padding-top: 20px !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    text-align: center !important;
+  }
+}
+
+.large-card:hover {
+  .cardShow-container-image {
+    transform: scale(1.05) !important;
+    transition: transform 0.3s ease-in-out !important;
+  }
+  .cardShow-container-info {
+    transform: translateX(-20px) !important;
+    transition: all 0.3s ease-in-out !important;
+    background-color: wahite !important;
+    box-shadow: -18px 20px 25px -25px rgb(243, 178, 218),
+      20px -20px 25px -25px rgb(161, 111, 190),
+      -17px -20px 25px -25px rgb(213, 148, 226),
+      20px 20px 25px -25px rgb(230, 219, 231) !important;
+      z-index: 0 !important;
+  }
+}
+
+.small-card {
+  grid-column: span 1 !important; /* Las tarjetas pequeñas ocupan 1 columna cada una */
+  height: 400px !important;
+  width: 100% !important;
+  .cardShow-image {
+    position: relative !important;
+    width: 100% !important;
+    height: 240px !important;
+  }
+  .cardShow-container-image {
+    width: 100% !important;
+  }
+  .cardShow-container-info {
+    width: 100% !important;
+    height: 125px !important;
+    padding: 10px !important;
+  }
+  .cardShow-description {
+    display: none !important;
+  }
+}
+
+.small-card:hover {
+  .cardShow-container-image {
+    transform: scale(1.05) !important;
+    transition: transform 0.3s ease-in-out !important;
+  }
+  .cardShow-container-info {
+    transform: translateY(-20px) !important;
+    transition: all 0.3s ease-in-out !important;
+    background-color: white !important;
+    box-shadow: -18px 20px 25px -25px rgb(243, 178, 218),
+      20px -20px 25px -25px rgb(161, 111, 190),
+      -17px -20px 25px -25px rgb(213, 148, 226),
+      20px 20px 25px -25px rgb(230, 219, 231) !important;
+    z-index: 0 !important;
+  }
+}
+.cardShow-title {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  text-align: center !important;
+  color: rgb(104, 104, 104) !important;
+}
+.cardShow-info {
+  font-size: 13px !important;
+  font-weight: 300 !important;
+  text-align: center !important;
+  color: rgb(0, 0, 0) !important;
+}
+.cardShow-info-container {
+  display: flex !important;
+  align-items: center !important;
+}
+.cardShow-description {
+  font-size: 16px !important;
+}
+
+
+@media screen and (max-width: 767px){
+  .grid-container{
+    grid-template-columns: repeat(1, 1fr) !important;
+    justify-items: center !important;
+  }
+  .cardShow-general{
+    max-width: 100vw !important;
+  }
+  .large-card{
+    grid-column: span 1 !important;
+    .cardShow-general{
+      flex-direction:column !important;
+      align-items: center !important;
+    }
+    .cardShow-image{
+
+position: relative !important;      height:220px !important;
+    }
+    .cardShow-container-info {
+      width: 60% !important;
+    }
+    .cardShow-description {
+      display: none !important;
+    }
+    .cardShow-title {
+      padding: 0 !important;
+    }
+  }
+}
